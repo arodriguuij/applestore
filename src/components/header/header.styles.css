@@ -1,0 +1,25 @@
+header {
+  grid-area: header;
+  position: fixed;
+  margin: 0;
+  background: rgb(29, 29, 31);
+  width: 100%;
+  opacity: 0.9;
+}
+
+.header-ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.header-li {
+  list-style-type: none;
+  text-decoration: none;
+  color: white;
+  padding: 0 3vw;
+}
