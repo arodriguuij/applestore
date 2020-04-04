@@ -1,22 +1,65 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import HomePage from "./containers/homePage/home-page.container";
 import Header from "./components/header/header.component";
-import Footer from "./components/footer/footer.component";
+/* import Footer from "./components/footer/footer.component"; */
 import { Route, Switch } from "react-router-dom";
-import ShopPage from './containers/shopPage/shop-page.container'
+import ErrorBoundary from "./components/error-boundary/error.boundary.component";
+import CollectionPage from "./containers/collectionPage/collection-page.container";
+import DetailsPage from "./containers/detailsPage/details-page.container";
+import ErrorPage from "./components/error-page/error-page";
+import { fetchCollectionNamesAsync } from "./redux/collectionNames/collection-names.actions";
+import { connect } from "react-redux";
+import Spinner from "./components/spinner/spinner.component";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route path="/" exact component={HomePage}></Route>
-        <Route path="/:pathParam1?/:pathParam2" component={ShopPage}></Route>
-      </Switch>
-      <Footer />
-    </div>
-  );
-}
+const App = (props) => {
+  const { onFetchCollectionNamesAsync } = props;
+  useEffect(() => {
+    onFetchCollectionNamesAsync();
+  }, [onFetchCollectionNamesAsync]);
 
-export default App;
+  let content = <Spinner />;
+  if (!props.loading)
+    content = (
+      <div className="App">
+        <Header />
+        <ErrorBoundary>
+          <Switch>
+            <Route exact path="/" component={HomePage}></Route>
+            {props.collectionNames.map((collectionName) => (
+              <Route
+                key={collectionName.link}
+                exact
+                path={`/${collectionName.link}`}
+                component={CollectionPage}
+              ></Route>
+            ))}
+            {props.collectionNames.map((collectionName) => (
+              <Route
+                key={collectionName.link}
+                exact
+                path={`/${collectionName.link}/:id`}
+                component={DetailsPage}
+              ></Route>
+            ))}
+            <Route path="/" component={ErrorPage}></Route>
+          </Switch>
+        </ErrorBoundary>
+{/*         <Footer /> */}
+      </div>
+    );
+
+  return content;
+};
+
+const mapStateToProps = (state) => ({
+  collectionNames: state.collectionNames.collectionNames,
+  loading: state.collectionNames.loading,
+  error: state.collectionNames.error,
+});
+
+const mapDispatchtoProps = (dispatch) => ({
+  onFetchCollectionNamesAsync: () => dispatch(fetchCollectionNamesAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchtoProps)(App);

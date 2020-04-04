@@ -1,41 +1,67 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./home-page.styles.css";
+import Card from "../../components/card/card.component";
+import { connect } from "react-redux";
+import { fetchDevicesAsyn } from "../../redux/devicesMainPage/devices.actions";
+import Spinner from "../../components/spinner/spinner.component";
 
-const HomePage = props => {
-  return (
-    <div className="home-page-main">
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-11-pro-gallery-2019-5?wid=1680&hei=640&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1567208466277"
-        className="home-page-product home-page-product-special-top"
-      />
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-202002-gallery1?wid=2000&hei=1536&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1580947852582"
-        className="home-page-product"
-      />
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-gallery3-2017?wid=2000&hei=1536&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1507136862165"
-        className="home-page-product"
-      />
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-xr-gallery2-201809?wid=2000&hei=1536&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1538156395322"
-        className="home-page-product"
-      />
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-201911_FMT_WHH?wid=2000&amp;hei=2000&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1573800147324"
-        className="home-page-product"
-      />
-      <img
-        alt="item"
-        src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-gallery5-2019?wid=1680&hei=640&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1567280207602"
-        className="home-page-product home-page-product-special-bottom"
-      />
-    </div>
-  );
+const HomePage = (props) => {
+  const { onFetchDevicesAsyn } = props;
+  useEffect(() => {
+    onFetchDevicesAsyn();
+  }, [onFetchDevicesAsyn]);
+
+  let content = <Spinner />;
+  if (!props.loading)
+    content = (
+      <div className="home-page-main">
+        <Card
+          key={1}
+          click
+          {...props.collection_mainPage.mainFirstItem}
+          classes="home-page-product home-page-product-special-top"
+        />
+        <Card
+          key={2}
+          classes={"home-page-product"}
+          {...props.collection_mainPage.itemFirst}
+          click
+        />
+        <Card
+          key={3}
+          classes={"home-page-product"}
+          {...props.collection_mainPage.itemSecond}
+          click
+        />
+        <Card
+          key={4}
+          classes={"home-page-product"}
+          {...props.collection_mainPage.itemThird}
+          click
+        />
+        <Card
+          key={5}
+          classes={"home-page-product"}
+          {...props.collection_mainPage.itemFourth}
+          click
+        />
+        <Card
+          key={6}
+          click
+          {...props.collection_mainPage.mainLastItem}
+          classes="home-page-product home-page-product-special-bottom"
+        />
+      </div>
+    );
+  return content;
 };
 //
-export default HomePage;
+const mapStateToProps = (state) => ({
+  collection_mainPage: state.devices.collection_mainPage,
+  loading: state.devices.loading,
+  error: state.devices.error,
+});
+const mapDispatchToProps = (dispatch) => ({
+  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

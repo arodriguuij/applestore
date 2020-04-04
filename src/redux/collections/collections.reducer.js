@@ -1,11 +1,10 @@
-import storage from "./storage.js";
-import shopActionTypes from "./shop.types";
+import shopActionTypes from "./collections.types";
 
 const initialState = {
-  collection_mac: [],
-  collection_iphone: [],
-  collection_ipad: [],
-  collection_watch: [],
+  collection_mac: {},
+  collection_iphone: {},
+  collection_ipad: {},
+  collection_watch: {},
   loading: false,
   error: ""
 };

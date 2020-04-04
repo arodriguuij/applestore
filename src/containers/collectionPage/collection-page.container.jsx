@@ -1,43 +1,62 @@
 import React, { useEffect } from "react";
-import "./collection-page.styles.css";
 import { connect } from "react-redux";
-import { fetchCollectionAsyn } from "../../redux/shop/shop.actions";
-import Cart from "../../components/cart/cart.component";
+import { fetchCollectionAsyn } from "../../redux/collections/collections.actions";
+import Card from "../../components/card/card.component";
+import Spinner from "../../components/spinner/spinner.component";
+import ErrorPage from "../../components/error-page/error-page";
+import "./collection-page.styles.css";
 
-const CollectionPage = props => {
-  const { onFetchCollectionAsyn, match } = props;
-  const { path } = match;
+const CollectionPage = (props) => {
+  const { onFetchCollectionAsyn } = props;
+  const collectionName = props.match.path.substr(1);
+  const collectionStateName = props[`collection_${collectionName}`];
+
   useEffect(() => {
-    if (props[`collection_${props.match.path.substr(1)}`].length === 0)
-      return onFetchCollectionAsyn(props.match.path.substr(1));
-  }, [path]);
+    if (
+      Object.keys(collectionStateName).length === 0 &&
+      collectionStateName.constructor === Object
+    ) {
+      console.log("COLLECTION-PAGE sending onFetchCollectionAsyn");
+      return onFetchCollectionAsyn(collectionName);
+    }
+  }, [collectionName, collectionStateName, onFetchCollectionAsyn]);
 
-  return (
-    <div className="collection-page-main">
-      {Object.entries(props[`collection_${props.match.path.substr(1)}`]).map(
-        ([id, device]) => (
-          <Cart
-            key={id}
-            {...device}
-            id={id}
-            collection={props.match.path.substr(1)}
-          />
-        )
-      )}
-    </div>
-  );
+  let content = <Spinner />;
+  if (!props.loading)
+    content = collectionStateName ? (
+      <div className="collection-page-main">
+        {Object.entries(collectionStateName).map(([id, device]) => (
+          <div className="collection-page-main-item" key={id}>
+            <Card
+              {...device}
+              id={id}
+              collection={collectionName}
+              classes="home-page-product"
+              click
+            />
+            <h2>{id}</h2>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <ErrorPage />
+    );
+
+  return content;
 };
 
-const mapStateToProps = state => ({
-  collection_mac: state.shop.collection_mac,
-  collection_iphone: state.shop.collection_iphone,
-  collection_ipad: state.shop.collection_ipad,
-  collection_watch: state.shop.collection_watch
+const mapStateToProps = (state) => ({
+  collection_mac: state.collections.collection_mac,
+  collection_iphone: state.collections.collection_iphone,
+  collection_ipad: state.collections.collection_ipad,
+  collection_watch: state.collections.collection_watch,
+  loading: state.collections.loading,
+  error: state.collections.error,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onFetchCollectionAsyn: collectionName =>
-    dispatch(fetchCollectionAsyn(collectionName))
+const mapDispatchToProps = (dispatch) => ({
+  onFetchCollectionAsyn: (collectionName) =>
+    dispatch(fetchCollectionAsyn(collectionName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionPage);

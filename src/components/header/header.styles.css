@@ -15,11 +15,17 @@ header {
   flex-wrap: wrap;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
+  padding-inline-start: 0;
 }
 
 .header-li {
   list-style-type: none;
   text-decoration: none;
-  color: white;
+  color: rgb(198, 198, 198);
   padding: 0 3vw;
+  font-size: 0.8rem;
+}
+
+.header-li:hover {
+  color: white;
 }
