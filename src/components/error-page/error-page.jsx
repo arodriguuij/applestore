@@ -1,7 +1,7 @@
 import React from "react";
 import "./error-page.css";
 
-const ErrorPage = (text) => {
+const ErrorPage = ({text}) => {
   return (
     <div className={"error-image-overlay"}>
       <div className={"error-image-container"} />
