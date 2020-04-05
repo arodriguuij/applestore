@@ -1,34 +1,13 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { ReactComponent as ReactLogoIcon } from "../../assets/apple2.svg";
 import { ReactComponent as ReactLogoBag } from "../../assets/add-to-basket.svg";
-import {selectCollection, selectLoading, selectError} from '../../redux/collectionNames/collection.names.selectors';
+import { selectCollection } from "../../redux/collectionNames/collection.names.selectors";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Spinner from "../../components/spinner/spinner.component";
 import BagIcon from "../../components/bag-icon/bag-icon.component";
-import "./header.styles.css"; 
+import "./header.styles.css";
 
-const Header = (props) => {
-  const {collectionNames,loading} = props;
-  useEffect(() => {
-  }, [collectionNames,loading])
-
-  useEffect(() => {
-    debugger;
-  },)
-
-  let content = <Spinner />;
-  if (!loading)
-    content = collectionNames.map((collectionDevice) => (
-      <Link
-        key={collectionDevice.link}
-        to={`/${collectionDevice.link}`}
-        className="header-li"
-      >
-        {collectionDevice.name}
-      </Link>
-    ));
-
+const Header = ({ collectionNames }) => {
   return (
     <header>
       <nav className="header-nav">
@@ -38,7 +17,15 @@ const Header = (props) => {
               <ReactLogoIcon className="shopping-icon" />
             </BagIcon>
           </Link>
-          {content}
+          {collectionNames.map(({link, name}) => (
+            <Link
+              key={link}
+              to={`/${link}`}
+              className="header-li"
+            >
+              {name}
+            </Link>
+          ))}
           <div className="header-li">
             <BagIcon>
               <ReactLogoBag className="shopping-icon" />
@@ -53,8 +40,6 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => ({
   collectionNames: selectCollection(state),
-  loading: selectLoading(state),
-  error: selectError(state)
 });
 
 export default connect(mapStateToProps)(Header);

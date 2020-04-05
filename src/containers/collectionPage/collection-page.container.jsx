@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { fetchCollectionAsyn } from "../../redux/collections/collections.actions";
 import Spinner from "../../components/spinner/spinner.component";
-import ErrorPage from "../../components/error-page/error-page";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
 import PageContent from "../../components/page-content/page-content.component";
 import {
@@ -14,24 +13,24 @@ import {
   selectorCollectionError,
 } from "../../redux/collections/collections.selectors";
 import "./collection-page.styles.css";
+const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const CollectionPage = (props) => {
-  const { onFetchCollectionAsyn } = props;
-  const collectionName = props.match.path.substr(1);
+  const { onFetchCollectionAsyn, loading, error, match } = props;
+  const collectionName = match.path.substr(1);
   const collectionStateName = props[`collection_${collectionName}`];
+  const isObjectAndEmpty =
+    Object.keys(collectionStateName).length === 0 &&
+    collectionStateName.constructor === Object;
 
   useEffect(() => {
-    if (
-      Object.keys(collectionStateName).length === 0 &&
-      collectionStateName.constructor === Object
-    )
-      return onFetchCollectionAsyn(collectionName);
+    if (isObjectAndEmpty) return onFetchCollectionAsyn(collectionName);
   }, [collectionName, collectionStateName, onFetchCollectionAsyn]);
 
   let content = <Spinner />;
 
-  if (!props.loading)
-    content = collectionStateName ? (
+  if (!loading)
+    content = (
       <PageContent
         classesContainer={"collection-page-container"}
         classesMain={"collection-page-main"}
@@ -41,14 +40,14 @@ const CollectionPage = (props) => {
           <CardWithDescription
             key={id}
             id={id}
-            device={device}
             collection={collectionName}
+            device={device}
           />
         ))}
       </PageContent>
-    ) : (
-      <ErrorPage /> //TODO: test if can arrive here
     );
+
+  if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
 
   return content;
 };
@@ -59,7 +58,7 @@ const mapStateToProps = (state) => ({
   collection_ipad: selectorCollectionIpad(state),
   collection_watch: selectorCollectionWatch(state),
   error: selectorCollectionError(state),
-  loading: selectorCollectionLoading(state)
+  loading: selectorCollectionLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

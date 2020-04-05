@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import {
   removeActualDevice,
@@ -12,29 +12,33 @@ import {
   selectorCollectionLoading,
   selectorCollectionError,
 } from "../../redux/collections/collections.selectors";
-import {selectorCollectionActualDevice} from '../../redux/actualDevice/actual-device.selector';
+import { selectorCollectionActualDevice } from "../../redux/actualDevice/actual-device.selector";
 import Spinner from "../../components/spinner/spinner.component";
-import ErrorPage from "../../components/error-page/error-page";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
 import PageContent from "../../components/page-content/page-content.component";
 import "./details-page.styles.css";
+const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const DetailsPage = (props) => {
-  const collection = props.match.path.split("/")[1];
-  const deviceName = props.match.params.id;
+  const {
+    match,
+    onRemoveActualDevice,
+    onFetchActualDeviceAsyn,
+    collection_actualDevice,
+    loading,
+    error,
+  } = props;
+  const collection = match.path.split("/")[1];
+  const deviceName = match.params.id;
   const collectionState = props[`collection_${collection}`];
-  const { onRemoveActualDevice, onFetchActualDeviceAsyn } = props;
-
+  const isObjectAndEmpty =
+    collectionState &&
+    Object.keys(collectionState).length === 0 &&
+    collectionState.constructor === Object;
+    
   useEffect(() => {
-    if (
-      collectionState &&
-      Object.keys(collectionState).length === 0 &&
-      collectionState.constructor === Object
-    ) {
-      console.log("DETAILS-PAGE sending onFetchDetailsAsyn");
+    if (isObjectAndEmpty || !collectionState[deviceName])
       onFetchActualDeviceAsyn(collection, deviceName);
-    }
-
     return function cleanup() {
       onRemoveActualDevice();
     };
@@ -46,39 +50,38 @@ const DetailsPage = (props) => {
     onRemoveActualDevice,
   ]);
 
-  let content = !(
-    collectionState &&
-    Object.keys(collectionState).length === 0 &&
-    collectionState.constructor === Object
-  ) ? (
-    <PageContent
-      classesContainer={"details-page-container"}
-      classesMain={"details-page-main"}
-      text={collectionState[deviceName].name}
-    >
-      <CardWithDescription
-        device={collectionState[deviceName]}
-        collection={collection}
-        extraInformation
-      />
-    </PageContent>
-  ) : props.collection_actualDevice ? (
-    <PageContent
-      classesContainer={"details-page-container"}
-      classesMain={"details-page-main"}
-      text={props.collection_actualDevice.name}
-    >
-      <CardWithDescription
-        device={props.collection_actualDevice}
-        collection={collection}
-        extraInformation
-      />
-    </PageContent>
-  ) : (
-    <ErrorPage />
-  );
+  let content = <Spinner />;
+  if (!loading)
+    content =
+      !isObjectAndEmpty && collectionState[deviceName] ? (
+        <PageContent
+          classesContainer={"details-page-container"}
+          classesMain={"details-page-main"}
+          text={collectionState[deviceName].name}
+        >
+          <CardWithDescription
+            device={collectionState[deviceName]}
+            collection={collection}
+            extraInformation
+          />
+        </PageContent>
+      ) : collection_actualDevice ? (
+        <PageContent
+          classesContainer={"details-page-container"}
+          classesMain={"details-page-main"}
+          text={collection_actualDevice.name}
+        >
+          <CardWithDescription
+            device={collection_actualDevice}
+            collection={collection}
+            extraInformation
+          />
+        </PageContent>
+      ) : (
+        <ErrorPage text="Page not found" />
+      );
 
-  if (props.loading) content = <Spinner />;
+  if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
 
   return content;
 };
@@ -92,7 +95,6 @@ const mapStateToProps = (state) => ({
   error: selectorCollectionError(state),
   loading: selectorCollectionLoading(state),
 });
-
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchActualDeviceAsyn: (collection, deviceName) =>

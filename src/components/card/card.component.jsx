@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./card.styles.css";
 
-const Card = (props) => {
+const Card = ({ id, classes, collection, click, img }) => {
   return (
-    <div className={` ${props.classes}`}>
-      {props.click ? (
-        <Link to={`/${props.collection}/${props.id}`}>
-          <img alt={props.id} src={props.img} />
+    <div className={classes}>
+      {click ? (
+        <Link to={`/${collection}/${id}`}>
+          <img alt={id} src={img} />
         </Link>
       ) : (
-        <img alt={props.id} src={props.img} />
+        <img alt={id} src={img} />
       )}
     </div>
   );

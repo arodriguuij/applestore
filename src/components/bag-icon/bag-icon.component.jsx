@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './bag-icon.styles.css';
 
-const BagIcon = (props) => {
+const BagIcon = ({children}) => {
   const [toggleBag, setToggleBag] = useState(false);
 
   const toggleBagHandler = () => {
@@ -11,7 +11,7 @@ const BagIcon = (props) => {
 
   return (
     <div className="cart-icon" onClick={toggleBagHandler}>
-      {props.children}
+      {children}
     </div>
   );
 };

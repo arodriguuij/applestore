@@ -3,24 +3,26 @@ import Card from "../card/card.component";
 import DetailsCard from "../details-card/details-card.component";
 import "./card-with-description.styles.css";
 
-const CardWithDescription = (props) => {
+const CardWithDescription = ({id, collection, device}) => {
   return (
     <div className="card-with-description">
       <div className="card-with-description-card">
         <Card
-          {...props.device}
-          id={props.id}
-          collection={props.collection}
+          id={id}
           classes="home-page-product"
+          collection={collection}
+          img={device.img}
         />
       </div>
       <div className="card-with-description-description">
         <DetailsCard
-          name={props.device.name}
-          description={props.device.description}
-          collection={props.collection}
-          id={props.id}
-          extraInformation={props.device}
+          id={id}
+          name={device.name}
+          description={device.description}
+          collection={collection}
+          price={device.price}
+          descriptionExtraTitle={device.descriptionExtraTitle}
+          descriptionExtra={device.descriptionExtra}
         />
       </div>
     </div>

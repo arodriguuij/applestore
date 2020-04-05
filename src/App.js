@@ -17,10 +17,6 @@ const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
     onFetchCollectionNamesAsync();
   }, [onFetchCollectionNamesAsync]);
 
-  useEffect(() => {
-    debugger;
-  },);
-
   let content = <Spinner />;
   if (!loading)
     content = (
@@ -34,7 +30,7 @@ const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
         </ErrorBoundary>
       </div>
     );
-    if(error) content = <ErrorPage/>
+    if(error) content = <ErrorPage text="Something was wrong... Try again :|"/>
 
   return content;
 };

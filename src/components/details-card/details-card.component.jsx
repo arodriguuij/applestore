@@ -3,32 +3,32 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import { Link } from "react-router-dom";
 import "./details-card.styles.css";
 
-const DetailsCard = (props) => {
+const DetailsCard = ({id, name, description, collection, price, descriptionExtraTitle, descriptionExtra}) => {
   return (
     <div className="collection-page-description">
-      {props.id ? (
+      {id ? (
         <Fragment>
-          <h2 className="collection-page-name">{props.name}</h2>
+          <h2 className="collection-page-name">{name}</h2>
           <ul>
-            <li>{props.description}</li>
-            <li>From $<strong>{props.extraInformation.price}</strong></li>
+            <li>{description}</li>
+            <li>From $<strong>{price}</strong></li>
           </ul>
-          <Link to={`/${props.collection}/${props.id}`}>
+          <Link to={`/${collection}/${id}`}>
             <CustomButton text="Buy" />
           </Link>
         </Fragment>
       ) : (
         <Fragment>
           <h2 className="collection-page-name">
-            {props.extraInformation.descriptionExtraTitle}
+            {descriptionExtraTitle}
           </h2>
           <ul>
-            {props.extraInformation.descriptionExtra
+            {descriptionExtra
               .split("$")
               .map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
-              <li>From $<strong>{props.extraInformation.price}</strong></li>
+              <li>From $<strong>{price}</strong></li>
           </ul>
           <CustomButton text="Buy" />
         </Fragment>

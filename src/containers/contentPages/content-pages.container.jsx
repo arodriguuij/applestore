@@ -3,33 +3,35 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./content-pages.styles.css";
 import { selectCollection } from "../../redux/collectionNames/collection.names.selectors";
+const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 const HomePage = lazy(() => import("../homePage/home-page.container"));
 const CollectionPage = lazy(() =>
   import("../collectionPage/collection-page.container")
 );
 const DetailsPage = lazy(() => import("../detailsPage/details-page.container"));
 
-const ContentPage = (props) => {
+const ContentPage = ({collectionNames}) => {
   return (
     <div className="main-page">
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {props.collectionNames.map((collectionName) => (
+        {collectionNames.map(({link}) => (
           <Route
-            key={collectionName.link}
+            key={link}
             exact
-            path={`/${collectionName.link}`}
+            path={`/${link}`}
             component={CollectionPage}
           />
         ))}
-        {props.collectionNames.map((collectionName) => (
+        {collectionNames.map(({link}) => (
           <Route
-            key={collectionName.link}
+            key={link}
             exact
-            path={`/${collectionName.link}/:id`}
+            path={`/${link}/:id`}
             component={DetailsPage}
           />
         ))}
+        <Route path="/" render={() => <ErrorPage text="Page not found" />} />
       </Switch>
     </div>
   );
