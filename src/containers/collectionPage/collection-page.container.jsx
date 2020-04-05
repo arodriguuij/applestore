@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCollectionAsyn } from "../../redux/collections/collections.actions";
-import Card from "../../components/card/card.component";
 import Spinner from "../../components/spinner/spinner.component";
 import ErrorPage from "../../components/error-page/error-page";
+import CardWithDescription from "../../components/card-with-description/card-with-description.component";
+import PageContent from "../../components/page-content/page-content.component";
 import "./collection-page.styles.css";
 
 const CollectionPage = (props) => {
@@ -15,31 +16,30 @@ const CollectionPage = (props) => {
     if (
       Object.keys(collectionStateName).length === 0 &&
       collectionStateName.constructor === Object
-    ) {
-      console.log("COLLECTION-PAGE sending onFetchCollectionAsyn");
+    )
       return onFetchCollectionAsyn(collectionName);
-    }
   }, [collectionName, collectionStateName, onFetchCollectionAsyn]);
 
   let content = <Spinner />;
+
   if (!props.loading)
     content = collectionStateName ? (
-      <div className="collection-page-main">
+      <PageContent
+        classesContainer={"collection-page-container"}
+        classesMain={"collection-page-main"}
+        text={collectionName}
+      >
         {Object.entries(collectionStateName).map(([id, device]) => (
-          <div className="collection-page-main-item" key={id}>
-            <Card
-              {...device}
-              id={id}
-              collection={collectionName}
-              classes="home-page-product"
-              click
-            />
-            <h2>{id}</h2>
-          </div>
+          <CardWithDescription
+            key={id}
+            id={id}
+            device={device}
+            collection={collectionName}
+          />
         ))}
-      </div>
+      </PageContent>
     ) : (
-      <ErrorPage />
+      <ErrorPage /> //TODO: test if can arrive here
     );
 
   return content;

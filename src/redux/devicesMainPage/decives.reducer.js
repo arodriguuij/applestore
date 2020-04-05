@@ -1,7 +1,7 @@
 import devicesActionTypes from "./devices.types";
 
 const initialState = {
-  collection_mainPage: {},
+  collection_mainPage: [],
   loading: false,
   error: ""
 };

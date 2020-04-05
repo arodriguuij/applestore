@@ -1,18 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-/* import Button from "../custom-button/button.component"; */
 import "./card.styles.css";
 
-const Card = ({ id, img, collection, classes, click }) => {
+const Card = (props) => {
   return (
-    <div className={` ${classes}`}>
-      {click ? (
-        <Link to={`/${collection}/${id}`}>
-          <img alt={id} src={img} />
-          {/* <Button className='cardComponentButton'/> */}
+    <div className={` ${props.classes}`}>
+      {props.click ? (
+        <Link to={`/${props.collection}/${props.id}`}>
+          <img alt={props.id} src={props.img} />
         </Link>
       ) : (
-        <img alt={id} src={img} />
+        <img alt={props.id} src={props.img} />
       )}
     </div>
   );

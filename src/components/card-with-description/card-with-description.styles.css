@@ -1,0 +1,21 @@
+.collection-page-breadcrumb {
+  text-align: initial;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.card-with-description {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-with-description-card {
+  width: 50%;
+}
+.card-with-description-description {
+  width: 40%;
+}

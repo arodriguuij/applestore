@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import Card from "../../components/card/card.component";
-import "./details-page.styles.css";
 import {
   removeActualDevice,
   fetchActualDeviceAsyn,
 } from "../../redux/actualDevice/actual-device.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import ErrorPage from "../../components/error-page/error-page";
+import CardWithDescription from "../../components/card-with-description/card-with-description.component";
+import PageContent from "../../components/page-content/page-content.component";
+import "./details-page.styles.css";
 
 const DetailsPage = (props) => {
   const collection = props.match.path.split("/")[1];
@@ -41,14 +42,32 @@ const DetailsPage = (props) => {
     Object.keys(collectionState).length === 0 &&
     collectionState.constructor === Object
   ) ? (
-    <div className="details-page-main">
-      <Card {...collectionState[deviceName]} collection={collection} />
-    </div>
+    <PageContent
+      classesContainer={"details-page-container"}
+      classesMain={"details-page-main"}
+      text={collectionState[deviceName].name}
+    >
+      <CardWithDescription
+        device={collectionState[deviceName]}
+        collection={collection}
+        extraInformation
+      />
+    </PageContent>
   ) : props.collection_actualDevice ? (
-    <div className="details-page-main">
-      <Card {...props.collection_actualDevice} collection={""} />
-    </div>
-  ) : <ErrorPage />;
+    <PageContent
+      classesContainer={"details-page-container"}
+      classesMain={"details-page-main"}
+      text={props.collection_actualDevice.name}
+    >
+      <CardWithDescription
+        device={props.collection_actualDevice}
+        collection={collection}
+        extraInformation
+      />
+    </PageContent>
+  ) : (
+    <ErrorPage />
+  );
 
   if (props.loading) content = <Spinner />;
 

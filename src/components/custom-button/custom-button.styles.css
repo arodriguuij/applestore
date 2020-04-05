@@ -1,19 +1,18 @@
 .customButton {
+  width: 7vw;
   background-color: black;
   color: white;
   cursor: pointer;
   border: none;
   font-family: "Open Sans Condensed";
   text-transform: uppercase;
-  min-width: 14vw;
   letter-spacing: 0.5px;
   height: 3vw;
   font-size: 15px;
   font-weight: bolder;
   opacity: 0.7;
-  
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+  margin: 2vw auto;
 }
 
 .customButton:hover {

@@ -1,22 +1,21 @@
-.ErrorImageOverlay {
-    height: 60vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .ErrorImageContainer {
-    display: inline-block;
-    background-size: cover;
-    background-position: center;
-    width: 40vh;
-    height: 40vh;
-    background-image: url("https://i.imgur.com/A040Lxr.png");
-  }
-  
-  .ErrorImageText {
-    font-size: 28px;
-    color: #2f8e89;
-  }
-  
+.error-image-overlay {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.error-image-container {
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  width: 40vh;
+  height: 40vh;
+  background-image: url("https://i.imgur.com/A040Lxr.png");
+}
+
+.error-image-text {
+  font-size: 28px;
+  color: #2f8e89;
+}

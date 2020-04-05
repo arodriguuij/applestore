@@ -1,0 +1,18 @@
+.collection-page-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  .collection-page-description a{
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .collection-page-name{
+    margin-top: 0;
+  }
+  ul{
+    list-style-type: none;
+    padding: 0;
+  }
