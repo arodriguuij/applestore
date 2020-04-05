@@ -16,7 +16,7 @@ const fetchCollectionStart = () => {
     type: shopActionTypes.FETCH_COLLECTION_START,
     payload: {
       loading: true,
-      error: "",
+      error: null,
     },
   };
 };

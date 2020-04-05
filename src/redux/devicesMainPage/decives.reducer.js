@@ -3,7 +3,7 @@ import devicesActionTypes from "./devices.types";
 const initialState = {
   collection_mainPage: [],
   loading: false,
-  error: ""
+  error: null
 };
 
 const devicesReducer = (state = initialState, action) => {

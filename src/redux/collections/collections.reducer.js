@@ -6,7 +6,7 @@ const initialState = {
   collection_ipad: {},
   collection_watch: {},
   loading: false,
-  error: ""
+  error: null
 };
 
 const collectionsReducer = (state = initialState, action) => {

@@ -13,7 +13,7 @@ const fetchCollectionNamesStart = () => {
     type: collectionNamesActionTypes.FETCH_COLLECTION_NAMES_START,
     payload: {
       loading: true,
-      error: "",
+      error: null,
     },
   };
 };

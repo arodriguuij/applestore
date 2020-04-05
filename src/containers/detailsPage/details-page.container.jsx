@@ -9,10 +9,12 @@ import {
   selectorCollectionIphone,
   selectorCollectionIpad,
   selectorCollectionWatch,
-  selectorCollectionLoading,
-  selectorCollectionError,
 } from "../../redux/collections/collections.selectors";
-import { selectorCollectionActualDevice } from "../../redux/actualDevice/actual-device.selector";
+import {
+  selectorCollectionActualDevice,
+  selectorLoading,
+  selectorError,
+} from "../../redux/actualDevice/actual-device.selector";
 import Spinner from "../../components/spinner/spinner.component";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
 import PageContent from "../../components/page-content/page-content.component";
@@ -35,7 +37,7 @@ const DetailsPage = (props) => {
     collectionState &&
     Object.keys(collectionState).length === 0 &&
     collectionState.constructor === Object;
-    
+
   useEffect(() => {
     if (isObjectAndEmpty || !collectionState[deviceName])
       onFetchActualDeviceAsyn(collection, deviceName);
@@ -48,41 +50,48 @@ const DetailsPage = (props) => {
     collectionState,
     onFetchActualDeviceAsyn,
     onRemoveActualDevice,
+    isObjectAndEmpty,
   ]);
 
-  let content = <Spinner />;
-  if (!loading)
-    content =
-      !isObjectAndEmpty && collectionState[deviceName] ? (
-        <PageContent
-          classesContainer={"details-page-container"}
-          classesMain={"details-page-main"}
-          text={collectionState[deviceName].name}
-        >
-          <CardWithDescription
-            device={collectionState[deviceName]}
-            collection={collection}
-            extraInformation
-          />
-        </PageContent>
-      ) : collection_actualDevice ? (
-        <PageContent
-          classesContainer={"details-page-container"}
-          classesMain={"details-page-main"}
-          text={collection_actualDevice.name}
-        >
-          <CardWithDescription
-            device={collection_actualDevice}
-            collection={collection}
-            extraInformation
-          />
-        </PageContent>
-      ) : (
-        <ErrorPage text="Page not found" />
-      );
-
-  if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
-
+  let content;
+  if (!isObjectAndEmpty && collectionState[deviceName]) {
+    content = (
+      <PageContent
+        classesContainer={"details-page-container"}
+        classesMain={"details-page-main"}
+        text={collectionState[deviceName].name}
+      >
+        <CardWithDescription
+          device={collectionState[deviceName]}
+          collection={collection}
+          extraInformation
+        />
+      </PageContent>
+    );
+  } else {
+    if (
+      loading ||
+      (error === null && collection_actualDevice === null && loading === false)
+    ) {
+      content = <Spinner />;
+    } else {
+      if (error !== null) content = <ErrorPage text="Page not found" />;
+      else
+        content = (
+          <PageContent
+            classesContainer={"details-page-container"}
+            classesMain={"details-page-main"}
+            text={collection_actualDevice.name}
+          >
+            <CardWithDescription
+              device={collection_actualDevice}
+              collection={collection}
+              extraInformation
+            />
+          </PageContent>
+        );
+    }
+  }
   return content;
 };
 
@@ -92,8 +101,8 @@ const mapStateToProps = (state) => ({
   collection_ipad: selectorCollectionIpad(state),
   collection_watch: selectorCollectionWatch(state),
   collection_actualDevice: selectorCollectionActualDevice(state),
-  error: selectorCollectionError(state),
-  loading: selectorCollectionLoading(state),
+  loading: selectorLoading(state),
+  error: selectorError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

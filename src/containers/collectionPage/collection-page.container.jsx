@@ -25,7 +25,7 @@ const CollectionPage = (props) => {
 
   useEffect(() => {
     if (isObjectAndEmpty) return onFetchCollectionAsyn(collectionName);
-  }, [collectionName, collectionStateName, onFetchCollectionAsyn]);
+  }, [collectionName, collectionStateName, onFetchCollectionAsyn, isObjectAndEmpty]);
 
   let content = <Spinner />;
 

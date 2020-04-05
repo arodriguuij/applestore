@@ -3,7 +3,7 @@ import actualDeviceActionTypes from "./actual-device.types";
 const initialState = {
   collection_actualDevice: null,
   loading: false,
-  error: ""
+  error: null
 };
 
 const actualDeviceReducer = (state = initialState, action) => {

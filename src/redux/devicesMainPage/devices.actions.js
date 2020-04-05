@@ -13,7 +13,7 @@ const fetchDevicesStart = () => {
     type: devicesActionTypes.FETCH_DEVICES_START,
     payload: {
       loading: true,
-      error: ""
+      error: null
     }
   };
 };

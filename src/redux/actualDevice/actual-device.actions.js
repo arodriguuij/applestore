@@ -20,12 +20,12 @@ const fetchActualDeviceStart = () => {
     type: shopActionTypes.FETCH_ACTUAL_DEVICE_START,
     payload: {
       loading: true,
-      error: ""
+      error: null
     }
   };
 };
 
-const fetchActualDeviceSuccess = (data, collectionName, deviceName) => {
+const fetchActualDeviceSuccess = (data) => {
   return {
     type: shopActionTypes.FETCH_ACTUAL_DEVICE_SUCCESS,
     payload: {

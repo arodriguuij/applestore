@@ -3,7 +3,7 @@ import collectionNamesActionTypes from "./collection-names.types";
 const initialState = {
   collectionNames: [],
   loading: true,
-  error: "",
+  error: null,
 };
 
 const collectionNamesReducer = (state = initialState, action) => {
