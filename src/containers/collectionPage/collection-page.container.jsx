@@ -5,6 +5,14 @@ import Spinner from "../../components/spinner/spinner.component";
 import ErrorPage from "../../components/error-page/error-page";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
 import PageContent from "../../components/page-content/page-content.component";
+import {
+  selectorCollectionMac,
+  selectorCollectionIphone,
+  selectorCollectionIpad,
+  selectorCollectionWatch,
+  selectorCollectionLoading,
+  selectorCollectionError,
+} from "../../redux/collections/collections.selectors";
 import "./collection-page.styles.css";
 
 const CollectionPage = (props) => {
@@ -46,12 +54,12 @@ const CollectionPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_mac: state.collections.collection_mac,
-  collection_iphone: state.collections.collection_iphone,
-  collection_ipad: state.collections.collection_ipad,
-  collection_watch: state.collections.collection_watch,
-  loading: state.collections.loading,
-  error: state.collections.error,
+  collection_mac: selectorCollectionMac(state),
+  collection_iphone: selectorCollectionIphone(state),
+  collection_ipad: selectorCollectionIpad(state),
+  collection_watch: selectorCollectionWatch(state),
+  error: selectorCollectionError(state),
+  loading: selectorCollectionLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

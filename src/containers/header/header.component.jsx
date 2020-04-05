@@ -1,17 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { ReactComponent as ReactLogoIcon } from "../../assets/apple2.svg";
 import { ReactComponent as ReactLogoBag } from "../../assets/add-to-basket.svg";
-
+import {selectCollection, selectLoading, selectError} from '../../redux/collectionNames/collection.names.selectors';
 import { Link } from "react-router-dom";
-import "./header.styles.css";
 import { connect } from "react-redux";
 import Spinner from "../../components/spinner/spinner.component";
 import BagIcon from "../../components/bag-icon/bag-icon.component";
+import "./header.styles.css"; 
 
 const Header = (props) => {
+  const {collectionNames,loading} = props;
+  useEffect(() => {
+  }, [collectionNames,loading])
+
+  useEffect(() => {
+    debugger;
+  },)
+
   let content = <Spinner />;
-  if (!props.loading)
-    content = props.collectionNames.map((collectionDevice) => (
+  if (!loading)
+    content = collectionNames.map((collectionDevice) => (
       <Link
         key={collectionDevice.link}
         to={`/${collectionDevice.link}`}
@@ -44,9 +52,9 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collectionNames: state.collectionNames.collectionNames,
-  loading: state.collectionNames.loading,
-  error: state.collectionNames.error,
+  collectionNames: selectCollection(state),
+  loading: selectLoading(state),
+  error: selectError(state)
 });
 
 export default connect(mapStateToProps)(Header);

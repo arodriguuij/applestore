@@ -6,18 +6,23 @@ import ContentPage from "./containers/contentPages/content-pages.container";
 /* import Footer from "./components/footer/footer.component"; */
 import ErrorBoundary from "./components/error-boundary/error.boundary.component";
 import Spinner from "./components/spinner/spinner.component";
+import {selectLoading, selectError} from './redux/collectionNames/collection.names.selectors';
 import "./App.css";
+
 const ErrorPage = lazy(() => import("./components/error-page/error-page"));
 
+const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
 
-const App = (props) => {
-  const { onFetchCollectionNamesAsync } = props;
   useEffect(() => {
     onFetchCollectionNamesAsync();
   }, [onFetchCollectionNamesAsync]);
 
+  useEffect(() => {
+    debugger;
+  },);
+
   let content = <Spinner />;
-  if (!props.loading)
+  if (!loading)
     content = (
       <div className="App">
         <ErrorBoundary>
@@ -29,14 +34,14 @@ const App = (props) => {
         </ErrorBoundary>
       </div>
     );
-    if(props.error) content = <ErrorPage/>
+    if(error) content = <ErrorPage/>
 
   return content;
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.collectionNames.loading,
-  error: state.collectionNames.error
+  loading: selectLoading(state),
+  error: selectError(state)
 });
 
 const mapDispatchtoProps = (dispatch) => ({

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchDevicesAsyn } from "../../redux/devicesMainPage/devices.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import Breadcrumb from '../../components/breadcrumb/breadcrumb.component';
+import {selectorCollectionMainPage} from '../../redux/devicesMainPage/devices.selectors';
 
 const HomePage = (props) => {
   const { onFetchDevicesAsyn } = props;
@@ -49,7 +50,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_mainPage: state.devices.collection_mainPage,
+  collection_mainPage: selectorCollectionMainPage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -9,7 +9,7 @@ const initialState = {
   error: ""
 };
 
-const shopReducer = (state = initialState, action) => {
+const collectionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case shopActionTypes.FETCH_COLLECTION_START:
       return {
@@ -35,4 +35,4 @@ const shopReducer = (state = initialState, action) => {
   }
 };
 
-export default shopReducer;
+export default collectionsReducer;

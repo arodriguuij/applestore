@@ -4,6 +4,15 @@ import {
   removeActualDevice,
   fetchActualDeviceAsyn,
 } from "../../redux/actualDevice/actual-device.actions";
+import {
+  selectorCollectionMac,
+  selectorCollectionIphone,
+  selectorCollectionIpad,
+  selectorCollectionWatch,
+  selectorCollectionLoading,
+  selectorCollectionError,
+} from "../../redux/collections/collections.selectors";
+import {selectorCollectionActualDevice} from '../../redux/actualDevice/actual-device.selector';
 import Spinner from "../../components/spinner/spinner.component";
 import ErrorPage from "../../components/error-page/error-page";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
@@ -75,14 +84,15 @@ const DetailsPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_mac: state.collections.collection_mac,
-  collection_iphone: state.collections.collection_iphone,
-  collection_ipad: state.collections.collection_ipad,
-  collection_watch: state.collections.collection_watch,
-  collection_actualDevice: state.actualDevice.collection_actualDevice,
-  error: state.collections.error,
-  loading: state.actualDevice.loading,
+  collection_mac: selectorCollectionMac(state),
+  collection_iphone: selectorCollectionIphone(state),
+  collection_ipad: selectorCollectionIpad(state),
+  collection_watch: selectorCollectionWatch(state),
+  collection_actualDevice: selectorCollectionActualDevice(state),
+  error: selectorCollectionError(state),
+  loading: selectorCollectionLoading(state),
 });
+
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchActualDeviceAsyn: (collection, deviceName) =>
