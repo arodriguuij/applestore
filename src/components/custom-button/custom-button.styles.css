@@ -13,11 +13,9 @@
 .customButton:hover {
   background-color: black;
   color: white;
-  border: 1px solid white;
 }
 .customButton:active{
   transition-duration: 0.1s;
   background-color: grey;
   color: white;
-  border: 1px solid white;
 }

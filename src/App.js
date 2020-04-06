@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchCollectionNamesAsync } from "./redux/collectionNames/collection-names.actions";
 import Header from "./containers/header/header.component";
 import ContentPage from "./containers/contentPages/content-pages.container";
-/* import Footer from "./components/footer/footer.component"; */
+import Footer from "./components/footer/footer.component";
 import ErrorBoundary from "./components/error-boundary/error.boundary.component";
 import Spinner from "./components/spinner/spinner.component";
 import {selectLoading, selectError} from './redux/collectionNames/collection.names.selectors';
@@ -25,7 +25,7 @@ const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
           <Suspense fallback={<Spinner />}>
             <Header />
             <ContentPage />
-            {/*         <Footer /> */}
+            <Footer /> 
           </Suspense>
         </ErrorBoundary>
       </div>

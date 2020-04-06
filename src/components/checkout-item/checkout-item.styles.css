@@ -8,34 +8,36 @@
   align-items: center;
 }
 
-.checkout-item .image-container {
+.checkout-item-img {
   width: 23%;
   padding-right: 15px;
 }
-.checkout-item .image-container img {
+.checkout-item-img img {
   width: 100%;
   height: 100%;
 }
 
-.checkout-item .name,
-.checkout-item .quantity,
-.checkout-item .price {
+.checkout-item-name,
+.checkout-item-quantity,
+.checkout-item-price {
   width: 23%;
 }
 
-.checkout-item .quantity {
+.checkout-item-quantity {
   display: flex;
   justify-content: center;
 }
-.checkout-item .quantity .arrow {
+.checkout-item-quantity 
+.checkout-item-arrow {
   cursor: pointer;
 }
 
-.checkout-item .quantity .value {
+.checkout-item-quantity 
+.checkout-item-value {
   margin: 0 10px;
 }
 
-.checkout-item .remove-button {
+.checkout-item-remove-button {
   padding-left: 12px;
   cursor: pointer;
 }

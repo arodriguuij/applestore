@@ -1,24 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./checkout-item.styles.css";
 
 const CheckoutItem = ({ item, incrementItem, decrementItem, removeItem }) => {
   return (
     <div className="checkout-item">
-      <div className="image-container">
-        <img src={item.img} alt="item" />
+      <div className="checkout-item-img">
+        <Link to={`/${item.collection}/${item.id}`}>
+          <img src={item.img} alt="item" />
+        </Link>
       </div>
-      <span className="name">{item.name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={() => decrementItem(item.id)}>
+      <span className="checkout-item-name">{item.name}</span>
+      <span className="checkout-item-quantity">
+        <div
+          className="checkout-item-arrow"
+          onClick={() => decrementItem(item.id)}
+        >
           &#10094;
         </div>
-        <div className="value">{item.quantity}</div>
-        <div className="arrow" onClick={() => incrementItem(item.id)}>
+        <div className="checkout-item-value">{item.quantity}</div>
+        <div
+          className="checkout-item-arrow"
+          onClick={() => incrementItem(item.id)}
+        >
           &#10095;
         </div>
       </span>
-      <span className="price">{item.price}</span>
-      <div className="remove-button" onClick={() => removeItem(item.id)}>
+      <span className="checkout-item-price">{item.price}</span>
+      <div
+        className="checkout-item-remove-button"
+        onClick={() => removeItem(item.id)}
+      >
         &#10005;
       </div>
     </div>

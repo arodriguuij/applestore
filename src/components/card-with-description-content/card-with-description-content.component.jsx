@@ -10,7 +10,6 @@ const CardWithDescriptionContent = ({
   id,
   numItemsOfDevice,
 }) => {
-  debugger;
   let content;
   switch (type) {
     case "collection":

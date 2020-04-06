@@ -1,7 +1,11 @@
 import devicesActionTypes from "./devices.types";
 
 const initialState = {
-  collection_mainPage: [],
+  topDevices: [],
+  publicity: {
+    title: "",
+    body: []
+  },
   loading: false,
   error: null
 };
@@ -18,7 +22,8 @@ const devicesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload.loading,
-        collection_mainPage: action.payload.collection
+        topDevices: action.payload.data['topDevices'],
+        publicity: action.payload.data['publicity']
       };
     case devicesActionTypes.FETCH_DEVICES_FAILURE:
       return {

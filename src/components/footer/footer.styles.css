@@ -1,3 +1,22 @@
-.footer-main{
-    grid-area: footer;
+.footer-main {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  color: black;
+  text-align: center;
+}
+.fa {
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa-briefcase,
+.fa-linkedin,
+.fa-github {
+  color: black;
 }

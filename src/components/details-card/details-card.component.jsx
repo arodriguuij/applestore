@@ -5,7 +5,7 @@ import CardWithDescriptionButton from "../card-with-description-button/card-with
 import CardWithDescriptionTitle from "../card-with-description-title/card-with-description-title.component";
 
 const DetailsCard = ({ id, device, addItem, removeItem, type, collection, incrementItem, decrementItem }) => {
-  const { name, descriptionExtraTitle, descriptionExtra, description, price, quantity } = device;
+  const { name, descriptionExtra, description, price, quantity } = device;
   return (
     <div className="collection-page-description">
       <CardWithDescriptionTitle

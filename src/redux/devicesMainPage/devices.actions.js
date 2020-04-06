@@ -22,7 +22,7 @@ const fetchDevicesSuccess = (data) => {
   return {
     type: devicesActionTypes.FETCH_DEVICES_SUCCESS,
     payload: {
-      collection: data,
+      data: data,
       loading: false
     }
   };

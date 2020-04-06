@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { selectorBag, selectorTotalPrice } from "../../redux/bag/bag.selectors";
 import {
@@ -6,7 +6,6 @@ import {
   decrementItem,
   removeItem,
 } from "../../redux/bag/bag.actions";
-import CardWithDescription from "../../components/card-with-description/card-with-description.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import CheckoutItem from "../../components/checkout-item/checkout-item.coponent";
 import "./bag-page.styles.css";
