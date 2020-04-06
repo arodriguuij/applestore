@@ -1,8 +1,8 @@
 import React from "react";
 import "./custom-button.styles.css";
 
-const CustomButton = ({ text }) => {
-  return <button className="customButton">{text}</button>;
+const CustomButton = (props) => {
+  return <button className="customButton" onClick={props.addItem}>{props.children}</button>;
 };
 
 export default CustomButton;

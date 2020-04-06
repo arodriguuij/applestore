@@ -5,9 +5,10 @@ import { selectCollection } from "../../redux/collectionNames/collection.names.s
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import BagIcon from "../../components/bag-icon/bag-icon.component";
+import { selectorNumberItemsBag } from "../../redux/bag/bag.selectors";
 import "./header.styles.css";
 
-const Header = ({ collectionNames }) => {
+const Header = ({ collectionNames, numItemsBag }) => {
   return (
     <header>
       <nav className="header-nav">
@@ -17,21 +18,17 @@ const Header = ({ collectionNames }) => {
               <ReactLogoIcon className="shopping-icon" />
             </BagIcon>
           </Link>
-          {collectionNames.map(({link, name}) => (
-            <Link
-              key={link}
-              to={`/${link}`}
-              className="header-li"
-            >
+          {collectionNames.map(({ link, name }) => (
+            <Link key={link} to={`/${link}`} className="header-li">
               {name}
             </Link>
           ))}
-          <div className="header-li">
+          <Link to="/bag" className="header-li">
             <BagIcon>
               <ReactLogoBag className="shopping-icon" />
-              <span className="item-count">10</span>
+              <span className="item-count">{numItemsBag}</span>
             </BagIcon>
-          </div>
+          </Link>
         </ul>
       </nav>
     </header>
@@ -40,6 +37,7 @@ const Header = ({ collectionNames }) => {
 
 const mapStateToProps = (state) => ({
   collectionNames: selectCollection(state),
+  numItemsBag: selectorNumberItemsBag(state),
 });
 
 export default connect(mapStateToProps)(Header);

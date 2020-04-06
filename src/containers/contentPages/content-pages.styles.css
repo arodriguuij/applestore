@@ -2,3 +2,8 @@
   grid-area: main;
   padding-top: 3vw;
 }
+
+img {
+  width: 100%;
+  height: 100%;
+}

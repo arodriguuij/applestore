@@ -1,7 +1,14 @@
 import React from "react";
+import {textBreadcrumSelector} from '../../redux/breadcrumb/breadcrumb.selector';
+import {connect} from 'react-redux';
+import './breadcrumb.styles.css';
 
-const Breadcrumb = ({text}) => {
-  return <h1 className="collection-page-breadcrumb">{text}</h1>;
+const Breadcrumb = ({breadcrumb}) => {
+return <h1 className="collection-page-breadcrumb">{breadcrumb}</h1>;
 };
 
-export default Breadcrumb;
+const mapStateToProps = state => ({
+  breadcrumb: textBreadcrumSelector(state)
+});
+
+export default connect(mapStateToProps)(Breadcrumb);

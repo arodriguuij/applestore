@@ -1,38 +1,34 @@
-import React, { Fragment } from "react";
-import CustomButton from "../../components/custom-button/custom-button.component";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./details-card.styles.css";
+import CardWithDescriptionContent from "../card-with-description-content/card-with-description-content.component";
+import CardWithDescriptionButton from "../card-with-description-button/card-with-description-button.component";
+import CardWithDescriptionTitle from "../card-with-description-title/card-with-description-title.component";
 
-const DetailsCard = ({id, name, description, collection, price, descriptionExtraTitle, descriptionExtra}) => {
+const DetailsCard = ({ id, device, addItem, removeItem, type, collection, incrementItem, decrementItem }) => {
+  const { name, descriptionExtraTitle, descriptionExtra, description, price, quantity } = device;
   return (
     <div className="collection-page-description">
-      {id ? (
-        <Fragment>
-          <h2 className="collection-page-name">{name}</h2>
-          <ul>
-            <li>{description}</li>
-            <li>From $<strong>{price}</strong></li>
-          </ul>
-          <Link to={`/${collection}/${id}`}>
-            <CustomButton text="Buy" />
-          </Link>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <h2 className="collection-page-name">
-            {descriptionExtraTitle}
-          </h2>
-          <ul>
-            {descriptionExtra
-              .split("$")
-              .map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-              <li>From $<strong>{price}</strong></li>
-          </ul>
-          <CustomButton text="Buy" />
-        </Fragment>
-      )}
+      <CardWithDescriptionTitle
+        name={name}
+      />
+      <CardWithDescriptionContent
+        descriptionExtra={descriptionExtra}
+        description={description}
+        type={type}
+        price={price}
+        quantity={quantity}
+        id={id}
+      />
+      <CardWithDescriptionButton
+        id={id}
+        collection={collection}
+        addItem={addItem}
+        removeItem={removeItem}
+        incrementItem={incrementItem}
+        decrementItem={decrementItem}
+        quantity={quantity}
+        type={type}
+      />
     </div>
   );
 };

@@ -3,7 +3,8 @@ import collectionsReducer from "./collections/collections.reducer";
 import devicesReducer from "./devicesMainPage/decives.reducer";
 import actualDeviceReducer from "./actualDevice/actual-device.reducer";
 import collectionNamesReducer from './collectionNames/collection-names.reducer';
-
+import breadcrumbReducer from './breadcrumb/breadcrumb.reducer';
+import bagReducer from './bag/bag.reducer';
 import { createStore } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
@@ -16,7 +17,9 @@ const rootReducer = combineReducers({
   collections: collectionsReducer,
   devices: devicesReducer,
   actualDevice: actualDeviceReducer,
-  collectionNames: collectionNamesReducer
+  collectionNames: collectionNamesReducer,
+  bag: bagReducer,
+  breadcrumb: breadcrumbReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));

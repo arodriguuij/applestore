@@ -1,21 +1,13 @@
-.collection-page-breadcrumb {
-  text-align: initial;
-  border-bottom: 1px solid #cfcfcf;
-}
-
 .card-with-description {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+    align-items: center;
 }
 
 .card-with-description-card {
-  width: 50%;
+  width: 48%;
 }
 .card-with-description-description {
-  width: 40%;
+  width: 48%;
 }

@@ -1,34 +1,23 @@
 .customButton {
-  width: 7vw;
-  background-color: black;
-  color: white;
-  cursor: pointer;
+  transition-duration: 0.4s;
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
   border: none;
-  font-family: "Open Sans Condensed";
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  height: 3vw;
-  font-size: 15px;
-  font-weight: bolder;
-  opacity: 0.7;
-  display: inline-block;
-  margin: 2vw auto;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .customButton:hover {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-}
-
-.customButton .inverted {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-}
-
-.customButton .inverted :hover {
   background-color: black;
   color: white;
-  border: none;
+  border: 1px solid white;
+}
+.customButton:active{
+  transition-duration: 0.1s;
+  background-color: grey;
+  color: white;
+  border: 1px solid white;
 }

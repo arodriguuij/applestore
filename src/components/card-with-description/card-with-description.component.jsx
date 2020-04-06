@@ -3,7 +3,17 @@ import Card from "../card/card.component";
 import DetailsCard from "../details-card/details-card.component";
 import "./card-with-description.styles.css";
 
-const CardWithDescription = ({id, collection, device}) => {
+const CardWithDescription = ({
+  id,
+  collection,
+  device,
+  type,
+  clickable,
+  incrementItem,
+  decrementItem,
+  removeItem,
+  addItem,
+}) => {
   return (
     <div className="card-with-description">
       <div className="card-with-description-card">
@@ -12,17 +22,19 @@ const CardWithDescription = ({id, collection, device}) => {
           classes="home-page-product"
           collection={collection}
           img={device.img}
+          clickable={clickable}
         />
       </div>
       <div className="card-with-description-description">
         <DetailsCard
           id={id}
-          name={device.name}
-          description={device.description}
+          device={device}
           collection={collection}
-          price={device.price}
-          descriptionExtraTitle={device.descriptionExtraTitle}
-          descriptionExtra={device.descriptionExtra}
+          addItem={addItem}
+          removeItem={removeItem}
+          incrementItem={incrementItem}
+          decrementItem={decrementItem}
+          type={type}
         />
       </div>
     </div>

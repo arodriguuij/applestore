@@ -15,9 +15,11 @@ import {
   selectorLoading,
   selectorError,
 } from "../../redux/actualDevice/actual-device.selector";
+import { selectorBag } from "../../redux/bag/bag.selectors";
+import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
+import { addItem } from "../../redux/bag/bag.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import CardWithDescription from "../../components/card-with-description/card-with-description.component";
-import PageContent from "../../components/page-content/page-content.component";
 import "./details-page.styles.css";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
@@ -29,6 +31,8 @@ const DetailsPage = (props) => {
     collection_actualDevice,
     loading,
     error,
+    onAddItem,
+    onSetBreadcrumb,
   } = props;
   const collection = match.path.split("/")[1];
   const deviceName = match.params.id;
@@ -53,20 +57,28 @@ const DetailsPage = (props) => {
     isObjectAndEmpty,
   ]);
 
+  useEffect(() => {
+    onSetBreadcrumb(deviceName);
+  }, [onSetBreadcrumb, deviceName]);
+
+  const addItemHandler = () => {
+    if (collectionState[deviceName])
+      onAddItem(collectionState[deviceName], collection, deviceName);
+    else onAddItem(collection_actualDevice, collection, deviceName);
+  };
+
+
   let content;
   if (!isObjectAndEmpty && collectionState[deviceName]) {
     content = (
-      <PageContent
-        classesContainer={"details-page-container"}
-        classesMain={"details-page-main"}
-        text={collectionState[deviceName].name}
-      >
-        <CardWithDescription
-          device={collectionState[deviceName]}
-          collection={collection}
-          extraInformation
-        />
-      </PageContent>
+      <CardWithDescription
+        device={collectionState[deviceName]}
+        collection={collection}
+        addItem={addItemHandler}
+        clickable={false}
+        type={"details"}
+        id={deviceName}
+      />
     );
   } else {
     if (
@@ -76,23 +88,21 @@ const DetailsPage = (props) => {
       content = <Spinner />;
     } else {
       if (error !== null) content = <ErrorPage text="Page not found" />;
-      else
+      else {
         content = (
-          <PageContent
-            classesContainer={"details-page-container"}
-            classesMain={"details-page-main"}
-            text={collection_actualDevice.name}
-          >
-            <CardWithDescription
-              device={collection_actualDevice}
-              collection={collection}
-              extraInformation
-            />
-          </PageContent>
+          <CardWithDescription
+            device={collection_actualDevice}
+            collection={collection}
+            addItem={addItemHandler}
+            clickable={false}
+            type={"details"}
+            id={deviceName}
+          />
         );
+      }
     }
   }
-  return content;
+  return <div className={"details-page"}>{content} </div>;
 };
 
 const mapStateToProps = (state) => ({
@@ -103,11 +113,14 @@ const mapStateToProps = (state) => ({
   collection_actualDevice: selectorCollectionActualDevice(state),
   loading: selectorLoading(state),
   error: selectorError(state),
+  bag: selectorBag(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchActualDeviceAsyn: (collection, deviceName) =>
     dispatch(fetchActualDeviceAsyn(collection, deviceName)),
-  onRemoveActualDevice: () => dispatch(removeActualDevice()),
+  onRemoveActualDevice: (id) => dispatch(removeActualDevice(id)),
+  onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
+  onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
