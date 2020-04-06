@@ -1,6 +1,7 @@
 .main-page {
   grid-area: main;
   padding: 3vw 0;
+  padding-bottom: 12vw;
 }
 
 img {
