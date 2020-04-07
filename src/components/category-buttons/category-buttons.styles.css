@@ -1,0 +1,9 @@
+.category-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0vw 2vw 2vw 2vw;
+  width: 80%;
+  margin: auto;
+}

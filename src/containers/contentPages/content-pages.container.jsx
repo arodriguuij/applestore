@@ -11,6 +11,7 @@ const CollectionPage = lazy(() =>
 );
 const BagPage = lazy(() => import("../bagPage/bag-page.container"));
 const DetailsPage = lazy(() => import("../detailsPage/details-page.container"));
+const AccessoriesPage = lazy(() => import('../accessoriesPage/accessoriesPage.container'));
 
 const ContentPage = ({ collectionNames }) => {
   return (
@@ -18,6 +19,7 @@ const ContentPage = ({ collectionNames }) => {
       <PageContent>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/accessories" component={AccessoriesPage} />
           {collectionNames.map(({ link }) => (
             <Route
               key={link}

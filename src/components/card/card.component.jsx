@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./card.styles.css";
 
-const Card = ({ id, classes, collection, clickable, img }) => {
+const Card = ({ id, collection, img, clickable}) => {
   return (
-    <div className={classes}>
+    <div className='home-page-product'>
       {clickable ? (
         <Link to={`/${collection}/${id}`}>
           <img alt={'device'} src={img} />

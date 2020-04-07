@@ -7,19 +7,19 @@ export const selectorTopDevices = createSelector(
   (mainPage) => mainPage.topDevices
 );
 
-const selectorPublicity = createSelector(
+const selectorBanner = createSelector(
   [selectorDevices],
-  (devices) => devices.publicity
+  (devices) => devices.banner
 );
 
-export const selectorPublicityTitle = createSelector(
-  [selectorPublicity],
-  (publicity) => publicity.title
+export const selectorBannerTitle = createSelector(
+  [selectorBanner],
+  (banner) => banner.title
 );
 
-export const selectorPublicityBody = createSelector(
-  [selectorPublicity],
-  (publicity) => publicity.body
+export const selectorBannerBody = createSelector(
+  [selectorBanner],
+  (banner) => banner.body
 );
 
 export const selectorLoading = createSelector(

@@ -9,6 +9,7 @@ import {
   selectorCollectionIphone,
   selectorCollectionIpad,
   selectorCollectionWatch,
+  selectorCollectionAccessories
 } from "../../redux/collections/collections.selectors";
 import {
   selectorCollectionActualDevice,
@@ -111,6 +112,7 @@ const mapStateToProps = (state) => ({
   collection_ipad: selectorCollectionIpad(state),
   collection_watch: selectorCollectionWatch(state),
   collection_actualDevice: selectorCollectionActualDevice(state),
+  collection_accessories: selectorCollectionAccessories(state),
   loading: selectorLoading(state),
   error: selectorError(state),
   bag: selectorBag(state),

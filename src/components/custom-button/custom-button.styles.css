@@ -3,7 +3,6 @@
   background-color: #f1f1f1;
   color: black;
   font-size: 16px;
-  padding: 16px 30px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -14,8 +13,25 @@
   background-color: black;
   color: white;
 }
-.customButton:active{
-  transition-duration: 0.1s;
-  background-color: grey;
+
+.inverted {
+  width: 33%;
+  border: 1px solid;
+  background-color: white;
+  color: #115eab;
+}
+
+.inverted:hover {
+  background-color: #115eab;
   color: white;
+  border: none;
+}
+
+.active {
+  background-color: #115eab;
+  color: white;
+}
+.active:hover {
+  background-color: #dae8ff;
+  color: black;
 }

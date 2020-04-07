@@ -5,6 +5,7 @@ const initialState = {
   collection_iphone: {},
   collection_ipad: {},
   collection_watch: {},
+  collection_accessories: {},
   loading: false,
   error: null
 };

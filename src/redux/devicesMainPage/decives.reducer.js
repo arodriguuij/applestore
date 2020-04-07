@@ -2,7 +2,7 @@ import devicesActionTypes from "./devices.types";
 
 const initialState = {
   topDevices: [],
-  publicity: {
+  banner: {
     title: "",
     body: []
   },
@@ -23,7 +23,7 @@ const devicesReducer = (state = initialState, action) => {
         ...state,
         loading: action.payload.loading,
         topDevices: action.payload.data['topDevices'],
-        publicity: action.payload.data['publicity']
+        banner: action.payload.data['banner']
       };
     case devicesActionTypes.FETCH_DEVICES_FAILURE:
       return {

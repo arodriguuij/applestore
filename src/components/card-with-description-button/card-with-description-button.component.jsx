@@ -23,7 +23,7 @@ const CardWithDescriptionButton = ({
       );
       break;
     case "details":
-      content = <CustomButton addItem={addItem}>Add Item</CustomButton>;
+      content = <CustomButton action={addItem}>Add Item</CustomButton>;
       break;
     case "bag":
       content = (

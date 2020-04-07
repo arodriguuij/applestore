@@ -19,7 +19,6 @@ const CardWithDescription = ({
       <div className="card-with-description-card">
         <Card
           id={id}
-          classes="home-page-product"
           collection={collection}
           img={device.img}
           clickable={clickable}

@@ -18,6 +18,10 @@ export const selectorCollectionWatch = createSelector(
   [selectorCollections],
   (collections) => collections.collection_watch
 );
+export const selectorCollectionAccessories= createSelector(
+  [selectorCollections],
+  (collections) => collections.collection_accessories
+);
 export const selectorCollectionLoading = createSelector(
   [selectorCollections],
   (collections) => collections.loading
