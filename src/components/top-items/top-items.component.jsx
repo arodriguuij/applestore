@@ -8,10 +8,7 @@ const TopItems = ({ topItems }) => {
   return (
     <div className={"home-page-top"}>
       {topItems.map((device, index) => (
-        <div key={index}>
-          <Card {...device} clickable />
-          <p>{device.name}</p>
-        </div>
+          <Card key={index} {...device} clickable />
       ))}
     </div>
   );

@@ -15,7 +15,7 @@ const CardWithDescriptionContent = ({
       {content}
       <h3>Price</h3>
       <li>
-        From $<strong>{price}</strong>
+        From <strong>{price}€</strong>
       </li>
       <h3>Quantity</h3>
       <li>

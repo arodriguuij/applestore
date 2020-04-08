@@ -4,5 +4,11 @@
     margin: auto;
     margin: 0;
     padding: 0 2vw;
+    border-bottom: 1px solid #ccc;
+    align-content: center;
+    padding-bottom: 1vw;
   }
   
+.home-page-top > .home-page-product > a > img{
+  width: 50%;
+}

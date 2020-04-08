@@ -26,7 +26,7 @@ const CheckoutItem = ({ item, incrementItem, decrementItem, removeItem }) => {
           &#10095;
         </div>
       </span>
-      <span className="checkout-item-price">{item.price}</span>
+      <span className="checkout-item-price">{item.price}€</span>
       <div
         className="checkout-item-remove-button"
         onClick={() => removeItem(item.id)}

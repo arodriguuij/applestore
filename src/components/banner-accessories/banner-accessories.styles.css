@@ -1,0 +1,15 @@
+.collection-page-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+  width: 80%;
+  margin: auto;
+}
+.collection-page-content {
+  padding-top: 2vw;
+}
+
+.banner-accessories {
+  margin: 5vw auto;
+  padding: 0 2vw;
+}

@@ -6,6 +6,10 @@ const initialState = {
     title: "",
     body: []
   },
+  bannerAccessories:{
+    title: "",
+    body: []
+  },
   loading: false,
   error: null
 };
@@ -23,7 +27,8 @@ const devicesReducer = (state = initialState, action) => {
         ...state,
         loading: action.payload.loading,
         topItems: action.payload.data['topItems'],
-        banner: action.payload.data['banner']
+        banner: action.payload.data['banner'],
+        bannerAccessories: action.payload.data['bannerAccessories']
       };
     case devicesActionTypes.FETCH_DEVICES_FAILURE:
       return {

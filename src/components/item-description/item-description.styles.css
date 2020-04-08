@@ -1,27 +1,76 @@
-.item-description-text{
-    text-decoration: none;
-    width: 80%;
-    margin: auto;
+.item-description-text {
+  text-decoration: none;
+  width: 80%;
+  margin: auto;
+}
+.item-description-text-description-and-subtype {
+  color: rgb(134, 134, 139);
 }
 
-.item-description-extra{
-    color: #EB5C7E;
-    font-size: small;
+.item-description-extra {
+  color: #eb5c7e;
+  font-size: small;
 }
-.item-description{
-    align-self: flex-end;
-    margin: 0 auto;
-}
-
-.item-description-price-numItems{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.item-description {
+  align-self: flex-end;
+  margin: 0 auto;
 }
 
-.item-description-numItems{
-    background-color: #EB5C7E;
-    color: white;
-    border-radius: 50%;
-    width: 10%;
+.item-description-price-numItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.item-description-numItems {
+  background-color: #eb5c7e;
+  color: white;
+  border-radius: 50%;
+  width: 10%;
+}
+
+.colorDefault {
+  margin-top: 4px;
+  color: #eb5c7e;
+}
+
+.item-description-text-description-and-subtype > p {
+  margin-bottom: 0;
+}
+
+.Space-Gray {
+  color: #535150;
+}
+.Silver {
+  color: #ebebe3;
+}
+.Midnigth-Green {
+  color: #4e5851;
+}
+.Gold {
+  color: #fad7bd;
+}
+.White {
+  color: #f9f6ef;
+}
+.Black {
+  color: #1f2020;
+}
+.Blue {
+  color: #5eb0e5;
+}
+.Yellow {
+  color: #ffe681;
+}
+.Coral {
+  color: #ee7762;
+}
+.Red {
+  color: #ba0c2e;
+}
+.Green {
+  color: #aee1cd;
+}
+.Purple {
+  color: #d1cdda;
 }

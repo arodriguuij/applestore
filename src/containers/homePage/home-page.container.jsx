@@ -6,6 +6,7 @@ import Spinner from "../../components/spinner/spinner.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import TopItems from "../../components/top-items/top-items.component";
 import Banner from "../../components/banner/banner.component";
+import BannerAccessories from '../../components/banner-accessories/banner-accessories.component';
 import {
   selectorLoading,
   selectorError,
@@ -18,7 +19,7 @@ const HomePage = ({ loading, error, onFetchDevicesAsyn, onSetBreadcrumb }) => {
   }, [onFetchDevicesAsyn]);
 
   useEffect(() => {
-    onSetBreadcrumb("Top products");
+    onSetBreadcrumb("Life in color");
   }, [onSetBreadcrumb]);
 
   let content = <Spinner />;
@@ -26,6 +27,7 @@ const HomePage = ({ loading, error, onFetchDevicesAsyn, onSetBreadcrumb }) => {
     content = (
       <Fragment>
         <TopItems />
+        <BannerAccessories />
         <Banner />
       </Fragment>
     );
