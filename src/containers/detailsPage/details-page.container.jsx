@@ -5,11 +5,7 @@ import {
   fetchActualDeviceAsyn,
 } from "../../redux/actualDevice/actual-device.actions";
 import {
-  selectorCollectionMac,
-  selectorCollectionIphone,
-  selectorCollectionIpad,
-  selectorCollectionWatch,
-  selectorCollectionAccessories
+  selectorItemsX
 } from "../../redux/collections/collections.selectors";
 import {
   selectorCollectionActualDevice,
@@ -107,12 +103,12 @@ const DetailsPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_mac: selectorCollectionMac(state),
-  collection_iphone: selectorCollectionIphone(state),
-  collection_ipad: selectorCollectionIpad(state),
-  collection_watch: selectorCollectionWatch(state),
+  collection_mac: selectorItemsX(`collection_mac`)(state),
+  collection_iphone: selectorItemsX(`collection_iphone`)(state),
+  collection_ipad: selectorItemsX(`collection_ipad`)(state),
+  collection_watch: selectorItemsX(`collection_watch`)(state),
   collection_actualDevice: selectorCollectionActualDevice(state),
-  collection_accessories: selectorCollectionAccessories(state),
+  collection_accessories: selectorItemsX(`collection_accessories`)(state),
   loading: selectorLoading(state),
   error: selectorError(state),
   bag: selectorBag(state),

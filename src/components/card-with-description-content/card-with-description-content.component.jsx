@@ -1,35 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { selectNumItemsOfDevice } from "../../redux/bag/bag.selectors";
 
 const CardWithDescriptionContent = ({
-  descriptionExtra,
   description,
   type,
   price,
   id,
   numItemsOfDevice,
 }) => {
-  let content;
-  switch (type) {
-    case "collection":
-      content = <li>{description}</li>;
-      break;
-    case "details":
-      content = (
-        <Fragment>
-          <h3>Description</h3>
-          {descriptionExtra.split("$").map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </Fragment>
-      );
-      break;
-    default:
-      content = null;
-      break;
-  }
-
+  let content = <li>{description}</li>;
   return (
     <ul>
       {content}

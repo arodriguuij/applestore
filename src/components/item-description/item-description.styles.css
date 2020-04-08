@@ -1,5 +1,7 @@
 .item-description-text{
     text-decoration: none;
+    width: 80%;
+    margin: auto;
 }
 
 .item-description-extra{
@@ -14,13 +16,12 @@
 .item-description-price-numItems{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-}
-.item-description-price{
-    margin: 0 0.2rem;
+    justify-content: space-evenly;
 }
 
 .item-description-numItems{
-    margin: 0 0.2rem;
-    color: #EB5C7E
+    background-color: #EB5C7E;
+    color: white;
+    border-radius: 50%;
+    width: 10%;
 }

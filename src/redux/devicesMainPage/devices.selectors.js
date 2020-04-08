@@ -2,9 +2,9 @@ import { createSelector } from "reselect";
 
 const selectorDevices = (state) => state.devices;
 
-export const selectorTopDevices = createSelector(
+export const selectorTopItems = createSelector(
   [selectorDevices],
-  (mainPage) => mainPage.topDevices
+  (mainPage) => mainPage.topItems
 );
 
 const selectorBanner = createSelector(

@@ -15,23 +15,23 @@
 }
 
 .inverted {
-  width: 33%;
-  border: 1px solid;
   background-color: white;
-  color: #115eab;
+  color: #333333;
 }
 
 .inverted:hover {
-  background-color: #115eab;
-  color: white;
-  border: none;
+  background-color: white;
+  font-weight: bold;
+  color: #7aa9f7;
 }
 
 .active {
-  background-color: #115eab;
-  color: white;
+  background-color: white;
+  font-weight: bold;
+  color: #7aa9f7;
 }
 .active:hover {
-  background-color: #dae8ff;
-  color: black;
+  background-color: white;
+  font-weight: bold;
+  color: #7aa9f7;
 }

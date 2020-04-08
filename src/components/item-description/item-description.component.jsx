@@ -3,7 +3,7 @@ import "./item-description.styles.css";
 import { selectNumItemsOfDevice } from "../../redux/bag/bag.selectors";
 import { connect } from "react-redux";
 
-const ItemDescription = ({ id, name, extra, price, numItemsOfDevice }) => {
+const ItemDescription = ({ id, description, extra, price, numItemsOfDevice }) => {
   return (
     <div className="item-description">
       <div className="item-description-extra">
@@ -11,11 +11,11 @@ const ItemDescription = ({ id, name, extra, price, numItemsOfDevice }) => {
       </div>
       <div className="item-description-text">
         <p>
-          <strong>{name}</strong>
+          <strong>{description}</strong>
         </p>
         <div className='item-description-price-numItems'>
-          <div className='item-description-price'>${price}</div>
-          {numItemsOfDevice>0 && <div className='item-description-numItems'>({numItemsOfDevice})</div>}
+          <div className='item-description-price'>From ${price}</div>
+          {numItemsOfDevice>0 && <div className='item-description-numItems'>{numItemsOfDevice}</div>}
         </div>
       </div>
     </div>

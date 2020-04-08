@@ -3,7 +3,7 @@ import shopActionTypes from "./actual-device.types";
 export const fetchActualDeviceAsyn = (collectionName, deviceName) => dispatch => {
   dispatch(fetchActualDeviceStart());
 
-  fetch(`https://applestore-db.firebaseio.com/collections/${collectionName}/${deviceName}.json`)
+  fetch(`https://applestore-db.firebaseio.com/collections/${collectionName}/itemsAndSubtypes/items/${deviceName}.json`)
     .then(res => res.json())
     .then(data =>
       data

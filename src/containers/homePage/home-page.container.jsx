@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchDevicesAsyn } from "../../redux/devicesMainPage/devices.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
-import TopDevices from "../../components/top-devices/top-devices.component";
+import TopItems from "../../components/top-items/top-items.component";
 import Banner from "../../components/banner/banner.component";
 import {
   selectorLoading,
@@ -25,7 +25,7 @@ const HomePage = ({ loading, error, onFetchDevicesAsyn, onSetBreadcrumb }) => {
   if (!loading)
     content = (
       <Fragment>
-        <TopDevices />
+        <TopItems />
         <Banner />
       </Fragment>
     );

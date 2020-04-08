@@ -1,8 +1,0 @@
-.collection-page {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 3rem;
-  padding-top: 2vw;
-  margin: auto;
-  width: 80%;
-}

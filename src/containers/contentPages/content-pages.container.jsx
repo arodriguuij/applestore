@@ -6,9 +6,6 @@ import { selectCollection } from "../../redux/collectionNames/collection.names.s
 import PageContent from "../../components/page-content/page-content.component";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 const HomePage = lazy(() => import("../homePage/home-page.container"));
-const CollectionPage = lazy(() =>
-  import("../collectionPage/collection-page.container")
-);
 const BagPage = lazy(() => import("../bagPage/bag-page.container"));
 const DetailsPage = lazy(() => import("../detailsPage/details-page.container"));
 const AccessoriesPage = lazy(() => import('../accessoriesPage/accessoriesPage.container'));
@@ -19,13 +16,12 @@ const ContentPage = ({ collectionNames }) => {
       <PageContent>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/accessories" component={AccessoriesPage} />
           {collectionNames.map(({ link }) => (
             <Route
               key={link}
               exact
               path={`/${link}`}
-              component={CollectionPage}
+              component={AccessoriesPage}
             />
           ))}
           {collectionNames.map(({ link }) => (
