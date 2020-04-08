@@ -1,0 +1,19 @@
+.card-grid-content-top {
+  padding-top: 0.3vw;
+  border-bottom: 1px solid #333333;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0.5vw;
+}
+.card-grid-content-top-name {
+  margin: 0;
+  font-weight: bold;
+}
+.item-description-extra {
+  color: #eb5c7e;
+  font-size: small;
+}

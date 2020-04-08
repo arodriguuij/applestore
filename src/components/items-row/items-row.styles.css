@@ -1,0 +1,9 @@
+.home-page-top {
+    display: flex;
+    margin: auto;
+    padding: 0 2vw;
+    align-content: center;
+    padding-bottom: 1vw;
+    width: 80%;
+
+  }

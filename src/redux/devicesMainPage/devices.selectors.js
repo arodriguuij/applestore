@@ -2,21 +2,24 @@ import { createSelector } from "reselect";
 
 const selectorDevices = (state) => state.devices;
 
-export const selectorTopItems = createSelector(
+const selectorItemsRow = createSelector(
   [selectorDevices],
-  (mainPage) => mainPage.topItems
+  (devices) => devices.itemsRow
 );
+export const selectorItemsRowTitle = createSelector(
+  [selectorItemsRow],
+  (itemsRow) => itemsRow.title
+);
+export const selectorItemsRowBody = createSelector(
+  [selectorItemsRow],
+  (itemsRow) => itemsRow.body
+);
+
 
 const selectorBanner = createSelector(
   [selectorDevices],
   (devices) => devices.banner
 );
-
-const selectorBannerAccessories = createSelector(
-  [selectorDevices],
-  (devices) => devices.bannerAccessories
-);
-
 export const selectorBannerTitle = createSelector(
   [selectorBanner],
   (banner) => banner.title
@@ -26,15 +29,26 @@ export const selectorBannerBody = createSelector(
   (banner) => banner.body
 );
 
-export const selectorBannerAccessoriesTitle = createSelector(
-  [selectorBannerAccessories],
-  (bannerAccessories) => bannerAccessories.title
+
+const selectorBannerGrid = createSelector(
+  [selectorDevices],
+  (devices) => devices.bannerGrid
 );
-export const selectorBannerAccessoriesBody = createSelector(
-  [selectorBannerAccessories],
-  (bannerAccessories) => bannerAccessories.body
+export const selectorBannerGridTitle = createSelector(
+  [selectorBannerGrid],
+  (bannerGrid) => bannerGrid.title
+);
+export const selectorBannerGridBody = createSelector(
+  [selectorBannerGrid],
+  (bannerGrid) => bannerGrid.body
 );
 
+
+
+export const selectorMainImage = createSelector(
+  [selectorDevices],
+  (devices) => devices.mainImage
+);
 export const selectorLoading = createSelector(
   [selectorDevices],
   (devices) => devices.loading

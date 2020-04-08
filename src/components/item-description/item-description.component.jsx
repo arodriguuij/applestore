@@ -1,29 +1,16 @@
 import React from "react";
+import BannerDescription from '../banner-description/banner-description.component';
+import BannerDescriptionExtra from '../banner-description-extra/banner-description-extra.component';
 import "./item-description.styles.css";
-import { selectNumItemsOfDevice } from "../../redux/bag/bag.selectors";
-import { connect } from "react-redux";
 
-const ItemDescription = ({ id, description, extra, price, numItemsOfDevice, subtype }) => { 
+const ItemDescription = ({ id, description, price, subtype }) => {
   return (
     <div className="item-description">
-      <div className="item-description-extra">
-        <p>{extra}</p>
-      </div>
-      <div className="item-description-text">
-        <h4 className="item-description-text-description-and-subtype">
-          <p>{description}</p><strong className={`colorDefault ${subtype}`}>{subtype}</strong>
-        </h4>
-        <div className='item-description-price-numItems'>
-          <div className='item-description-price'>From {price}€</div>
-          {numItemsOfDevice>0 && <div className='item-description-numItems'>{numItemsOfDevice}</div>}
-        </div>
-      </div>
+      <BannerDescription description={description} subtype={subtype}/>
+      <BannerDescriptionExtra price={price} id={id}/>
     </div>
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  numItemsOfDevice: selectNumItemsOfDevice(ownProps.id)(state),
-});
 
-export default connect(mapStateToProps)(ItemDescription);
+export default ItemDescription;

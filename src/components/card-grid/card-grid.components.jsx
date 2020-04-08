@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ItemImg from "../item-img/item-img.component";
 import ItemDescription from "../item-description/item-description.component";
+import HeaderCard from '../header-card/header-card.component';
 import "./card-grid.styles.css";
 
 const CardGrid = ({ collection, id, img, name, extra, description, price, subtype, special }) => {
@@ -14,19 +14,13 @@ const CardGrid = ({ collection, id, img, name, extra, description, price, subtyp
   return (
     <div className={classes}>
       <div className="card-grid-content">
-        <div className="card-grid-content-top">
-          <p className="card-grid-content-top-name">{name}</p>
-          <Link to={`/${collection}/${id}`}>
-            <button className="buy">Buy</button>
-          </Link>
-        </div>
+        <HeaderCard name={name} collection={collection} id={id} extra={extra}/>
         <ItemImg img={img} />
         <ItemDescription
-          id={id}
           description={description}
           price={price}
-          extra={extra}
           subtype={subtype}
+          id={id}
         />
       </div>
     </div>

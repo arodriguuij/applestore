@@ -1,12 +1,16 @@
 import devicesActionTypes from "./devices.types";
 
 const initialState = {
-  topItems: [],
+  mainImage: "",
+  itemsRow: {
+    title: "",
+    body: []
+  },
   banner: {
     title: "",
     body: []
   },
-  bannerAccessories:{
+  bannerGrid:{
     title: "",
     body: []
   },
@@ -26,9 +30,10 @@ const devicesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload.loading,
-        topItems: action.payload.data['topItems'],
+        itemsRow: action.payload.data['itemsRow'],
         banner: action.payload.data['banner'],
-        bannerAccessories: action.payload.data['bannerAccessories']
+        bannerGrid: action.payload.data['bannerGrid'],
+        mainImage: action.payload.data['mainImage']
       };
     case devicesActionTypes.FETCH_DEVICES_FAILURE:
       return {

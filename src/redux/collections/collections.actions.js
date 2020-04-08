@@ -2,7 +2,6 @@ import shopActionTypes from "./collections.types";
 
 export const fetchCollectionAsyn = (collectionName) => (dispatch) => {
   dispatch(fetchCollectionStart());
-
   fetch(
     `https://applestore-db.firebaseio.com/collections/${collectionName}.json`
   )

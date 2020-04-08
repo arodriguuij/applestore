@@ -1,0 +1,16 @@
+.buy {
+    border-radius: 15px;
+    color: #FFF;
+    border: 1px solid #CCC;
+    padding: 3px 12px;
+    background-color: #0a84ff;
+    height: 22px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  
+.buy:hover {
+  background-color: #007aff;
+  cursor: pointer;
+}
