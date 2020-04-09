@@ -1,18 +1,24 @@
 import { createSelector } from "reselect";
 
-const bagSelector = (state) => state.bag;
+const checkoutSelector = (state) => state.checkout;
 
-export const selectorBag = createSelector(
-  [bagSelector],
-  (bag) => bag.bagCollection
+export const selectorCheckout = createSelector(
+  [checkoutSelector],
+  (checkout) => checkout.checkoutCollection
 );
 
-export const selectorNumberItemsBag = createSelector([bagSelector], (bag) =>
-  getNumItems(bag.bagCollection)
+export const selectorNumberItems = createSelector(
+  [selectorCheckout],
+  (checkout) => {
+    return getNumItems(checkout);
+  }
 );
 
-export const selectorTotalPrice = createSelector([bagSelector], (bag) =>
-  getTotalPrice(bag.bagCollection)
+export const selectorTotalPrice = createSelector(
+  [selectorCheckout],
+  (checkout) => {
+    return getTotalPrice(checkout);
+  }
 );
 
 const getNumItems = (collection) => {
@@ -28,7 +34,7 @@ const getTotalPrice = (collection) => {
 };
 
 export const selectNumItemsOfDevice = (deviceId) =>
-  createSelector([selectorBag], (collection) => {
+  createSelector([selectorCheckout], (collection) => {
     if (collection.length === 0) return 0;
     else {
       const existDevice = collection.find((item) => item.id === deviceId);

@@ -1,30 +1,14 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
-import { selectorBag, selectorTotalPrice } from "../../redux/bag/bag.selectors";
-import {
-  incrementItem,
-  decrementItem,
-  removeItem,
-} from "../../redux/bag/bag.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
-import CheckoutItem from "../../components/checkout-item/checkout-item.coponent";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
+import TotalPrice from "../../components/total-price/total-price.component";
+import CheckoutListItems from "../../components/checkout-list-items/checkout-list-items.component";
 import "./checkout.styles.css";
 
-const BagPage = ({
-  bag,
-  totalPrice,
-  onIncrementItem,
-  onDecrementItem,
-  onSetBreadcrumb,
-  onRemoveItem,
-}) => {
-  const incrementItemHandler = (id) => onIncrementItem(id);
-  const decrementItemHandler = (id) => onDecrementItem(id);
-  const removeItemHandler = (id) => onRemoveItem(id);
-
+const CheckoutPage = ({ onSetBreadcrumb }) => {
   useEffect(() => {
-    onSetBreadcrumb("Bag");
+    onSetBreadcrumb("Checkout");
   }, [onSetBreadcrumb]);
 
   return (
@@ -48,31 +32,14 @@ const BagPage = ({
             <span>Remove</span>
           </div>
         </div>
-        {bag.map((item, index) => (
-          <CheckoutItem
-            key={index}
-            item={item}
-            incrementItem={incrementItemHandler}
-            decrementItem={decrementItemHandler}
-            removeItem={removeItemHandler}
-          />
-        ))}
-        <div className="checkout-total">
-          <span>TOTAL: {totalPrice}€</span>
-        </div>
+        <CheckoutListItems />
+        <TotalPrice />
       </div>
     </Fragment>
   );
 };
 
-const mapStateToProps = (state) => ({
-  bag: selectorBag(state),
-  totalPrice: selectorTotalPrice(state),
-});
 const mapDispatchToProps = (dispatch) => ({
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
-  onIncrementItem: (id) => dispatch(incrementItem(id)),
-  onRemoveItem: (id) => dispatch(removeItem(id)),
-  onDecrementItem: (id) => dispatch(decrementItem(id)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(BagPage);
+export default connect(null, mapDispatchToProps)(CheckoutPage);

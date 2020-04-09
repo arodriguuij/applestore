@@ -3,7 +3,6 @@ import "./home-page.styles.css";
 import { connect } from "react-redux";
 import { fetchDevicesAsyn } from "../../redux/devicesMainPage/devices.actions";
 import Spinner from "../../components/spinner/spinner.component";
-import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import ItemsRow from "../../components/items-row/items-row.component";
 import Banner from "../../components/banner/banner.component";
 import BannerGrid from "../../components/banner-grid/banner-grid.component";
@@ -25,7 +24,6 @@ const HomePage = ({
   loading,
   error,
   onFetchDevicesAsyn,
-  onSetBreadcrumb,
   bannerTitle,
   bannerBody,
   bannerGridTitle,
@@ -56,10 +54,6 @@ const HomePage = ({
     mainImage
   ]);
 
-  useEffect(() => {
-    onSetBreadcrumb("");
-  }, [onSetBreadcrumb, itemsRowTitle]);
-
   let content = <Spinner />;
   if (!loading)
     content = (
@@ -88,8 +82,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn()),
-  onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
+  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

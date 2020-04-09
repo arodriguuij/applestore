@@ -10,9 +10,7 @@ import {
   selectorLoading,
   selectorError,
 } from "../../redux/actualDevice/actual-device.selector";
-import { selectorBag } from "../../redux/bag/bag.selectors";
-import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
-import { addItem } from "../../redux/bag/bag.actions";
+import { addItem } from "../../redux/checkout/checkout.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import CardDetails from "../../components/card-details/card-details.components";
 import "./itemPage.styles.css";
@@ -20,25 +18,26 @@ const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const ItemPage = (props) => {
   const {
-    match,
+    path,
+    params,
     onRemoveActualDevice,
     onFetchActualDeviceAsyn,
     collection_actualDevice,
     loading,
     error,
     onAddItem,
-    onSetBreadcrumb,
   } = props;
-  const collection = match.path.split("/")[1];
-  const deviceName = match.params.id;
+  const collection = path.split("/")[1];
+  const deviceName = params.id;
   const collectionState = props[`collection_${collection}`];
-  const isObjectAndEmpty =
-    collectionState &&
-    Object.keys(collectionState).length === 0 &&
-    collectionState.constructor === Object;
 
   useEffect(() => {
-    if (isObjectAndEmpty || !collectionState[deviceName])
+    if (
+      (collectionState &&
+        Object.keys(collectionState).length === 0 &&
+        collectionState.constructor === Object) ||
+      !collectionState[deviceName]
+    )
       onFetchActualDeviceAsyn(collection, deviceName);
     return function cleanup() {
       onRemoveActualDevice();
@@ -49,14 +48,7 @@ const ItemPage = (props) => {
     collectionState,
     onFetchActualDeviceAsyn,
     onRemoveActualDevice,
-    isObjectAndEmpty,
   ]);
-
-  useEffect(() => {
-    collection_actualDevice
-      ? onSetBreadcrumb(collection_actualDevice.name)
-      : onSetBreadcrumb(collectionState[deviceName]);
-  }, [onSetBreadcrumb, deviceName, collectionState, collection_actualDevice]);
 
   const addItemHandler = () => {
     if (collectionState[deviceName])
@@ -65,7 +57,14 @@ const ItemPage = (props) => {
   };
 
   let content;
-  if (!isObjectAndEmpty && collectionState[deviceName]) {
+  if (
+    !(
+      collectionState &&
+      Object.keys(collectionState).length === 0 &&
+      collectionState.constructor === Object
+    ) &&
+    collectionState[deviceName]
+  ) {
     content = (
       <CardDetails
         id={deviceName}
@@ -113,15 +112,13 @@ const mapStateToProps = (state) => ({
   collection_actualDevice: selectorCollectionActualDevice(state),
   collection_Accessories: selectorItemsX(`collection_Accessories`)(state),
   loading: selectorLoading(state),
-  error: selectorError(state),
-  bag: selectorBag(state),
+  error: selectorError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchActualDeviceAsyn: (collection, deviceName) =>
     dispatch(fetchActualDeviceAsyn(collection, deviceName)),
   onRemoveActualDevice: (id) => dispatch(removeActualDevice(id)),
-  onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
-  onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
+  onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);

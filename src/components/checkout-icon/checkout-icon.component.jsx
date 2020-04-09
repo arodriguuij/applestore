@@ -1,7 +1,7 @@
 import React from "react";
-import './bag-icon.styles.css';
+import './checkout-icon.styles.css';
 
-const BagIcon = ({children}) => {
+const CheckoutIcon = ({children}) => {
   return (
     <div className="cart-icon">
       {children}
@@ -9,4 +9,4 @@ const BagIcon = ({children}) => {
   );
 };
 
-export default BagIcon;
+export default CheckoutIcon;

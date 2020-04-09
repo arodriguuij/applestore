@@ -1,5 +1,5 @@
 import React from "react";
-import { selectNumItemsOfDevice } from "../../redux/bag/bag.selectors";
+import { selectNumItemsOfDevice } from "../../redux/checkout/checkout.selectors";
 import { connect } from "react-redux";
 import "./banner-description-numItems.styles.css";
 

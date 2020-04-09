@@ -6,7 +6,7 @@ const CardItemDetailsDescription = ({ name, description, price, id, img }) => {
   return (
     <Fragment>
       <div className="card-item-details-description">
-        <img src={img}></img>
+        <img alt={'device'} src={img}></img>
         <div>{name}</div>
         <div>
           From <strong>{price}€</strong>

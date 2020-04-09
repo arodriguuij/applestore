@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { fetchCollectionNamesAsync } from "./redux/collectionNames/collection-names.actions";
 import { selectCollection } from "./redux/collectionNames/collection.names.selectors";
-import { selectorNumberItemsBag } from "./redux/bag/bag.selectors";
+import { selectorNumberItems } from "./redux/checkout/checkout.selectors";
 import Header from "./components/header/header.component";
 import ContentPage from "./containers/contentPages/content-pages.container";
 import Footer from "./components/footer/footer.component";
@@ -21,7 +21,7 @@ const App = ({
   loading,
   error,
   collectionNames,
-  numItemsBag,
+  numItems,
 }) => {
   useEffect(() => {
     onFetchCollectionNamesAsync();
@@ -35,10 +35,10 @@ const App = ({
           <Suspense fallback={<Spinner />}>
             <Header
               collectionNames={collectionNames}
-              numItemsBag={numItemsBag}
+              numItems={numItems}
             />
             <ContentPage />
-            {/* <Footer /> */}
+            <Footer />
           </Suspense>
         </ErrorBoundary>
       </div>
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => ({
   loading: selectLoading(state),
   error: selectError(state),
   collectionNames: selectCollection(state),
-  numItemsBag: selectorNumberItemsBag(state),
+  numItems: selectorNumberItems(state),
 });
 
 const mapDispatchtoProps = (dispatch) => ({

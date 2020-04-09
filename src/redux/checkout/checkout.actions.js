@@ -1,8 +1,8 @@
-import bagActionTypes from "./bag.types";
+import checkoutActionTypes from "./checkout.types";
 
 export const addItem = (item, collection, id) => {
   return {
-    type: bagActionTypes.ADD_ITEM,
+    type: checkoutActionTypes.ADD_ITEM,
     payload: {
       item: {
         ...item,
@@ -15,7 +15,7 @@ export const addItem = (item, collection, id) => {
 
 export const removeItem = (id) => {
   return {
-    type: bagActionTypes.REMOVE_ITEM,
+    type: checkoutActionTypes.REMOVE_ITEM,
     payload: {
       id: id,
     },
@@ -24,7 +24,7 @@ export const removeItem = (id) => {
 
 export const incrementItem = (id) => {
   return {
-    type: bagActionTypes.INCREMENT_ITEM,
+    type: checkoutActionTypes.INCREMENT_ITEM,
     payload: {
       id: id,
     },
@@ -33,7 +33,7 @@ export const incrementItem = (id) => {
 
 export const decrementItem = (id) => {
   return {
-    type: bagActionTypes.DECREMENT_ITEM,
+    type: checkoutActionTypes.DECREMENT_ITEM,
     payload: {
       id: id,
     },

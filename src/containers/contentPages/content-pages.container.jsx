@@ -27,11 +27,11 @@ const ContentPage = ({collectionNames}) => {
               key={link}
               exact
               path={`/${link}/:id`}
-              render={(props) => <ItemPage {...props}/>}
+              render={(match) => <ItemPage  path={match.match.path} params={match.match.params}/>}
             />
           ))}
           }
-          <Route exact path="/bag" render={() => <CheckoutPage/>} />
+          <Route exact path="/checkout" render={() => <CheckoutPage/>} />
           <Route path="/" render={() => <ErrorPage text="Page not found" />} />
         </Switch>
     </div>

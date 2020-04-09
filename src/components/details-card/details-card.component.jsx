@@ -19,7 +19,7 @@ const DetailsCard = ({ device, addItem, img, id }) => {
         <CustomButton action={addItem} google>
           Add Item
         </CustomButton>
-        <Link to="/bag">
+        <Link to="/checkout">
           <CustomButton checkout>Checkout</CustomButton>
         </Link>
       </div>
