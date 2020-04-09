@@ -1,35 +1,35 @@
 import shopActionTypes from "./collections.types";
 
 const initialState = {
-  collection_mac: {
+  collection_Mac: {
     itemsAndSubtypes: {
       items: {},
       subtypes: [],
     },
     types: [],
   },
-  collection_iphone: {
+  collection_iPhone: {
     itemsAndSubtypes: {
       items: {},
       subtypes: [],
     },
     types: [],
   },
-  collection_ipad: {
+  collection_iPad: {
     itemsAndSubtypes: {
       items: {},
       subtypes: [],
     },
     types: [],
   },
-  collection_watch: {
+  collection_iWatch: {
     itemsAndSubtypes: {
       items: {},
       subtypes: [],
     },
     types: [],
   },
-  collection_accessories: {
+  collection_Accessories: {
     itemsAndSubtypes: {
       items: {},
       subtypes: [],

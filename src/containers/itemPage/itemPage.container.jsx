@@ -1,12 +1,10 @@
-import React, { useEffect, lazy } from "react";
+import React, { useEffect, lazy, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   removeActualDevice,
   fetchActualDeviceAsyn,
 } from "../../redux/actualDevice/actual-device.actions";
-import {
-  selectorItemsX
-} from "../../redux/collections/collections.selectors";
+import { selectorItemsX } from "../../redux/collections/collections.selectors";
 import {
   selectorCollectionActualDevice,
   selectorLoading,
@@ -16,11 +14,11 @@ import { selectorBag } from "../../redux/bag/bag.selectors";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import { addItem } from "../../redux/bag/bag.actions";
 import Spinner from "../../components/spinner/spinner.component";
-import CardWithDescription from "../../components/card-with-description/card-with-description.component";
-import "./details-page.styles.css";
+import CardDetails from "../../components/card-details/card-details.components";
+import "./itemPage.styles.css";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
-const DetailsPage = (props) => {
+const ItemPage = (props) => {
   const {
     match,
     onRemoveActualDevice,
@@ -55,8 +53,10 @@ const DetailsPage = (props) => {
   ]);
 
   useEffect(() => {
-    onSetBreadcrumb(deviceName);
-  }, [onSetBreadcrumb, deviceName]);
+    collection_actualDevice
+      ? onSetBreadcrumb(collection_actualDevice.name)
+      : onSetBreadcrumb(collectionState[deviceName]);
+  }, [onSetBreadcrumb, deviceName, collectionState, collection_actualDevice]);
 
   const addItemHandler = () => {
     if (collectionState[deviceName])
@@ -64,17 +64,16 @@ const DetailsPage = (props) => {
     else onAddItem(collection_actualDevice, collection, deviceName);
   };
 
-
   let content;
   if (!isObjectAndEmpty && collectionState[deviceName]) {
     content = (
-      <CardWithDescription
-        device={collectionState[deviceName]}
-        collection={collection}
-        addItem={addItemHandler}
-        clickable={false}
-        type={"details"}
+      <CardDetails
         id={deviceName}
+        collection={collection}
+        img={collectionState[deviceName].img}
+        clickable={false}
+        device={collectionState[deviceName]}
+        addItem={addItemHandler}
       />
     );
   } else {
@@ -87,28 +86,32 @@ const DetailsPage = (props) => {
       if (error !== null) content = <ErrorPage text="Page not found" />;
       else {
         content = (
-          <CardWithDescription
-            device={collection_actualDevice}
-            collection={collection}
-            addItem={addItemHandler}
-            clickable={false}
-            type={"details"}
+          <CardDetails
             id={deviceName}
+            collection={collection}
+            img={collection_actualDevice.img}
+            clickable={false}
+            device={collection_actualDevice}
+            addItem={addItemHandler}
           />
         );
       }
     }
   }
-  return <div className={"details-page"}>{content} </div>;
+  return (
+    <Fragment>
+      <div className={"details-page"}>{content}</div>
+    </Fragment>
+  );
 };
 
 const mapStateToProps = (state) => ({
-  collection_mac: selectorItemsX(`collection_mac`)(state),
-  collection_iphone: selectorItemsX(`collection_iphone`)(state),
-  collection_ipad: selectorItemsX(`collection_ipad`)(state),
-  collection_watch: selectorItemsX(`collection_watch`)(state),
+  collection_Mac: selectorItemsX(`collection_Mac`)(state),
+  collection_iPhone: selectorItemsX(`collection_iPhone`)(state),
+  collection_iPad: selectorItemsX(`collection_iPad`)(state),
+  collection_iWatch: selectorItemsX(`collection_iWatch`)(state),
   collection_actualDevice: selectorCollectionActualDevice(state),
-  collection_accessories: selectorItemsX(`collection_accessories`)(state),
+  collection_Accessories: selectorItemsX(`collection_Accessories`)(state),
   loading: selectorLoading(state),
   error: selectorError(state),
   bag: selectorBag(state),
@@ -121,4 +124,4 @@ const mapDispatchToProps = (dispatch) => ({
   onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);

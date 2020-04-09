@@ -1,0 +1,10 @@
+.category-buttons-types {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0.6rem;
+    margin: auto;
+    border-bottom: 1px solid #E5E5EA;
+  }
+    

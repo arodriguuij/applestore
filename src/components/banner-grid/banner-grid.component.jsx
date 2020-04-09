@@ -14,7 +14,7 @@ const BannerGrid = ({
   return (
     <div className="banner-grid">
       <h2 className="banner-title">{bannerGridTitle}</h2>
-      <div className="collection-page-items">
+      <div className="banner-items">
         {bannerGridBody.map((device, index) => {
           return <CardGrid key={index} {...device} />;
         })}

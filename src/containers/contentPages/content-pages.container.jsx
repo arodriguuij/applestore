@@ -3,25 +3,23 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./content-pages.styles.css";
 import { selectCollection } from "../../redux/collectionNames/collection.names.selectors";
-import PageContent from "../../components/page-content/page-content.component";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 const HomePage = lazy(() => import("../homePage/home-page.container"));
-const BagPage = lazy(() => import("../bagPage/bag-page.container"));
-const DetailsPage = lazy(() => import("../detailsPage/details-page.container"));
-const AccessoriesPage = lazy(() => import('../accessoriesPage/accessoriesPage.container'));
+const CheckoutPage = lazy(() => import("../checkoutPage/checkout.container"));
+const ItemPage = lazy(() => import("../itemPage/itemPage.container"));
+const ItemCollectionsPage = lazy(() => import('../itemCollectionsPage/itemCollectionsPage.container'));
 
-const ContentPage = ({ collectionNames }) => {
+const ContentPage = ({collectionNames}) => {
   return (
     <div className="main-page">
-      <PageContent>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" render={() => <HomePage />} />
           {collectionNames.map(({ link }) => (
             <Route
               key={link}
               exact
               path={`/${link}`}
-              component={AccessoriesPage}
+              render={(match) => <ItemCollectionsPage path={match.match.path}/>}
             />
           ))}
           {collectionNames.map(({ link }) => (
@@ -29,14 +27,13 @@ const ContentPage = ({ collectionNames }) => {
               key={link}
               exact
               path={`/${link}/:id`}
-              component={DetailsPage}
+              render={(props) => <ItemPage {...props}/>}
             />
           ))}
           }
-          <Route exact path="/bag" component={BagPage} />
+          <Route exact path="/bag" render={() => <CheckoutPage/>} />
           <Route path="/" render={() => <ErrorPage text="Page not found" />} />
         </Switch>
-      </PageContent>
     </div>
   );
 };

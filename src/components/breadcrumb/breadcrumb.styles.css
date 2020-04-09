@@ -1,8 +1,13 @@
 .collection-page-breadcrumb {
-  padding: 0 4vw;
   margin: 0 auto;
-  text-align: initial;
-  border-bottom: 1px solid #cfcfcf;
   text-align: center;
-  background-color: #FAFAFA;
+  height: 6em;
+  border-bottom: 1px solid #E5E5EA;
+}
+
+.collection-page-breadcrumb h1 {
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: -webkit-xxx-large;
+  color: #636366;
 }

@@ -1,10 +1,10 @@
 header {
   grid-area: header;
   position: fixed;
-  margin: 0;
   background: rgb(29, 29, 31);
   width: 100%;
   opacity: 0.9;
+  height: 1.5rem;
 }
 
 .header-ul {
@@ -13,9 +13,7 @@ header {
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
-  margin-top: 0.7vw;
-  margin-bottom: 0.7vw;
-  padding-inline-start: 0;
+  margin: 0;
 }
 
 .header-li {

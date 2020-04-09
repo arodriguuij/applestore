@@ -1,19 +1,19 @@
-.collection-page-description{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-  }
-  .collection-page-description a{
-    text-decoration: none;
-    text-align: center;
-  }
-  
-  .collection-page-name{
-    margin-top: 0;
-  }
-  ul{
-    list-style-type: none;
-    padding: 0;
-  }
-  h3{margin-bottom: 5px;}
+.card-item-details-description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.collection-page-description a {
+  text-decoration: none;
+  text-align: center;
+}
+.card-item-details-description img{
+  height: 100px;
+  width: 100px;
+}
+.collection-page-description-button{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem auto
+}

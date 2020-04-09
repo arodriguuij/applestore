@@ -1,18 +1,28 @@
 import React, { useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { fetchCollectionNamesAsync } from "./redux/collectionNames/collection-names.actions";
-import Header from "./containers/header/header.component";
+import { selectCollection } from "./redux/collectionNames/collection.names.selectors";
+import { selectorNumberItemsBag } from "./redux/bag/bag.selectors";
+import Header from "./components/header/header.component";
 import ContentPage from "./containers/contentPages/content-pages.container";
 import Footer from "./components/footer/footer.component";
 import ErrorBoundary from "./components/error-boundary/error.boundary.component";
 import Spinner from "./components/spinner/spinner.component";
-import {selectLoading, selectError} from './redux/collectionNames/collection.names.selectors';
+import {
+  selectLoading,
+  selectError,
+} from "./redux/collectionNames/collection.names.selectors";
 import "./App.css";
 
 const ErrorPage = lazy(() => import("./components/error-page/error-page"));
 
-const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
-
+const App = ({
+  onFetchCollectionNamesAsync,
+  loading,
+  error,
+  collectionNames,
+  numItemsBag,
+}) => {
   useEffect(() => {
     onFetchCollectionNamesAsync();
   }, [onFetchCollectionNamesAsync]);
@@ -23,21 +33,26 @@ const App = ({ onFetchCollectionNamesAsync, loading, error }) => {
       <div className="App">
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
-            <Header />
+            <Header
+              collectionNames={collectionNames}
+              numItemsBag={numItemsBag}
+            />
             <ContentPage />
-            <Footer /> 
+            {/* <Footer /> */}
           </Suspense>
         </ErrorBoundary>
       </div>
     );
-    if(error) content = <ErrorPage text="Something was wrong... Try again :|"/>
+  if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
 
   return content;
 };
 
 const mapStateToProps = (state) => ({
   loading: selectLoading(state),
-  error: selectError(state)
+  error: selectError(state),
+  collectionNames: selectCollection(state),
+  numItemsBag: selectorNumberItemsBag(state),
 });
 
 const mapDispatchtoProps = (dispatch) => ({

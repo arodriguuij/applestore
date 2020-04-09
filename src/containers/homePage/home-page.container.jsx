@@ -53,6 +53,7 @@ const HomePage = ({
     bannerGridBody,
     itemsRowTitle,
     itemsRowBody,
+    mainImage
   ]);
 
   useEffect(() => {

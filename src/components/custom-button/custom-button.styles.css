@@ -1,17 +1,16 @@
 .customButton {
-  transition-duration: 0.4s;
-  background-color: #f1f1f1;
-  color: black;
+  background-color: #007aff;
+  color: white;
   font-size: 16px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
-  outline:none;
+  outline: none;
 }
 
 .customButton:hover {
-  background-color: black;
+  background-color: #0a84ff;
   color: white;
 }
 
@@ -22,17 +21,34 @@
 
 .inverted:hover {
   background-color: white;
-  font-weight: bold;
   color: #007aff;
 }
 
 .active {
   background-color: white;
-  font-weight: bold;
   color: #0a84ff;
 }
 .active:hover {
   background-color: white;
-  font-weight: bold;
   color: #0a84ff;
+}
+
+.google {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0.5rem 2rem;
+}
+
+
+.checkout {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: #333333;
+  color: white;
+  padding: 0.5rem 2rem;
+}
+
+.checkout:hover {
+  background-color: #636366;
+  color: white;
 }
