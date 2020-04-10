@@ -19,7 +19,6 @@ import {
   selectorMainImage,
   selectorBannerImgMoblie,
 } from "../../redux/devicesMainPage/devices.selectors";
-import Card from "../../components/card/card.component";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const HomePage = ({
@@ -64,7 +63,7 @@ const HomePage = ({
         <MainImage />
         <ItemsRow />
         <BannerGrid />
-        <img className="bannerMobile"src={bannerImgMoblie} />
+        <img alt="item" className="bannerMobile"src={bannerImgMoblie} />
         <Banner />
       </Fragment>
     );
