@@ -28,6 +28,10 @@ export const selectorBannerBody = createSelector(
   [selectorBanner],
   (banner) => banner.body
 );
+export const selectorBannerImgMoblie = createSelector(
+  [selectorBanner],
+  (banner) => banner.imgMobile
+);
 
 
 const selectorBannerGrid = createSelector(

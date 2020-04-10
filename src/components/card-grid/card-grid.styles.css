@@ -12,7 +12,15 @@
   background-color: #f2f2f2;
 }
 .card-grid-special-top-right {
-  grid-column: 2 / 4;
+  grid-column: 1 / 3;
   grid-row: 1;
   background-color: #ededed;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-grid-special-top-right {
+/*     grid-column: 1;
+    grid-row: 1; */
+    background-color: #ededed;
+  }
 }

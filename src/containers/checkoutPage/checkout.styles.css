@@ -20,4 +20,11 @@
 .checkout-page .checkout-header .header-block:last-child {
   width: 8%;
 }
-
+@media only screen and (max-width: 600px) {
+  .checkout-page {
+    width: 95%;
+  }
+  .checkout-header-block{
+    font-size: small;
+  }
+}

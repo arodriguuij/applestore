@@ -8,7 +8,8 @@ const initialState = {
   },
   banner: {
     title: "",
-    body: []
+    body: [],
+    imgMobile: ""
   },
   bannerGrid:{
     title: "",

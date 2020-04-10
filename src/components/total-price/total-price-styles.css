@@ -1,5 +1,11 @@
 .checkout-total {
-    margin-top: 30px;
-    margin-left: auto;
-    font-size: 36px;
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
+}
+
+@media only screen and (max-width: 600px) {
+  .checkout-total {
+    font-size: initial;
   }
+}

@@ -2,7 +2,7 @@
   margin: 0 auto;
   text-align: center;
   height: 6em;
-  border-bottom: 1px solid #E5E5EA;
+  border-bottom: 1px solid #e5e5ea;
 }
 
 .collection-page-breadcrumb h1 {
@@ -10,4 +10,13 @@
   padding: 1rem;
   font-size: -webkit-xxx-large;
   color: #636366;
+}
+
+@media only screen and (max-width: 600px) {
+  .collection-page-breadcrumb {
+    height: 3.2em;
+  }
+  .collection-page-breadcrumb h1 {
+    font-size: x-large;
+  }
 }

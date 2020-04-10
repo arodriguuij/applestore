@@ -17,7 +17,9 @@ import {
   selectorItemsRowTitle,
   selectorItemsRowBody,
   selectorMainImage,
+  selectorBannerImgMoblie,
 } from "../../redux/devicesMainPage/devices.selectors";
+import Card from "../../components/card/card.component";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const HomePage = ({
@@ -26,6 +28,7 @@ const HomePage = ({
   onFetchDevicesAsyn,
   bannerTitle,
   bannerBody,
+  bannerImgMoblie,
   bannerGridTitle,
   bannerGridBody,
   itemsRowTitle,
@@ -51,7 +54,7 @@ const HomePage = ({
     bannerGridBody,
     itemsRowTitle,
     itemsRowBody,
-    mainImage
+    mainImage,
   ]);
 
   let content = <Spinner />;
@@ -61,6 +64,7 @@ const HomePage = ({
         <MainImage />
         <ItemsRow />
         <BannerGrid />
+        <img className="bannerMobile"src={bannerImgMoblie} />
         <Banner />
       </Fragment>
     );
@@ -72,6 +76,7 @@ const HomePage = ({
 const mapStateToProps = (state) => ({
   bannerTitle: selectorBannerTitle(state),
   bannerBody: selectorBannerBody(state),
+  bannerImgMoblie: selectorBannerImgMoblie(state),
   bannerGridTitle: selectorBannerGridTitle(state),
   bannerGridBody: selectorBannerGridBody(state),
   itemsRowTitle: selectorItemsRowTitle(state),
@@ -82,7 +87,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn())
+  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

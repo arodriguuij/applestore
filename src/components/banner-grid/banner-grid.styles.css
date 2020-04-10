@@ -1,6 +1,6 @@
 .banner-items {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 0.5rem;
   width: 80%;
   margin: auto;
@@ -9,4 +9,15 @@
 .banner-accessories {
   margin: 5vw auto;
   padding: 0 2vw;
+}
+
+@media only screen and (max-width: 600px){
+  .banner-items {
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    justify-content: center;
+  }
+  .banner-grid{
+    padding-bottom: 2rem;
+  }
 }

@@ -12,6 +12,8 @@ import {
 } from "../../redux/actualDevice/actual-device.selector";
 import { addItem } from "../../redux/checkout/checkout.actions";
 import Spinner from "../../components/spinner/spinner.component";
+import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
+import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 import CardDetails from "../../components/card-details/card-details.components";
 import "./itemPage.styles.css";
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
@@ -26,6 +28,7 @@ const ItemPage = (props) => {
     loading,
     error,
     onAddItem,
+    onSetBreadcrumb,
   } = props;
   const collection = path.split("/")[1];
   const deviceName = params.id;
@@ -49,6 +52,10 @@ const ItemPage = (props) => {
     onFetchActualDeviceAsyn,
     onRemoveActualDevice,
   ]);
+
+  useEffect(() => {
+    onSetBreadcrumb("Review");
+  }, [onSetBreadcrumb]);
 
   const addItemHandler = () => {
     if (collectionState[deviceName])
@@ -99,6 +106,7 @@ const ItemPage = (props) => {
   }
   return (
     <Fragment>
+      <Breadcrumb />
       <div className={"details-page"}>{content}</div>
     </Fragment>
   );
@@ -112,13 +120,14 @@ const mapStateToProps = (state) => ({
   collection_actualDevice: selectorCollectionActualDevice(state),
   collection_Accessories: selectorItemsX(`collection_Accessories`)(state),
   loading: selectorLoading(state),
-  error: selectorError(state)
+  error: selectorError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
   onFetchActualDeviceAsyn: (collection, deviceName) =>
     dispatch(fetchActualDeviceAsyn(collection, deviceName)),
   onRemoveActualDevice: (id) => dispatch(removeActualDevice(id)),
-  onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id))
+  onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);

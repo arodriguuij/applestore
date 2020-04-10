@@ -10,7 +10,7 @@ const CardDetails = ({ id, collection, img, clickable, device, addItem }) => {
         <h1>Review what you have selected</h1>
       </div>
       <div className="card-details-content">
-        <Card id={id} collection={collection} img={img} clickable={clickable} />
+        <Card id={id} collection={collection} img={img} clickable={clickable} hidden="hidden" />
         <div className="card-details-content-description">
           <DetailsCard device={device} addItem={addItem} img={img} id={id}/>
         </div>
