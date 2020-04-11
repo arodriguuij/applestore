@@ -29,7 +29,6 @@ const Header = ({
       if (prevState === "menuOn") return "menuOff";
       else return "menuOn";
     });
-    console.log(toggleMenuMobile);
   };
   const onCloseMenuHandler = () => {
     setToggleMenuMobile("menuOff");
@@ -52,13 +51,13 @@ const Header = ({
               </CheckoutIcon>
             </Link>
           </div>
-          <ul className="main-nav-ul">
+          <ul className="main-nav-ul main-nav-li">
             {collectionNames.map(({ link, name }) => (
-              <li className="main-nav-li" key={link}>
-                <Link to={`/${link}`} onClick={onCloseMenuHandler}>
+              <Link to={`/${link}`} onClick={onCloseMenuHandler}>
+                <li className="main-nav-li" key={link}>
                   {name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
           </ul>
           <div className="main-nav_item_checkout_icon">

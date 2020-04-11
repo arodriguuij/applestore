@@ -42,17 +42,19 @@
   flex-wrap: wrap;
 }
 
-.main-nav-li {
-  padding: 0 3vw;
-}
-.main-nav-li > a:hover {
+.main-nav-ul > a:hover {
   color: white;
 }
-.main-nav-li > a {
+.main-nav-ul > a {
   text-decoration: none;
   color: rgb(198, 198, 198);
   font-size: 0.8rem;
 }
+
+.main-nav-li {
+  padding: 0 3vw;
+}
+
 
 .main-nav_checkout {
   display: flex;
@@ -75,7 +77,6 @@
   }
   .main-nav-li {
     display: block;
-    border-bottom: 1px solid #eaeaeb;
     padding: 1rem;
   }
   .main-nav-li:active {
@@ -84,6 +85,7 @@
 
   .main-nav-li:first-child {
     border-top: 1px solid #eaeaeb;
+    border-bottom: 1px solid #eaeaeb;
   }
   .main-nav_item {
     display: block;
