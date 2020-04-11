@@ -29,22 +29,25 @@ const ItemPage = (props) => {
   const collection = path.split("/")[1];
   const deviceName = params.id;
   const collectionState = props[`collection_${collection}`];
+  const isCollectionItemEmpty =
+    collectionState &&
+    Object.keys(collectionState).length === 0 &&
+    collectionState.constructor === Object;
+  const stateBeforeFetch =
+    error === null && collection_actualDevice === null && loading === false;
+  const existItemInCollection = collectionState[deviceName];
 
   useEffect(() => {
-    if (
-      (collectionState &&
-        Object.keys(collectionState).length === 0 &&
-        collectionState.constructor === Object) ||
-      !collectionState[deviceName]
-    )
+    if (isCollectionItemEmpty || !existItemInCollection)
       onFetchActualDeviceAsyn(collection, deviceName);
-    return function cleanup() {
+    return () => {
       onRemoveActualDevice();
     };
   }, [
+    existItemInCollection,
     collection,
     deviceName,
-    collectionState,
+    isCollectionItemEmpty,
     onFetchActualDeviceAsyn,
     onRemoveActualDevice,
   ]);
@@ -54,38 +57,28 @@ const ItemPage = (props) => {
   }, [onSetBreadcrumb]);
 
   const addItemHandler = () => {
-    if (collectionState[deviceName])
-      onAddItem(collectionState[deviceName], collection, deviceName);
+    if (existItemInCollection)
+      onAddItem(existItemInCollection, collection, deviceName);
     else onAddItem(collection_actualDevice, collection, deviceName);
   };
 
   let content;
-  if (
-    !(
-      collectionState &&
-      Object.keys(collectionState).length === 0 &&
-      collectionState.constructor === Object
-    ) &&
-    collectionState[deviceName]
-  ) {
+  if (!isCollectionItemEmpty && existItemInCollection) {
     content = (
       <CardDetails
         id={deviceName}
         collection={collection}
-        img={collectionState[deviceName].img}
+        img={existItemInCollection.img}
         clickable={false}
-        device={collectionState[deviceName]}
+        device={existItemInCollection}
         addItem={addItemHandler}
       />
     );
   } else {
-    if (
-      loading ||
-      (error === null && collection_actualDevice === null && loading === false)
-    ) {
+    if (loading || stateBeforeFetch) {
       content = <Spinner />;
     } else {
-      if (error !== null) content = <ErrorPage text="Item not found" />;
+      if (error !== null) content = <ErrorPage text={error} />;
       else {
         content = (
           <CardDetails

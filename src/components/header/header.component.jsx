@@ -1,8 +1,8 @@
 import React, { useState, useEffect, lazy } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { ReactComponent as ReactLogoIcon } from "../../assets/apple2.svg";
-import { ReactComponent as ReactLogoCheckout } from "../../assets/add-to-basket.svg";
+import { ReactComponent as ReactLogoIcon } from "../../assets/apple.svg";
+import { ReactComponent as ReactLogoCheckout } from "../../assets/checkout.svg";
 import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
 import { fetchCollectionNamesAsync } from "../../redux/collectionNames/collection-names.actions";
