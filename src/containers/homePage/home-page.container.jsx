@@ -1,30 +1,25 @@
 import React, { useEffect, lazy, Fragment } from "react";
 import "./home-page.styles.css";
 import { connect } from "react-redux";
-import { fetchDevicesAsyn } from "../../redux/devicesMainPage/devices.actions";
+import { fetchHomePageCollectionsAsyn } from "../../redux/homePageCollections/homePageCollections.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import ItemsRow from "../../components/items-row/items-row.component";
 import Banner from "../../components/banner/banner.component";
 import BannerGrid from "../../components/banner-grid/banner-grid.component";
 import MainImage from "../../components/main-image/main-image.component";
 import {
-  selectorBannerTitle,
-  selectorBannerBody,
-  selectorBannerGridTitle,
-  selectorBannerGridBody,
-  selectorLoading,
-  selectorError,
-  selectorItemsRowTitle,
-  selectorItemsRowBody,
-  selectorMainImage,
+  selectorXtitle,
+  selectorXbody,
+  selectorType,
   selectorBannerImgMoblie,
-} from "../../redux/devicesMainPage/devices.selectors";
+} from "../../redux/homePageCollections/homePageCollections.selectors";
+
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const HomePage = ({
   loading,
   error,
-  onFetchDevicesAsyn,
+  onFetchHomePageCollectionsAsyn,
   bannerTitle,
   bannerBody,
   bannerImgMoblie,
@@ -34,27 +29,18 @@ const HomePage = ({
   itemsRowBody,
   mainImage,
 }) => {
+  const isEmptyData =
+    mainImage === "" &&
+    bannerTitle === "" &&
+    bannerGridTitle === "" &&
+    itemsRowTitle === "" &&
+    bannerBody.length === 0 &&
+    bannerGridBody.length === 0 &&
+    itemsRowBody.length === 0;
+
   useEffect(() => {
-    if (
-      mainImage === "" &&
-      bannerTitle === "" &&
-      bannerGridTitle === "" &&
-      itemsRowTitle === "" &&
-      bannerBody.length === 0 &&
-      bannerGridBody.length === 0 &&
-      itemsRowBody.length === 0
-    )
-      onFetchDevicesAsyn();
-  }, [
-    onFetchDevicesAsyn,
-    bannerTitle,
-    bannerBody,
-    bannerGridTitle,
-    bannerGridBody,
-    itemsRowTitle,
-    itemsRowBody,
-    mainImage,
-  ]);
+    if (isEmptyData) onFetchHomePageCollectionsAsyn();
+  }, [onFetchHomePageCollectionsAsyn, isEmptyData]);
 
   let content = <Spinner />;
   if (!loading)
@@ -63,7 +49,7 @@ const HomePage = ({
         <MainImage />
         <ItemsRow />
         <BannerGrid />
-        <img alt="item" className="bannerMobile"src={bannerImgMoblie} />
+        <img alt="item" className="bannerMobile" src={bannerImgMoblie} />
         <Banner />
       </Fragment>
     );
@@ -73,20 +59,21 @@ const HomePage = ({
 };
 
 const mapStateToProps = (state) => ({
-  bannerTitle: selectorBannerTitle(state),
-  bannerBody: selectorBannerBody(state),
-  bannerImgMoblie: selectorBannerImgMoblie(state),
-  bannerGridTitle: selectorBannerGridTitle(state),
-  bannerGridBody: selectorBannerGridBody(state),
-  itemsRowTitle: selectorItemsRowTitle(state),
-  itemsRowBody: selectorItemsRowBody(state),
-  mainImage: selectorMainImage(state),
-  loading: selectorLoading(state),
-  error: selectorError(state),
+  bannerTitle: selectorXtitle("banner")(state),
+  bannerBody: selectorXbody("banner")(state),
+  bannerImgMoblie: selectorBannerImgMoblie("banner")(state),
+  bannerGridTitle: selectorXtitle("bannerGrid")(state),
+  bannerGridBody: selectorXbody("bannerGrid")(state),
+  itemsRowTitle: selectorXtitle("itemsRow")(state),
+  itemsRowBody: selectorXbody("itemsRow")(state),
+  mainImage: selectorType("mainImage")(state),
+  loading: selectorType("loading")(state),
+  error: selectorType("error")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchDevicesAsyn: () => dispatch(fetchDevicesAsyn()),
+  onFetchHomePageCollectionsAsyn: () =>
+    dispatch(fetchHomePageCollectionsAsyn()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

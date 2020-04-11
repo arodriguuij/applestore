@@ -1,10 +1,10 @@
 import { combineReducers, applyMiddleware } from "redux";
 import collectionsReducer from "./collections/collections.reducer";
-import devicesReducer from "./devicesMainPage/decives.reducer";
+import homePageCollectionsReducer from "./homePageCollections/homePageCollections.reducer";
 import actualDeviceReducer from "./actualDevice/actual-device.reducer";
-import collectionNamesReducer from './collectionNames/collection-names.reducer';
-import breadcrumbReducer from './breadcrumb/breadcrumb.reducer';
-import checkoutReducer from './checkout/checkout.reducer';
+import collectionNamesReducer from "./collectionNames/collection-names.reducer";
+import breadcrumbReducer from "./breadcrumb/breadcrumb.reducer";
+import checkoutReducer from "./checkout/checkout.reducer";
 import { createStore } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
@@ -15,11 +15,11 @@ if (process.env.NODE_ENV === "development") middlewares.push(logger);
 
 const rootReducer = combineReducers({
   collections: collectionsReducer,
-  devices: devicesReducer,
+  homePageCollections: homePageCollectionsReducer,
   actualDevice: actualDeviceReducer,
   collectionNames: collectionNamesReducer,
   checkout: checkoutReducer,
-  breadcrumb: breadcrumbReducer
+  breadcrumb: breadcrumbReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));

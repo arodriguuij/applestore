@@ -2,9 +2,9 @@ import React from "react";
 import Card from "../../components/card/card.component";
 import { connect } from "react-redux";
 import {
-  selectorBannerTitle,
-  selectorBannerBody,
-} from "../../redux/devicesMainPage/devices.selectors";
+  selectorXtitle,
+  selectorXbody,
+} from "../../redux/homePageCollections/homePageCollections.selectors";
 import "./banner.styles.css";
 
 const Banner = ({ bannerTitle, bannerBody }) => {
@@ -33,8 +33,8 @@ const Banner = ({ bannerTitle, bannerBody }) => {
 };
 
 const mapStateToProps = (state) => ({
-  bannerTitle: selectorBannerTitle(state),
-  bannerBody: selectorBannerBody(state),
+  bannerTitle: selectorXtitle('banner')(state),
+  bannerBody: selectorXbody('banner')(state),
 });
 
 export default connect(mapStateToProps)(Banner);

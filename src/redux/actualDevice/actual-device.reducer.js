@@ -3,29 +3,50 @@ import actualDeviceActionTypes from "./actual-device.types";
 const initialState = {
   collection_actualDevice: null,
   loading: false,
-  error: null
+  error: null,
+};
+
+const fetchActualDeviceStart = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
+const fetchActualDeviceSuccess = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    collection_actualDevice: payload.collection,
+  };
+};
+
+const fetchActualDeviceFailure = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
+const removeActualDevice = (state, payload) => {
+  return {
+    ...state,
+    collection_actualDevice: payload.collection,
+    loading: payload.loading,
+    error: payload.error,
+  };
 };
 
 const actualDeviceReducer = (state = initialState, action) => {
   switch (action.type) {
     case actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_START:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error
-      };
+      return fetchActualDeviceStart(state, action.payload);
     case actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_SUCCESS:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        collection_actualDevice: action.payload.collection
-      };
+      return fetchActualDeviceSuccess(state, action.payload);
     case actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_FAILURE:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error
-      };
+      return fetchActualDeviceFailure(state, action.payload);
+    case actualDeviceActionTypes.REMOVE_ACTUAL_DEVICE:
+      return removeActualDevice(state, action.payload);
     default:
       return state;
   }

@@ -1,9 +1,10 @@
 import collectionNamesActionTypes from "./collection-names.types";
+import { urlDatabaseCollectionName } from "../constants/constans";
 
 export const fetchCollectionNamesAsync = () => (dispatch) => {
   dispatch(fetchCollectionNamesStart());
-  fetch("https://applestore-db.firebaseio.com/collectionNames.json")
-    .then((res => res.json()))
+  fetch(urlDatabaseCollectionName)
+    .then((res) => res.json())
     .then((data) => dispatch(fetchCollectionNamesSuccess(data)))
     .catch((err) => dispatch(fetchCollectionNamesFailure(err)));
 };

@@ -1,7 +1,0 @@
-const devicesActionTypes = {
-  FETCH_DEVICES_START: "FETCH_DEVICES_START",
-  FETCH_DEVICES_SUCCESS: "FETCH_DEVICES_SUCCESS",
-  FETCH_DEVICES_FAILURE: "FETCH_DEVICES_FAILURE"
-};
-
-export default devicesActionTypes;

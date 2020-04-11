@@ -5,11 +5,7 @@ import {
   fetchActualDeviceAsyn,
 } from "../../redux/actualDevice/actual-device.actions";
 import { selectorItemsX } from "../../redux/collections/collections.selectors";
-import {
-  selectorCollectionActualDevice,
-  selectorLoading,
-  selectorError,
-} from "../../redux/actualDevice/actual-device.selector";
+import { selectorActualDeviceX } from "../../redux/actualDevice/actual-device.selector";
 import { addItem } from "../../redux/checkout/checkout.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
@@ -89,7 +85,7 @@ const ItemPage = (props) => {
     ) {
       content = <Spinner />;
     } else {
-      if (error !== null) content = <ErrorPage text="Page not found" />;
+      if (error !== null) content = <ErrorPage text="Item not found" />;
       else {
         content = (
           <CardDetails
@@ -117,10 +113,12 @@ const mapStateToProps = (state) => ({
   collection_iPhone: selectorItemsX(`collection_iPhone`)(state),
   collection_iPad: selectorItemsX(`collection_iPad`)(state),
   collection_iWatch: selectorItemsX(`collection_iWatch`)(state),
-  collection_actualDevice: selectorCollectionActualDevice(state),
+  collection_actualDevice: selectorActualDeviceX("collection_actualDevice")(
+    state
+  ),
   collection_Accessories: selectorItemsX(`collection_Accessories`)(state),
-  loading: selectorLoading(state),
-  error: selectorError(state),
+  loading: selectorActualDeviceX("loading")(state),
+  error: selectorActualDeviceX("error")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

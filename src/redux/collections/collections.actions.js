@@ -1,10 +1,9 @@
-import shopActionTypes from "./collections.types";
+import collectionsActionTypes from "./collections.types";
+import { urlDatabase } from "../constants/constans";
 
 export const fetchCollectionAsyn = (collectionName) => (dispatch) => {
   dispatch(fetchCollectionStart());
-  fetch(
-    `https://applestore-db.firebaseio.com/collections/${collectionName}.json`
-  )
+  fetch(urlDatabase + `collections/${collectionName}.json`)
     .then((res) => res.json())
     .then((data) => dispatch(fetchCollectionSuccess(data, collectionName)))
     .catch((err) => dispatch(fetchCollectionFailure(err.message)));
@@ -12,7 +11,7 @@ export const fetchCollectionAsyn = (collectionName) => (dispatch) => {
 
 const fetchCollectionStart = () => {
   return {
-    type: shopActionTypes.FETCH_COLLECTION_START,
+    type: collectionsActionTypes.FETCH_COLLECTIONS_START,
     payload: {
       loading: true,
       error: null,
@@ -22,7 +21,7 @@ const fetchCollectionStart = () => {
 
 const fetchCollectionSuccess = (data, collectionName) => {
   return {
-    type: shopActionTypes.FETCH_COLLECTION_SUCCESS,
+    type: collectionsActionTypes.FETCH_COLLECTIONS_SUCCESS,
     payload: {
       collection: data,
       loading: false,
@@ -33,7 +32,7 @@ const fetchCollectionSuccess = (data, collectionName) => {
 
 export const fetchCollectionFailure = (error) => {
   return {
-    type: shopActionTypes.FETCH_COLLECTION_FAILURE,
+    type: collectionsActionTypes.FETCH_COLLECTIONS_FAILURE,
     payload: {
       loading: false,
       error: error,

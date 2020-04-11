@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  selectorBannerGridTitle,
-  selectorBannerGridBody,
-} from "../../redux/devicesMainPage/devices.selectors";
+  selectorXtitle,
+  selectorXbody,
+} from "../../redux/homePageCollections/homePageCollections.selectors";
 import CardGrid from "../card-grid/card-grid.components";
 import "./banner-grid.styles.css";
 
@@ -24,8 +24,8 @@ const BannerGrid = ({
 };
 
 const mapStateToProps = (state) => ({
-  bannerGridTitle: selectorBannerGridTitle(state),
-  bannerGridBody: selectorBannerGridBody(state),
+  bannerGridTitle: selectorXtitle('bannerGrid')(state),
+  bannerGridBody: selectorXbody('bannerGrid')(state),
 });
 
 export default connect(mapStateToProps)(BannerGrid);

@@ -5,27 +5,35 @@ const initialState = {
   loading: true,
   error: null,
 };
-
+const fetchCollectionNamesStart = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
+const fetchCollectionNamesSuccess = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    collectionNames: payload.collection,
+  };
+};
+const fetchCollectionNamesFailure = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
 const collectionNamesReducer = (state = initialState, action) => {
   switch (action.type) {
     case collectionNamesActionTypes.FETCH_COLLECTION_NAMES_START:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return fetchCollectionNamesStart(state, action.payload);
     case collectionNamesActionTypes.FETCH_COLLECTION_NAMES_SUCCESS:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        collectionNames: action.payload.collection,
-      };
+      return fetchCollectionNamesSuccess(state, action.payload);
     case collectionNamesActionTypes.FETCH_COLLECTION_NAMES_FAILURE:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return fetchCollectionNamesFailure(state, action.payload);
     default:
       return state;
   }

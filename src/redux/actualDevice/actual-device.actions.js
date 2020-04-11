@@ -1,54 +1,60 @@
-import shopActionTypes from "./actual-device.types";
+import actualDeviceActionTypes from "./actual-device.types";
+import { urlDatabase } from "../constants/constans";
 
-export const fetchActualDeviceAsyn = (collectionName, deviceName) => dispatch => {
+export const fetchActualDeviceAsyn = (collectionName, deviceName) => (
+  dispatch
+) => {
   dispatch(fetchActualDeviceStart());
-  fetch(`https://applestore-db.firebaseio.com/collections/${collectionName}/itemsAndSubtypes/items/${deviceName}.json`)
-    .then(res => res.json())
-    .then(data =>
+  fetch(
+    urlDatabase +
+      `collections/${collectionName}/itemsAndSubtypes/items/${deviceName}.json`
+  )
+    .then((res) => res.json())
+    .then((data) =>
       data
-        ? dispatch(
-          fetchActualDeviceSuccess(data, collectionName, deviceName)
-          )
+        ? dispatch(fetchActualDeviceSuccess(data, collectionName, deviceName))
         : dispatch(fetchActualDeviceFailure("Device does not exist"))
     )
-    .catch(err => dispatch(fetchActualDeviceFailure(err.message)));
+    .catch((err) => dispatch(fetchActualDeviceFailure(err.message)));
 };
 
 const fetchActualDeviceStart = () => {
   return {
-    type: shopActionTypes.FETCH_ACTUAL_DEVICE_START,
+    type: actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_START,
     payload: {
       loading: true,
-      error: null
-    }
+      error: null,
+    },
   };
 };
 
 const fetchActualDeviceSuccess = (data) => {
   return {
-    type: shopActionTypes.FETCH_ACTUAL_DEVICE_SUCCESS,
+    type: actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_SUCCESS,
     payload: {
       collection: data,
       loading: false,
-    }
+    },
   };
 };
 
-export const fetchActualDeviceFailure = error => {
+export const fetchActualDeviceFailure = (error) => {
   return {
-    type: shopActionTypes.FETCH_ACTUAL_DEVICE_FAILURE,
+    type: actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_FAILURE,
     payload: {
       loading: false,
-      error: error
-    }
+      error: error,
+    },
   };
 };
 
 export const removeActualDevice = () => {
   return {
-    type: shopActionTypes.REMOVE_ACTUAL_DEVICE,
+    type: actualDeviceActionTypes.REMOVE_ACTUAL_DEVICE,
     payload: {
-      collection_actualDevice: null
-    }
+      collection: null,
+      error: null,
+      loading: false,
+    },
   };
 };

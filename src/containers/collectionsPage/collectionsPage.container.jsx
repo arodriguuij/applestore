@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Fragment } from "react";
-import "./itemCollectionsPage.styles.css";
+import "./collectionsPage.styles.css";
 import { connect } from "react-redux";
 import {
   selectorItemsX,
@@ -15,7 +15,7 @@ import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
-const ItemCollectionPage = (props) => {
+const CollectionPage = (props) => {
   const {
     onFetchCollectionAsyn,
     onSetBreadcrumb,
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch) => ({
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemCollectionPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionPage);

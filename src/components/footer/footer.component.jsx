@@ -1,9 +1,9 @@
 import React from "react";
-import "./footer.styles.css";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 import { ReactComponent as ReactLogoLinkedin } from "../../assets/linkedin.svg";
 import { ReactComponent as ReactLogoGithub } from "../../assets/github.svg";
 import { ReactComponent as ReactLogoPortfolio } from "../../assets/portfolio.svg";
+import "./footer.styles.css";
 
 const Footer = () => {
   return (

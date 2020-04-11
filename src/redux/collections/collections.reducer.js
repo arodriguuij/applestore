@@ -1,4 +1,4 @@
-import shopActionTypes from "./collections.types";
+import collectionsActionTypes from "./collections.types";
 
 const initialState = {
   collection_Mac: {
@@ -40,27 +40,37 @@ const initialState = {
   error: null,
 };
 
+const fetchCollectionsStart = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
+const fetchCollectionsSuccess = (state, payload) => {
+  let collectionToSaveData = `collection_${payload.collectionName}`;
+  return {
+    ...state,
+    loading: payload.loading,
+    [collectionToSaveData]: payload.collection,
+  };
+};
+const fetchCollectionsFailure = (state, payload) => {
+  return {
+    ...state,
+    loading: payload.loading,
+    error: payload.error,
+  };
+};
+
 const collectionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case shopActionTypes.FETCH_COLLECTION_START:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
-    case shopActionTypes.FETCH_COLLECTION_SUCCESS:
-      let collectionToSaveData = `collection_${action.payload.collectionName}`;
-      return {
-        ...state,
-        loading: action.payload.loading,
-        [collectionToSaveData]: action.payload.collection,
-      };
-    case shopActionTypes.FETCH_COLLECTION_FAILURE:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+    case collectionsActionTypes.FETCH_COLLECTIONS_START:
+      return fetchCollectionsStart(state, action.payload);
+    case collectionsActionTypes.FETCH_COLLECTIONS_SUCCESS:
+      return fetchCollectionsSuccess(state, action.payload);
+    case collectionsActionTypes.FETCH_COLLECTIONS_FAILURE:
+      return fetchCollectionsFailure(state, action.payload);
     default:
       return state;
   }

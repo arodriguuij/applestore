@@ -4,34 +4,53 @@ const initialState = {
   checkoutCollection: [],
 };
 
+const addItem = (state, payload) => {
+  return {
+    ...state,
+    checkoutCollection: addItemLogic(state.checkoutCollection, payload.item),
+  };
+};
+const removeItem = (state, payload) => {
+  return {
+    ...state,
+    checkoutCollection: removeItemLogic(state.checkoutCollection, payload.id),
+  };
+};
+const incrementItem = (state, payload) => {
+  return {
+    ...state,
+    checkoutCollection: incrementItemLogic(
+      state.checkoutCollection,
+      payload.id
+    ),
+  };
+};
+const decrementItem = (state, payload) => {
+  return {
+    ...state,
+    checkoutCollection: decrementItemLogic(
+      state.checkoutCollection,
+      payload.id
+    ),
+  };
+};
+
 const checkoutReducer = (state = initialState, action) => {
   switch (action.type) {
     case checkoutActionTypes.ADD_ITEM:
-      return {
-        ...state,
-        checkoutCollection: addItem(state.checkoutCollection, action.payload.item),
-      };
+      return addItem(state, action.payload);
     case checkoutActionTypes.REMOVE_ITEM:
-      return {
-        ...state,
-        checkoutCollection: removeItem(state.checkoutCollection, action.payload.id),
-      };
+      return removeItem(state, action.payload);
     case checkoutActionTypes.INCREMENT_ITEM:
-      return {
-        ...state,
-        checkoutCollection: incrementItem(state.checkoutCollection, action.payload.id),
-      };
+      return incrementItem(state, action.payload);
     case checkoutActionTypes.DECREMENT_ITEM:
-      return {
-        ...state,
-        checkoutCollection: decrementItem(state.checkoutCollection, action.payload.id),
-      };
+      return decrementItem(state, action.payload);
     default:
       return state;
   }
 };
 
-const decrementItem = (checkoutCollection, id) => {
+const decrementItemLogic = (checkoutCollection, id) => {
   const existingItem = checkoutCollection.find((item) => item.id === id);
   if (existingItem.quantity === 1)
     return checkoutCollection.filter((item) => item.id !== id);
@@ -41,22 +60,24 @@ const decrementItem = (checkoutCollection, id) => {
     );
 };
 
-const incrementItem = (checkoutCollection, id) => {
+const incrementItemLogic = (checkoutCollection, id) => {
   return checkoutCollection.map((item) =>
     item.id === id ? { ...item, quantity: item.quantity + 1 } : item
   );
 };
 
-const addItem = (checkoutCollection, itemToAdd) => {
-  const existingItem = checkoutCollection.find((item) => item.id === itemToAdd.id);
+const addItemLogic = (checkoutCollection, itemToAdd) => {
+  const existingItem = checkoutCollection.find(
+    (item) => item.id === itemToAdd.id
+  );
   if (existingItem) {
-    return incrementItem(checkoutCollection, itemToAdd.id);
+    return incrementItemLogic(checkoutCollection, itemToAdd.id);
   } else {
     return [...checkoutCollection, { ...itemToAdd, quantity: 1 }];
   }
 };
 
-const removeItem = (checkoutCollection, id) => {
+const removeItemLogic = (checkoutCollection, id) => {
   return checkoutCollection.filter((item) => item.id !== id);
 };
 

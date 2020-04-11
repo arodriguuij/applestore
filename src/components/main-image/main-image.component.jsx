@@ -1,5 +1,5 @@
 import React from "react";
-import { selectorMainImage } from "../../redux/devicesMainPage/devices.selectors";
+import { selectorType } from "../../redux/homePageCollections/homePageCollections.selectors";
 import { connect } from "react-redux";
 import "./main-image.styles.css";
 
@@ -16,7 +16,7 @@ const MainImage = ({ mainImage }) => {
 };
 
 const mapStateToProps = (state) => ({
-  mainImage: selectorMainImage(state),
+  mainImage: selectorType('mainImage')(state),
 });
 
 export default connect(mapStateToProps)(MainImage);
