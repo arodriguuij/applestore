@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
 import "./content-pages.styles.css";
 
-const LoginRegisterPage = lazy(() => import("../loginRegisterPage/loginRegisterPage.container"));
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 const HomePage = lazy(() => import("../homePage/home-page.container"));
 const CheckoutPage = lazy(() => import("../checkoutPage/checkout.container"));
@@ -37,7 +36,6 @@ const ContentPage = ({ collectionNames }) => {
           />
         ))}
         }
-        <Route exact path="/login" render={() => <LoginRegisterPage />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route
           path="/"

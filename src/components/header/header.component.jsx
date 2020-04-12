@@ -8,7 +8,7 @@ import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
 import { fetchCollectionNamesAsync } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 import Spinner from "../spinner/spinner.component";
-import { auth } from "../../firebase/firebase.util";
+
 import "./header.styles.css";
 const ErrorPage = lazy(() => import("../error-page/error-page"));
 
@@ -18,7 +18,6 @@ const Header = ({
   loading,
   error,
   onFetchCollectionNamesAsync,
-  currentUser,
 }) => {
   const [toggleMenuMobile, setToggleMenuMobile] = useState("menuOff");
   useEffect(() => {
@@ -58,19 +57,6 @@ const Header = ({
                 <li className="main-nav-li">{name}</li>
               </Link>
             ))}
-            {currentUser ? (
-              <li
-                className="main-nav-li"
-                onClick={() => auth.signOut()}
-                className="link"
-              >
-                Logout
-              </li>
-            ) : (
-              <Link to={`/login`} key={"login"} onClick={onCloseMenuHandler}>
-                <li className="main-nav-li">Login</li>
-              </Link>
-            )}
           </ul>
           <div className="main-nav_item_checkout_icon">
             <div className="main-nav_checkout">
@@ -94,7 +80,7 @@ const mapStateToProps = (state) => ({
   numItems: selectorNumberItems(state),
   collectionNames: selectCollectionNamesX("collectionNames")(state),
   loading: selectCollectionNamesX("loading")(state),
-  error: selectCollectionNamesX("error")(state),
+  error: selectCollectionNamesX("error")(state)
 });
 
 const mapDispatchtoProps = (dispatch) => ({
