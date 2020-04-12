@@ -45,6 +45,18 @@
 .main-nav-ul > a:hover {
   color: white;
 }
+
+.link {
+  padding: 0 3vw;
+  text-decoration: none;
+  color: rgb(198, 198, 198);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: white;
+}
 .main-nav-ul > a {
   text-decoration: none;
   color: rgb(198, 198, 198);
@@ -54,7 +66,6 @@
 .main-nav-li {
   padding: 0 3vw;
 }
-
 
 .main-nav_checkout {
   display: flex;

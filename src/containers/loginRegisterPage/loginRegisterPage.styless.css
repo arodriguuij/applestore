@@ -1,0 +1,18 @@
+.login-register-page-container{
+
+}
+
+.login-register-page-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+}
+
+
+@media only screen and (max-width: 600px){
+    .login-register-page-content{
+        flex-direction: column;
+    }
+}

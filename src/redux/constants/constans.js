@@ -1,5 +1,5 @@
-export const urlDatabase = "https://applestore-db.firebaseio.com/";
+export const urlDatabase = "https://applestoredb.firebaseio.com/";
 export const urlDababaseCollectionMainPage =
-  "https://applestore-db.firebaseio.com/collectionMainPage.json";
+  "https://applestoredb.firebaseio.com/collectionMainPage.json";
 export const urlDatabaseCollectionName =
-  "https://applestore-db.firebaseio.com/collectionNames.json";
+  "https://applestoredb.firebaseio.com/collectionNames.json";
