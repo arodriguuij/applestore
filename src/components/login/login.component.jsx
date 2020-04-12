@@ -22,6 +22,7 @@ const Login = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     resetInputs();
+    
     debugger;
   };
 

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import FormInput from "../from-input/formInput.component";
 import "./register.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 
 const Register = (props) => {
-  const [name, setName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,11 +13,11 @@ const Register = (props) => {
   const onChangeChangler = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case "name":
-        setName(value);
+      case "displayName":
+        setDisplayName(value);
         break;
       case "email":
-        setEmail(name);
+        setEmail(value);
         break;
       case "password":
         setPassword(value);
@@ -29,9 +30,26 @@ const Register = (props) => {
     }
   };
 
-  const submitHandler = (e) => {
+  const resetInputs = () => {
+    setDisplayName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+  const submitHandler = async (e) => {
     e.preventDefault();
-    debugger;
+    if (password !== confirmPassword) alert("passwords do not match");
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfileDocument(user, { displayName });
+      resetInputs();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -40,11 +58,11 @@ const Register = (props) => {
       <span>Sign up with your email and password</span>
       <form onSubmit={submitHandler}>
         <FormInput
-          name="name"
+          name="displayName"
           type="text"
-          value={name}
+          value={displayName}
           onChange={onChangeChangler}
-          label="name"
+          label="display name"
           required
         />
         <FormInput
@@ -65,7 +83,7 @@ const Register = (props) => {
         />
         <FormInput
           name="confirmPassword"
-          type="paswrod"
+          type="password"
           value={confirmPassword}
           onChange={onChangeChangler}
           label="confirm password"
