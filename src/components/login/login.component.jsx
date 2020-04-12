@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FromInput from "../from-input/formInput.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { signInWithGoogle } from "../../firebase/firebase.util";
+import { auth, signInWithGoogle } from "../../firebase/firebase.util";
 import "./login.component";
 
 const Login = (props) => {
@@ -19,22 +19,25 @@ const Login = (props) => {
     else if (name === "password") setPassword(value);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    resetInputs();
-    
-    debugger;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      resetInputs();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const clickGoogle = e => {
+  const clickGoogle = (e) => {
     e.preventDefault();
-    signInWithGoogle()
-  }
+    signInWithGoogle();
+  };
   return (
     <div className="login-container">
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
-      <form>
+      <form onSubmit={onSubmitHandler}>
         <FromInput
           name="email"
           value={email}
