@@ -9,6 +9,7 @@ const Footer = () => {
   return (
     <div className="footer-main">
       <a
+      className="footer-main-link"
         role="button"
         aria-label="Linkedin"
         href="https://www.linkedin.com/in/alejandro-rodriguez-escudero-260362144/"
@@ -18,6 +19,7 @@ const Footer = () => {
         </CheckoutIcon>
       </a>
       <a
+      className="footer-main-link"
         role="button"
         aria-label="Github"
         href="https://github.com/arodriguuij"
@@ -27,6 +29,7 @@ const Footer = () => {
         </CheckoutIcon>
       </a>
       <a
+      className="footer-main-link"
         role="button"
         aria-label="Portfolio"
         href="https://peaceful-ardinghelli-d6add1.netlify.com/"

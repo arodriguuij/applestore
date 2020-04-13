@@ -1,0 +1,52 @@
+.card-description-title{
+  margin-bottom: 0;
+  color: #86868b;
+}
+
+.colorDefault {
+  margin-top: 4px;
+  color: #eb5c7e;
+}
+
+.Space-Gray {
+  color: #535150;
+}
+.Silver {
+  color: #ebebe3;
+}
+.Midnigth-Green {
+  color: #4e5851;
+}
+.Gold {
+  color: #fad7bd;
+}
+.White {
+  color: #f9f6ef;
+}
+.Black {
+  color: #1f2020;
+}
+.Blue {
+  color: #5eb0e5;
+}
+.Yellow {
+  color: #ffe681;
+}
+.Coral {
+  color: #ee7762;
+}
+.Red {
+  color: #ba0c2e;
+}
+.Green {
+  color: #aee1cd;
+}
+.Purple {
+  color: #d1cdda;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-description-title-container {
+    display: none;
+  }
+}

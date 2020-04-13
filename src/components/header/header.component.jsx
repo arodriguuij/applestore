@@ -7,7 +7,6 @@ import { selectCollectionNamesX } from "../../redux/collectionNames/collection.n
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
 import { fetchCollectionNamesAsync } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
-import Spinner from "../spinner/spinner.component";
 
 import "./header.styles.css";
 const ErrorPage = lazy(() => import("../error-page/error-page"));
@@ -15,7 +14,6 @@ const ErrorPage = lazy(() => import("../error-page/error-page"));
 const Header = ({
   collectionNames,
   numItems,
-  loading,
   error,
   onFetchCollectionNamesAsync,
 }) => {
@@ -34,9 +32,7 @@ const Header = ({
     setToggleMenuMobile("menuOff");
   };
 
-  let content = <Spinner />;
-  if (!loading)
-    content = (
+  let content = (
       <header className="main-header">
         <div className="main-nav_item_mobile" onClick={onClickMenuHandler}>
           <div className="main-nav_item_mobile_menu"></div>
@@ -79,7 +75,6 @@ const Header = ({
 const mapStateToProps = (state) => ({
   numItems: selectorNumberItems(state),
   collectionNames: selectCollectionNamesX("collectionNames")(state),
-  loading: selectCollectionNamesX("loading")(state),
   error: selectCollectionNamesX("error")(state)
 });
 

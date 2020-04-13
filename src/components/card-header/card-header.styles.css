@@ -1,0 +1,19 @@
+.card-header-container {
+  padding-top: 0.3vw;
+  border-bottom: 1px solid #333333;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0.5vw;
+}
+.card-header-name {
+  margin: 0;
+  font-weight: bold;
+}
+.card-header-extra {
+  color: #eb5c7e;
+  font-size: small;
+}

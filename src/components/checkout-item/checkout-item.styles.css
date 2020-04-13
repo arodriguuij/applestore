@@ -8,11 +8,11 @@
   align-items: center;
 }
 
-.checkout-item-img {
+.checkout-item-img-container {
   width: 23%;
   padding-right: 15px;
 }
-.checkout-item-img img {
+.checkout-item-img {
   width: 100%;
   height: 100%;
 }

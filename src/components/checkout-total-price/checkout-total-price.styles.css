@@ -1,0 +1,11 @@
+.checkout-total-price {
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
+}
+
+@media only screen and (max-width: 600px) {
+  .checkout-total-price {
+    font-size: initial;
+  }
+}

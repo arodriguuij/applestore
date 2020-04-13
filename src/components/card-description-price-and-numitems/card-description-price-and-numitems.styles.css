@@ -1,0 +1,6 @@
+
+.card-description-price-and-numItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

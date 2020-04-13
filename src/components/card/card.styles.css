@@ -1,27 +1,24 @@
-.home-page-product {
-  padding: 0;
-  overflow: hidden;
-  display: inline-block;
-  width: 35%;
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    height: 100%;
+  padding: 2rem;
 }
-
-.home-page-product:hover {
-  opacity: 0.85;
+.card-light {
+  background-color: white;
 }
-
-.home-page-product:hover img {
-  transform: scale(1.1);
-  transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+.card-dark {
+  background-color: #f2f2f2;
+}
+.card-special-top-right {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  background-color: #ededed;
 }
 
 @media only screen and (max-width: 600px) {
-  .home-page-product {
-    width: 16%;
-  }
-  .hidden{
-    display: none;
-  }
-  .bigger{
-    width: 100%;
+  .card-special-top-right {
+    background-color: #ededed;
   }
 }

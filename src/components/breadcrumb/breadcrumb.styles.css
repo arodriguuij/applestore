@@ -1,11 +1,11 @@
-.collection-page-breadcrumb {
+.breadcrumb {
   margin: 0 auto;
   text-align: center;
   height: 6em;
   border-bottom: 1px solid #e5e5ea;
 }
 
-.collection-page-breadcrumb h1 {
+.breadcrumb-h1 {
   margin: 0 auto;
   padding: 1rem;
   font-size: -webkit-xxx-large;
@@ -13,10 +13,10 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .collection-page-breadcrumb {
+  .breadcrumb {
     height: 3.2em;
   }
-  .collection-page-breadcrumb h1 {
+  .breadcrumb-h1 {
     font-size: x-large;
   }
 }

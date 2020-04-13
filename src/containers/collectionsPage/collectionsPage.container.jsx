@@ -2,15 +2,13 @@ import React, { useEffect, useState, lazy, Fragment } from "react";
 import "./collectionsPage.styles.css";
 import { connect } from "react-redux";
 import {
-  selectorItemsX,
-  selectorCollectionLoading,
+  selectorCollectionAndX,
   selectorCollectionError,
 } from "../../redux/collections/collections.selectors";
-import CardGrid from "../../components/card-grid/card-grid.components";
+import Card from "../../components/card/card.components";
 import { fetchCollectionAsyn } from "../../redux/collections/collections.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import CategoryButtons from "../../components/category-buttons/category-buttons.component";
-import Spinner from "../../components/spinner/spinner.component";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
@@ -20,7 +18,6 @@ const CollectionPage = (props) => {
     onFetchCollectionAsyn,
     onSetBreadcrumb,
     path,
-    loading,
     error,
   } = props;
   const collectionName = path.substr(1);
@@ -48,9 +45,7 @@ const CollectionPage = (props) => {
     setSubtype(subtype);
   };
 
-  let content = <Spinner />;
-  if (!loading)
-    content = (
+  let content = (
       <Fragment>
         <Breadcrumb />
         <div className="item-collection-page">
@@ -72,7 +67,7 @@ const CollectionPage = (props) => {
                 ([id, device]) => device.subtype === subtype || subtype === "all"
               )
               .map(([id, device]) => (
-                <CardGrid
+                <Card
                   key={id}
                   id={id}
                   collection={collectionName}
@@ -90,13 +85,12 @@ const CollectionPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_Mac: selectorItemsX(`collection_Mac`)(state),
-  collection_iPhone: selectorItemsX(`collection_iPhone`)(state),
-  collection_iPad: selectorItemsX(`collection_iPad`)(state),
-  collection_iWatch: selectorItemsX(`collection_iWatch`)(state),
-  collection_Accessories: selectorItemsX(`collection_Accessories`)(state),
+  collection_Mac: selectorCollectionAndX('collection_Mac', 'items')(state),
+  collection_iPhone: selectorCollectionAndX('collection_iPhone', 'items')(state),
+  collection_iPad: selectorCollectionAndX('collection_iPad', 'items')(state),
+  collection_iWatch: selectorCollectionAndX('collection_iWatch', 'items')(state),
+  collection_Accessories: selectorCollectionAndX('collection_Accessories', 'items')(state),
   error: selectorCollectionError(state),
-  loading: selectorCollectionLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

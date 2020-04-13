@@ -1,22 +1,24 @@
 import React from "react";
-import { selectorType } from "../../redux/homePageCollections/homePageCollections.selectors";
+import { selectorMainImageX } from "../../redux/homePageCollections/homePageCollections.selectors";
 import { connect } from "react-redux";
 import "./main-image.styles.css";
 
-const MainImage = ({ mainImage }) => {
+const MainImage = ({ img, text1, text2 }) => {
   return (
-    <div className="mainImage">
-      <img alt="device" src={mainImage} />
-      <div className="mainImage-text">
-        <h1>Make some noise.</h1>
-        <h1>Cancel it too.</h1>
+    <div className="main-image">
+      <img className="main-image-img" alt="device" src={img} />
+      <div>
+        <h1 className="main-image-text-item">{text1}</h1>
+        <h1 className="main-image-text-item">{text2}</h1>
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  mainImage: selectorType('mainImage')(state),
+  img: selectorMainImageX("img")(state),
+  text1: selectorMainImageX("text1")(state),
+  text2: selectorMainImageX("text2")(state),
 });
 
 export default connect(mapStateToProps)(MainImage);

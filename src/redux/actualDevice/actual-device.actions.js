@@ -7,7 +7,7 @@ export const fetchActualDeviceAsyn = (collectionName, deviceName) => (
   dispatch(fetchActualDeviceStart());
   fetch(
     urlDatabase +
-      `collections/${collectionName}/itemsAndSubtypes/items/${deviceName}.json`
+      `collections/${collectionName}/items/${deviceName}.json`
   )
     .then((res) => res.json())
     .then((data) =>

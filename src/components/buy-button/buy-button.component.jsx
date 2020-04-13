@@ -4,7 +4,7 @@ import "./buy-button.styles.css";
 
 const BuyButton = ({ collection, id, text }) => {
   return (
-    <Link to={`/${collection}/${id}`} className="buy">
+    <Link to={`/${collection}/${id}`} className="buy-button">
       {text}
     </Link>
   );

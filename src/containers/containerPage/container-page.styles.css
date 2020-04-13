@@ -1,0 +1,8 @@
+.main-page {
+  grid-area: main;
+  padding-top: 1.9rem;
+}
+
+img {
+  width: 100%;
+}

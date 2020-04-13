@@ -11,9 +11,9 @@ import "./checkout-item.styles.css";
 const CheckoutItem = ({ item, onDecrementItem, onIncrementItem, onRemoveItem }) => {
   return (
     <div className="checkout-item">
-      <div className="checkout-item-img">
+      <div className="checkout-item-img-container">
         <Link to={`/${item.collection}/${item.id}`}>
-          <img src={item.img} alt="item" />
+          <img src={item.img} alt="item" className="checkout-item-img"/>
         </Link>
       </div>
       <span className="checkout-item-name">{item.name}</span>

@@ -1,27 +1,27 @@
-.home-page-top{
+.items-row-container {
   padding: 1rem;
   color: #86868b;
 }
 
-.home-page-top-content {
-    display: flex;
-    margin: auto;
-    padding: 0 2vw;
-    align-content: center;
-    padding-bottom: 1vw;
-    width: 80%;
-  }
-.home-page-top-title{
+.items-row-content {
+  display: flex;
+  margin: auto;
+  padding: 0 2vw;
+  align-content: center;
+  padding-bottom: 1vw;
+  width: 80%;
+}
+.items-row-title {
   display: none;
 }
 
-  @media only screen and (max-width: 600px){
-    .home-page-top-content {
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    .home-page-top-title{
-      display: inline-block;
-    }
+@media only screen and (max-width: 600px) {
+  .items-row-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
+  .items-row-title {
+    display: inline-block;
+  }
+}

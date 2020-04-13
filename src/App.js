@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Header from "./components/header/header.component";
-import ContentPage from "./containers/contentPages/content-pages.container";
+import ContainerPage from "./containers/containerPage/container-page.container";
 import Footer from "./components/footer/footer.component";
 import ErrorBoundary from "./components/error-boundary/error.boundary.component";
 import Spinner from "./components/spinner/spinner.component";
@@ -12,7 +12,7 @@ const App = () => {
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Header />
-          <ContentPage />
+          <ContainerPage />
           <Footer />
         </Suspense>
       </ErrorBoundary>

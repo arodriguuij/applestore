@@ -15,3 +15,6 @@ export const selectorXbody = (type) =>
 
 export const selectorBannerImgMoblie = (type) =>
   createSelector([selectorType(type)], (banner) => banner.imgMobile);
+
+export const selectorMainImageX = (type) =>
+  createSelector([selectorType("mainImage")], (mainImage) => mainImage[type]);

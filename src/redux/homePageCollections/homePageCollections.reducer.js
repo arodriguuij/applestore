@@ -1,7 +1,11 @@
 import homePageCollectionsActionTypes from "./homePageCollections.types";
 
 const initialState = {
-  mainImage: "",
+  mainImage: {
+    img: "",
+    text1: "",
+    text2: ""
+  },
   itemsRow: {
     title: "",
     body: [],

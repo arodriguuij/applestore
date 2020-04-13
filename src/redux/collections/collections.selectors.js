@@ -7,25 +7,10 @@ const selectorCollectionX = (collectionName) =>
     [selectorCollections],
     (collections) => collections[collectionName]
   );
-export const selectorTypesX = (selectorCollectionName) =>
+export const selectorCollectionAndX = (selectorCollectionName, selector) =>
   createSelector(
     [selectorCollectionX(selectorCollectionName)],
-    (collection) => collection.types
-  );
-const selectorItemsAndSubtypesX = (selectorCollectionName) =>
-  createSelector(
-    [selectorCollectionX(selectorCollectionName)],
-    (collection) => collection.itemsAndSubtypes
-  );
-export const selectorSubtypesX = (selectorItemsAndSubtypesName) =>
-  createSelector(
-    [selectorItemsAndSubtypesX(selectorItemsAndSubtypesName)],
-    (itemsAndSubtypes) => itemsAndSubtypes.subtypes
-  );
-export const selectorItemsX = (selectorItemsAndSubtypesName) =>
-  createSelector(
-    [selectorItemsAndSubtypesX(selectorItemsAndSubtypesName)],
-    (itemsAndSubtypes) => itemsAndSubtypes.items
+    (collection) => collection[selector]
   );
 
 export const selectorCollectionLoading = createSelector(

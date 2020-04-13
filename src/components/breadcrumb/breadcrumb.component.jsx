@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import "./breadcrumb.styles.css";
 
 const Breadcrumb = ({ breadcrumb }) => {
-  return <div className="collection-page-breadcrumb"><h1>{breadcrumb}</h1></div>;
+  return (
+    <div className="breadcrumb">
+      <h1 className="breadcrumb-h1">{breadcrumb}</h1>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({

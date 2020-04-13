@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../card/card.component";
+import ItemImages from "../item-image/item-image.component";
 import { connect } from "react-redux";
 import {
   selectorXtitle,
@@ -9,11 +9,11 @@ import "./items-row.styles.css";
 
 const ItemsRow = ({ itemsRowBody, itemsRowTitle }) => {
   return (
-    <div className="home-page-top">
-      <h1 className="home-page-top-title">{itemsRowTitle}</h1>
-      <div className="home-page-top-content">
+    <div className="items-row-container">
+      <h1 className="items-row-title">{itemsRowTitle}</h1>
+      <div className="items-row-content">
         {itemsRowBody.map((device, index) => (
-          <Card key={index} {...device} clickable />
+          <ItemImages key={index} {...device} clickable />
         ))}
       </div>
     </div>

@@ -1,0 +1,9 @@
+.review-card-container a {
+  text-decoration: none;
+  text-align: center;
+}
+.review-card-container-button{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem auto
+}
