@@ -9,17 +9,18 @@ export const fetchCollectionAsyn = (collectionName) => (dispatch) => {
     .catch((err) => dispatch(fetchCollectionFailure(err.message)));
 };
 
-const fetchCollectionStart = () => {
+export const fetchCollectionStart = (collectionName) => {
   return {
     type: collectionsActionTypes.FETCH_COLLECTIONS_START,
     payload: {
       loading: true,
       error: null,
+      collectionName: collectionName
     },
   };
 };
 
-const fetchCollectionSuccess = (data, collectionName) => {
+export const fetchCollectionSuccess = (data, collectionName) => {
   return {
     type: collectionsActionTypes.FETCH_COLLECTIONS_SUCCESS,
     payload: {

@@ -2,7 +2,7 @@ import React, { useEffect, lazy, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   removeActualDevice,
-  fetchActualDeviceAsyn,
+  fetchActualDeviceStart,
 } from "../../redux/actualDevice/actual-device.actions";
 import { selectorCollectionAndX } from "../../redux/collections/collections.selectors";
 import { selectorActualDeviceX } from "../../redux/actualDevice/actual-device.selector";
@@ -18,7 +18,7 @@ const ItemPage = (props) => {
     path,
     params,
     onRemoveActualDevice,
-    onFetchActualDeviceAsyn,
+    onFetchActualDeviceStart,
     collection_actualDevice,
     loading,
     error,
@@ -38,7 +38,7 @@ const ItemPage = (props) => {
 
   useEffect(() => {
     if (isCollectionItemEmpty || !existItemInCollection)
-      onFetchActualDeviceAsyn(collection, deviceName);
+    onFetchActualDeviceStart(collection, deviceName);
     return () => {
       onRemoveActualDevice();
     };
@@ -47,7 +47,7 @@ const ItemPage = (props) => {
     collection,
     deviceName,
     isCollectionItemEmpty,
-    onFetchActualDeviceAsyn,
+    onFetchActualDeviceStart,
     onRemoveActualDevice,
   ]);
 
@@ -119,8 +119,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
-  onFetchActualDeviceAsyn: (collection, deviceName) =>
-    dispatch(fetchActualDeviceAsyn(collection, deviceName)),
+  onFetchActualDeviceStart: (collection, deviceName) =>
+    dispatch(fetchActualDeviceStart(collection, deviceName)),
   onRemoveActualDevice: (id) => dispatch(removeActualDevice(id)),
   onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
 });

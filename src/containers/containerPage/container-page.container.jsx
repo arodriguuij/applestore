@@ -9,7 +9,7 @@ const HomePage = lazy(() => import("../homePage/home-page.container"));
 const CheckoutPage = lazy(() => import("../checkoutPage/checkout.container"));
 const ItemPage = lazy(() => import("../reviewPage/review-page.container"));
 const CollectionPage = lazy(() =>
-  import("../collectionsPage/collectionsPage.container")
+  import("../collectionsPage/collections-page.container")
 );
 
 const ContainerPage = ({ collectionNames }) => {

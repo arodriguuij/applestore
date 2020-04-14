@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import collectionsReducer from "./collections/collections.reducer";
-import homePageCollectionsReducer from "./homePageCollections/homePageCollections.reducer";
+import homePageCollectionsReducer from "./homePageCollections/home-page-collections.reducer";
 import actualDeviceReducer from "./actualDevice/actual-device.reducer";
 import collectionNamesReducer from "./collectionNames/collection-names.reducer";
 import breadcrumbReducer from "./breadcrumb/breadcrumb.reducer";

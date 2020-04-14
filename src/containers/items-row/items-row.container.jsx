@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   selectorXtitle,
   selectorXbody,
-} from "../../redux/homePageCollections/homePageCollections.selectors";
+} from "../../redux/homePageCollections/home-page-collections.selectors";
 import "./items-row.styles.css";
 
 const ItemsRow = ({ itemsRowBody, itemsRowTitle }) => {

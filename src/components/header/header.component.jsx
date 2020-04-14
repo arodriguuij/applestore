@@ -5,7 +5,7 @@ import { ReactComponent as ReactLogoIcon } from "../../assets/apple.svg";
 import { ReactComponent as ReactLogoCheckout } from "../../assets/checkout.svg";
 import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
-import { fetchCollectionNamesAsync } from "../../redux/collectionNames/collection-names.actions";
+import { fetchCollectionNamesStart } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 
 import "./header.styles.css";
@@ -15,12 +15,12 @@ const Header = ({
   collectionNames,
   numItems,
   error,
-  onFetchCollectionNamesAsync,
+  onFetchCollectionNamesStart,
 }) => {
   const [toggleMenuMobile, setToggleMenuMobile] = useState("menuOff");
   useEffect(() => {
-    onFetchCollectionNamesAsync();
-  }, [onFetchCollectionNamesAsync]);
+    onFetchCollectionNamesStart();
+  }, [onFetchCollectionNamesStart]);
 
   const onClickMenuHandler = () => {
     setToggleMenuMobile((prevState) => {
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchtoProps = (dispatch) => ({
-  onFetchCollectionNamesAsync: () => dispatch(fetchCollectionNamesAsync()),
+  onFetchCollectionNamesStart: () => dispatch(fetchCollectionNamesStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Header);

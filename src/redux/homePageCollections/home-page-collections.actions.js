@@ -1,4 +1,4 @@
-import homePageCollectionsActionTypes from "./homePageCollections.types";
+import homePageCollectionsActionTypes from "./home-page-collections.types";
 import { urlDababaseCollectionMainPage } from "../constants/constans";
 
 export const fetchHomePageCollectionsAsyn = () => (dispatch) => {
@@ -9,7 +9,7 @@ export const fetchHomePageCollectionsAsyn = () => (dispatch) => {
     .catch((err) => dispatch(fetchHomePageCollectionsFailure(err.message)));
 };
 
-const fetchHomePageCollectionsStart = () => {
+export const fetchHomePageCollectionsStart = () => {
   return {
     type: homePageCollectionsActionTypes.FETCH_HOME_PAGE_COLLECTIONS_START,
     payload: {
@@ -19,7 +19,7 @@ const fetchHomePageCollectionsStart = () => {
   };
 };
 
-const fetchHomePageCollectionsSuccess = (data) => {
+export const fetchHomePageCollectionsSuccess = (data) => {
   return {
     type: homePageCollectionsActionTypes.FETCH_HOME_PAGE_COLLECTIONS_SUCCESS,
     payload: {

@@ -9,7 +9,7 @@ export const fetchCollectionNamesAsync = () => (dispatch) => {
     .catch((err) => dispatch(fetchCollectionNamesFailure(err)));
 };
 
-const fetchCollectionNamesStart = () => {
+export const fetchCollectionNamesStart = () => {
   return {
     type: collectionNamesActionTypes.FETCH_COLLECTION_NAMES_START,
     payload: {
@@ -19,7 +19,7 @@ const fetchCollectionNamesStart = () => {
   };
 };
 
-const fetchCollectionNamesSuccess = (data) => {
+export const fetchCollectionNamesSuccess = (data) => {
   return {
     type: collectionNamesActionTypes.FETCH_COLLECTION_NAMES_SUCCESS,
     payload: {
@@ -29,7 +29,7 @@ const fetchCollectionNamesSuccess = (data) => {
   };
 };
 
-const fetchCollectionNamesFailure = (err) => {
+export const fetchCollectionNamesFailure = (err) => {
   return {
     type: collectionNamesActionTypes.FETCH_COLLECTION_NAMES_FAILURE,
     payload: {

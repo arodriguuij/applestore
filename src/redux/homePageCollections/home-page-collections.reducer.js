@@ -1,4 +1,4 @@
-import homePageCollectionsActionTypes from "./homePageCollections.types";
+import homePageCollectionsActionTypes from "./home-page-collections.types";
 
 const initialState = {
   mainImage: {

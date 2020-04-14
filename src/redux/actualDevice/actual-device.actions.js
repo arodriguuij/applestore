@@ -18,17 +18,20 @@ export const fetchActualDeviceAsyn = (collectionName, deviceName) => (
     .catch((err) => dispatch(fetchActualDeviceFailure(err.message)));
 };
 
-const fetchActualDeviceStart = () => {
+export const fetchActualDeviceStart = (collectionName, deviceName) => {
   return {
     type: actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_START,
     payload: {
+      collectionName,
+      deviceName,
       loading: true,
       error: null,
     },
   };
 };
 
-const fetchActualDeviceSuccess = (data) => {
+
+export const fetchActualDeviceSuccess = (data) => {
   return {
     type: actualDeviceActionTypes.FETCH_ACTUAL_DEVICE_SUCCESS,
     payload: {

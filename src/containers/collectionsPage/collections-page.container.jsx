@@ -1,12 +1,12 @@
 import React, { useEffect, useState, lazy, Fragment } from "react";
-import "./collectionsPage.styles.css";
+import "./collections-page.styles.css";
 import { connect } from "react-redux";
 import {
   selectorCollectionAndX,
   selectorCollectionError,
 } from "../../redux/collections/collections.selectors";
 import Card from "../../components/card/card.components";
-import { fetchCollectionAsyn } from "../../redux/collections/collections.actions";
+import { fetchCollectionStart } from "../../redux/collections/collections.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import CategoryButtons from "../../components/category-buttons/category-buttons.component";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
@@ -15,7 +15,7 @@ const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 
 const CollectionPage = (props) => {
   const {
-    onFetchCollectionAsyn,
+    onFetchCollectionStart,
     onSetBreadcrumb,
     path,
     error,
@@ -31,8 +31,8 @@ const CollectionPage = (props) => {
       Object.keys(collectionStateName).length === 0 &&
       collectionStateName.constructor === Object
     )
-      return onFetchCollectionAsyn(collectionName);
-  }, [onFetchCollectionAsyn, collectionName, collectionStateName]);
+      onFetchCollectionStart(collectionName);
+  }, [onFetchCollectionStart, collectionName, collectionStateName]);
 
   useEffect(() => {
     onSetBreadcrumb(collectionName);
@@ -94,8 +94,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchCollectionAsyn: (collectionName) =>
-    dispatch(fetchCollectionAsyn(collectionName)),
+  onFetchCollectionStart: (collectionName) =>
+    dispatch(fetchCollectionStart(collectionName)),
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
 });
 
