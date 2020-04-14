@@ -4,7 +4,7 @@ import {
   selectorXtitle,
   selectorXbody,
 } from "../../redux/homePageCollections/homePageCollections.selectors";
-import Card from "../card/card.components";
+import Card from "../../components/card/card.components";
 import "./cards-grid.styles.css";
 
 const CardsGrid = ({

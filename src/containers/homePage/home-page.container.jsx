@@ -1,15 +1,15 @@
 import React, { useEffect, lazy, Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchHomePageCollectionsAsyn } from "../../redux/homePageCollections/homePageCollections.actions";
-import ItemsRow from "../../components/items-row/items-row.component";
-import CardsGrid from "../../components/cards-grid/cards-grid.component";
+import ItemsRow from "../items-row/items-row.container";
+import CardsGrid from "../cards-grid/cards-grid.container";
 import MainImage from "../../components/main-image/main-image.component";
+import MobileImageFull from "../../components/mobile-full-image/mobile-full-image.component";
 import {
-  selectorXtitle,
-  selectorXbody,
   selectorType,
-  selectorMainImageX,
   selectorBannerImgMoblie,
+  selectorIsDataEmpty,
+  selectorMainImageX
 } from "../../redux/homePageCollections/homePageCollections.selectors";
 import "./home-page.styles.css";
 
@@ -18,38 +18,22 @@ const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
 const HomePage = ({
   error,
   onFetchHomePageCollectionsAsyn,
-  bannerTitle,
-  bannerBody,
   bannerImgMoblie,
-  bannerGridTitle,
-  bannerGridBody,
-  itemsRowTitle,
-  itemsRowBody,
-  mainImageImg,
-  mainImageText1,
-  mainImageText2,
+  isDataEmpty,
+  img,
+  text1,
+  text2
 }) => {
-  const isEmptyData =
-    mainImageImg === "" &&
-    mainImageText1 === "" &&
-    mainImageText2 === "" &&
-    bannerTitle === "" &&
-    bannerGridTitle === "" &&
-    itemsRowTitle === "" &&
-    bannerBody.length === 0 &&
-    bannerGridBody.length === 0 &&
-    itemsRowBody.length === 0;
-
   useEffect(() => {
-    if (isEmptyData) onFetchHomePageCollectionsAsyn();
-  }, [onFetchHomePageCollectionsAsyn, isEmptyData]);
+    if (isDataEmpty) onFetchHomePageCollectionsAsyn();
+  }, [onFetchHomePageCollectionsAsyn, isDataEmpty]);
 
   let content = (
     <Fragment>
-      <MainImage />
+      <MainImage img={img} text1={text1} text2={text2} />
       <ItemsRow />
       <CardsGrid />
-      <img alt="item" className="bannerMobile" src={bannerImgMoblie} />
+      <MobileImageFull img={bannerImgMoblie} />
     </Fragment>
   );
   if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
@@ -58,16 +42,11 @@ const HomePage = ({
 };
 
 const mapStateToProps = (state) => ({
-  bannerTitle: selectorXtitle("banner")(state),
-  bannerBody: selectorXbody("banner")(state),
+  isDataEmpty: selectorIsDataEmpty(state),
+  img: selectorMainImageX("img")(state),
+  text1: selectorMainImageX("text1")(state),
+  text2: selectorMainImageX("text2")(state),
   bannerImgMoblie: selectorBannerImgMoblie("banner")(state),
-  bannerGridTitle: selectorXtitle("bannerGrid")(state),
-  bannerGridBody: selectorXbody("bannerGrid")(state),
-  itemsRowTitle: selectorXtitle("itemsRow")(state),
-  itemsRowBody: selectorXbody("itemsRow")(state),
-  mainImageImg: selectorMainImageX("img")(state),
-  mainImageText1: selectorMainImageX("text1")(state),
-  mainImageText2: selectorMainImageX("text2")(state),
   error: selectorType("error")(state),
 });
 

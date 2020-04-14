@@ -1,5 +1,5 @@
 import React from "react";
-import ItemImages from "../item-image/item-image.component";
+import ItemImages from "../../components/item-image/item-image.component";
 import { connect } from "react-redux";
 import {
   selectorXtitle,
