@@ -7,8 +7,9 @@ import { selectCollectionNamesX } from "../../redux/collectionNames/collection.n
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
 import { fetchCollectionNamesStart } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
-
+import GoogleAuth from '../../components/google-auth/google-auth';
 import "./header.styles.css";
+
 const ErrorPage = lazy(() => import("../error-page/error-page"));
 
 const Header = ({
@@ -54,6 +55,9 @@ const Header = ({
               </Link>
             ))}
           </ul>
+          <div className="main-nav_main_icon">
+            <GoogleAuth />
+          </div>
           <div className="main-nav_item_checkout_icon">
             <div className="main-nav_checkout">
               <Link to="/checkout" onClick={onCloseMenuHandler}>

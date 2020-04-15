@@ -5,13 +5,14 @@ import actualDeviceReducer from "./actualDevice/actual-device.reducer";
 import collectionNamesReducer from "./collectionNames/collection-names.reducer";
 import breadcrumbReducer from "./breadcrumb/breadcrumb.reducer";
 import checkoutReducer from "./checkout/checkout.reducer";
-import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
+import storage from "redux-persist/lib/storage";
+import authenticationReducer from "./authentication/authentication.reducer";
+import { persistReducer } from "redux-persist";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['checkout']
+  whitelist: ["checkout"],
 };
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   actualDevice: actualDeviceReducer,
   collectionNames: collectionNamesReducer,
   checkout: checkoutReducer,
-  breadcrumb: breadcrumbReducer
+  breadcrumb: breadcrumbReducer,
+  authentication: authenticationReducer,
 });
 export default persistReducer(persistConfig, rootReducer);
