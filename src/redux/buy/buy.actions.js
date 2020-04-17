@@ -14,29 +14,43 @@ export const fetchBuyStart = (data) => {
     type: buyActionTypes.FETCH_BUY_START,
     payload: {
       data,
-      loading: true,
-      error: null,
+      loading: true
     },
   };
 };
 
-export const fetchBuySuccess = (statusCode) => {
+export const fetchBuySuccess = () => {
   return {
     type: buyActionTypes.FETCH_BUY_SUCCESS,
     payload: {
+      data: null,
       loading: false,
       purchased: true,
+      error: false
     },
   };
 };
 
-export const fetchBuyFailure = (error) => {
+export const fetchBuyFailure = () => {
   return {
     type: buyActionTypes.FETCH_BUY_FAILURE,
     payload: {
-      loading: false,
-      error,
       data: null,
+      loading: false,
+      error: true,
+      data: null,
+    },
+  };
+};
+
+export const fetchBuyReset = () => {
+  return {
+    type: buyActionTypes.FETCH_BUY_RESET,
+    payload: {
+      data: null,
+      loading: null,
+      error: null,
+      purchased: false
     },
   };
 };

@@ -24,8 +24,10 @@ const buyReducer = (state = initialState, action) => {
     case buyActionTypes.FETCH_BUY_SUCCESS:
       return {
         ...state,
+        data: action.payload.data,
         loading: action.payload.loading,
-        purchased: action.payload.purchased
+        purchased: action.payload.purchased,
+        error: action.payload.error
       };
     case buyActionTypes.FETCH_BUY_FAILURE:
       return {
@@ -34,6 +36,15 @@ const buyReducer = (state = initialState, action) => {
         loading: action.payload.loading,
         error: action.payload.error,
       };
+    case buyActionTypes.FETCH_BUY_RESET:
+      debugger;
+      return{
+        ...state,
+        data: action.payload.data,
+        loading: action.payload.loading,
+        error: action.payload.error,
+        purchased: action.payload.purchased
+      }
     default:
       return state;
   }

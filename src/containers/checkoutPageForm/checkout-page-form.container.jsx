@@ -14,7 +14,7 @@ import {
   selectorCheckout,
   selectorTotalPrice,
 } from "../../redux/checkout/checkout.selectors";
-import { fetchBuyStart } from "../../redux/buy/buy.actions";
+import { fetchBuyStart, fetchBuyReset } from "../../redux/buy/buy.actions";
 import "./checkout-page-form.styles.css";
 
 const CheckoutageForm = ({
@@ -47,13 +47,10 @@ const CheckoutageForm = ({
 
   useEffect(() => {
     onSetBreadcrumb("Checkout 2/2");
-  }, [onSetBreadcrumb]);
-
-  useEffect(() => {
-    if (data && error === null && !loading) {
+    return () => {
       onPurgeCheckoutCollection();
     }
-  }, [data, error, loading, onPurgeCheckoutCollection]);
+  }, [onSetBreadcrumb, fetchBuyReset,onPurgeCheckoutCollection]);
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -197,7 +194,7 @@ const CheckoutageForm = ({
     );
   }
 
-  if (error !== null) {
+  if (error ===true) {
     content = (
       <ErrorPage
         text={"An error has occurred during the purchase process. Try again"}

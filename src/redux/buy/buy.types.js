@@ -3,6 +3,7 @@ const buyActionTypes = {
   FETCH_BUY_START: "FETCH_BUY_START",
   FETCH_BUY_SUCCESS: "FETCH_BUY_SUCCESS",
   FETCH_BUY_FAILURE: "FETCH_BUY_FAILURE",
+  FETCH_BUY_RESET: "FETCH_BUY_RESET",
 };
 
 export default buyActionTypes;
