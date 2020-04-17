@@ -1,7 +1,10 @@
 import React, { lazy, Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
+import { authenticationSelectorX } from "../../redux/authentication/authentication.selector";
+import CheckoutPageForm from "../checkoutPageForm/checkout-page-form.container";
+import MyOrdersPage from "../myOrdersPage/my-orders-page.container";
 import "./container-page.styles.css";
 
 const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
@@ -12,12 +15,30 @@ const CollectionPage = lazy(() =>
   import("../collectionsPage/collections-page.container")
 );
 
-const ContainerPage = ({ collectionNames }) => {
+const ContainerPage = ({ collectionNames, isSignedIn }) => {
   return (
     <div className="main-page">
       <Switch>
         <Route exact path="/" render={() => <HomePage />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
+        <Route
+          exact
+          path="/checkoutForm"
+          render={() =>
+            isSignedIn ? <CheckoutPageForm /> : <Redirect to="/" />
+          }
+        />
+        <Route
+          exact
+          path={`/myorders`}
+          render={() =>
+            isSignedIn ? (
+              <MyOrdersPage /> 
+            ) : (
+              <Redirect to="/" />
+            )
+          }
+        />
         {collectionNames.map(({ link }) => (
           <Route
             key={link}
@@ -64,6 +85,7 @@ const ContainerPage = ({ collectionNames }) => {
 
 const mapStateToProps = (state) => ({
   collectionNames: selectCollectionNamesX("collectionNames")(state),
+  isSignedIn: authenticationSelectorX("isSignedIn")(state),
 });
 
 export default connect(mapStateToProps)(ContainerPage);

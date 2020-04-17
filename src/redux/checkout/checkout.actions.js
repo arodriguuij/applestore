@@ -1,6 +1,7 @@
 import checkoutActionTypes from "./checkout.types";
 
 export const addItem = (item, collection, id) => {
+  
   return {
     type: checkoutActionTypes.ADD_ITEM,
     payload: {
@@ -39,3 +40,12 @@ export const decrementItem = (id) => {
     },
   };
 };
+
+export const purgeCheckoutCollection = () => {
+  return{
+    type: checkoutActionTypes.PURGE_CHECKOUT_COLLECTION,
+    payload:{
+      checkoutCollection: []
+    }
+  }
+}

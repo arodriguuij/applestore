@@ -17,6 +17,23 @@
   height: 100%;
 }
 
+.my-orders-item-img{
+  width: 25%;
+}
+
+@media only screen and (max-width: 1000px){
+  .my-orders-item-img{
+    width: 60%;
+  }
+}
+
+
+@media only screen and (max-width: 600px){
+  .my-orders-item-img{
+    width: 100%;
+  }
+}
+
 .checkout-item-name,
 .checkout-item-quantity,
 .checkout-item-price {

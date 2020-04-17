@@ -1,0 +1,8 @@
+const buyActionTypes = {
+  PURCHASE_INIT: "PURCHASE_INIT",
+  FETCH_BUY_START: "FETCH_BUY_START",
+  FETCH_BUY_SUCCESS: "FETCH_BUY_SUCCESS",
+  FETCH_BUY_FAILURE: "FETCH_BUY_FAILURE",
+};
+
+export default buyActionTypes;

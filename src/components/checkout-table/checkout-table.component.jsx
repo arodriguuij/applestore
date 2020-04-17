@@ -4,11 +4,11 @@ import CheckoutListItems from "../../containers/checkout-list-items/checkout-lis
 import CheckoutTableHeader  from '../checkout-table-header/checkout-table-header.component';
 import "./checkout-table.styles.css";
 
-const CheckoutTable = () => {
+const CheckoutTable = ({itemTableHeader, fullInformation}) => {
   return (
     <div className="checkout-page">
-      <CheckoutTableHeader />
-      <CheckoutListItems />
+      <CheckoutTableHeader itemTableHeader={itemTableHeader}/>
+      <CheckoutListItems fullInformation={fullInformation}/>
       <CheckoutTotalPrice />
     </div>
   );

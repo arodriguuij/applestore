@@ -1,0 +1,12 @@
+.my-orders-total-price {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .my-orders-total-price {
+      font-size: initial;
+    }
+  }
+  

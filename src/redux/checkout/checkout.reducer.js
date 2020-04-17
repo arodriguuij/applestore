@@ -45,6 +45,8 @@ const checkoutReducer = (state = initialState, action) => {
       return incrementItem(state, action.payload);
     case checkoutActionTypes.DECREMENT_ITEM:
       return decrementItem(state, action.payload);
+      case checkoutActionTypes.PURGE_CHECKOUT_COLLECTION:
+        return {...state, checkoutCollection:action.payload.checkoutCollection}
     default:
       return state;
   }

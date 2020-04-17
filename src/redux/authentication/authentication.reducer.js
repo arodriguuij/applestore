@@ -2,7 +2,11 @@ import authenticationActionTypes from "./authentication.types";
 
 const initialState = {
   isSignedIn: null,
-  id: null,
+  userBasicProfile: {
+    email: null,
+    name: null,
+    id: null
+  },
   auth: null
 };
 
@@ -12,16 +16,15 @@ const authenticationReducer = (state = initialState, action) => {
       return {
         ...state,
         isSignedIn: true,
-        id: action.payload.id,
+        userBasicProfile: {...state.userBasicProfile, ...action.payload.userBasicProfile},
       };
     case authenticationActionTypes.SIGN_OUT:
       return {
         ...state,
         isSignedIn: false,
-        id: action.payload.id,
+        userBasicProfile: {...state.userBasicProfile, ...action.payload.userBasicProfile},
       };
     case authenticationActionTypes.GOOGLE_AUTHENTICATION_INITIALIZE_START:
-      debugger;
       return {
         ...state,
         auth: action.payload.auth,

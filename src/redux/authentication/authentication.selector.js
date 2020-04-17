@@ -6,3 +6,8 @@ export const authenticationSelectorX = (key) =>
   createSelector([authenticationSelector], (authentication) => {
     return authentication[key];
   });
+
+  export const authenticationSelectorXandSubtype = (key, subtype) =>
+  createSelector([authenticationSelector], (authentication) => {
+    return authentication[key][subtype];
+  });

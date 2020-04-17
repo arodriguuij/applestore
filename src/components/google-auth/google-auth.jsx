@@ -5,10 +5,16 @@ import { authenticationSelectorX } from "../../redux/authentication/authenticati
 import {
   signIn,
   signOut,
-  googleAuthenticationInitializeStart
+  googleAuthenticationInitializeStart,
 } from "../../redux/authentication/authentication.actions";
 
-const GoogleAuth = ({ onSignIn, onSignOut, isSignedIn, onGoogleAuthenticationInitializeStart, auth }) => {
+const GoogleAuth = ({
+  onSignIn,
+  onSignOut,
+  isSignedIn,
+  onGoogleAuthenticationInitializeStart,
+  auth,
+}) => {
   useEffect(() => {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
@@ -19,7 +25,7 @@ const GoogleAuth = ({ onSignIn, onSignOut, isSignedIn, onGoogleAuthenticationIni
         })
         .then(() => {
           const authAux = window.gapi.auth2.getAuthInstance();
-          onGoogleAuthenticationInitializeStart(authAux)
+          onGoogleAuthenticationInitializeStart(authAux);
           onAuthChange(authAux.isSignedIn.get());
           authAux.isSignedIn.listen(onAuthChange);
         });
@@ -28,7 +34,14 @@ const GoogleAuth = ({ onSignIn, onSignOut, isSignedIn, onGoogleAuthenticationIni
 
   const onAuthChange = (isSignedIn) => {
     const auth = window.gapi.auth2.getAuthInstance();
-    isSignedIn ? onSignIn(auth.currentUser.get().getId()) : onSignOut();
+    const userData = auth.currentUser.get();
+    isSignedIn
+      ? onSignIn({
+          email: userData.getBasicProfile().getEmail(),
+          name: userData.getBasicProfile().getName(),
+          id: auth.currentUser.get().getId(),
+        })
+      : onSignOut();
   };
 
   const onSignInClick = () => {
@@ -53,14 +66,15 @@ const GoogleAuth = ({ onSignIn, onSignOut, isSignedIn, onGoogleAuthenticationIni
 };
 
 const mapStateToProps = (state) => ({
-  isSignedIn: authenticationSelectorX('isSignedIn')(state),
-  auth: authenticationSelectorX('auth')(state)
+  isSignedIn: authenticationSelectorX("isSignedIn")(state),
+  auth: authenticationSelectorX("auth")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSignIn: (id) => dispatch(signIn(id)),
+  onSignIn: (userBasicProfile) => dispatch(signIn(userBasicProfile)),
   onSignOut: () => dispatch(signOut()),
-  onGoogleAuthenticationInitializeStart: (auth) => dispatch(googleAuthenticationInitializeStart(auth))
+  onGoogleAuthenticationInitializeStart: (auth) =>
+    dispatch(googleAuthenticationInitializeStart(auth)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoogleAuth);

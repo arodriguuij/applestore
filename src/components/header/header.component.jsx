@@ -54,6 +54,9 @@ const Header = ({
                 <li className="main-nav-li">{name}</li>
               </Link>
             ))}
+            <Link to={`/myorders`} key={'myorders'} onClick={onCloseMenuHandler}>
+              <li className="main-nav-li">My orders</li>
+            </Link>
           </ul>
           <div className="main-nav_main_icon">
             <GoogleAuth />

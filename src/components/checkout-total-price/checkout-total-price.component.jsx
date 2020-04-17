@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { selectorTotalPrice } from "../../redux/checkout/checkout.selectors";
 import "./checkout-total-price.styles.css";
 
-const CheckoutTotalPrice = ({totalPrice}) => {
+const CheckoutTotalPrice = ({totalPrice, fullInformation}) => {
   return (
     <div className="checkout-total-price">
       <span>TOTAL: {totalPrice.toFixed(2)}€</span>
@@ -13,6 +13,7 @@ const CheckoutTotalPrice = ({totalPrice}) => {
 
 const mapStateToProps = (state) => ({
   totalPrice: selectorTotalPrice(state),
+
 });
 
 export default connect(mapStateToProps)(CheckoutTotalPrice);

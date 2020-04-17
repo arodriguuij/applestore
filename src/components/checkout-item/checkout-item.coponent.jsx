@@ -8,37 +8,49 @@ import {
 import { connect } from "react-redux";
 import "./checkout-item.styles.css";
 
-const CheckoutItem = ({ item, onDecrementItem, onIncrementItem, onRemoveItem }) => {
+const CheckoutItem = ({
+  item,
+  onDecrementItem,
+  onIncrementItem,
+  onRemoveItem,
+  fullInformation,
+}) => {
   return (
     <div className="checkout-item">
       <div className="checkout-item-img-container">
         <Link to={`/${item.collection}/${item.id}`}>
-          <img src={item.img} alt="item" className="checkout-item-img"/>
+          <img src={item.img} alt="item" className={fullInformation ? 'checkout-item-img' : 'my-orders-item-img'} />
         </Link>
       </div>
       <span className="checkout-item-name">{item.name}</span>
       <span className="checkout-item-quantity">
-        <div
-          className="checkout-item-arrow"
-          onClick={() => onDecrementItem(item.id)}
-        >
-          &#10094;
-        </div>
+        {fullInformation ? (
+          <div
+            className="checkout-item-arrow"
+            onClick={() => onDecrementItem(item.id)}
+          >
+            &#10094;
+          </div>
+        ) : null}
         <div className="checkout-item-value">{item.quantity}</div>
-        <div
-          className="checkout-item-arrow"
-          onClick={() => onIncrementItem(item.id)}
-        >
-          &#10095;
-        </div>
+        {fullInformation ? (
+          <div
+            className="checkout-item-arrow"
+            onClick={() => onIncrementItem(item.id)}
+          >
+            &#10095;
+          </div>
+        ) : null}
       </span>
       <span className="checkout-item-price">{item.price}€</span>
-      <div
-        className="checkout-item-remove-button"
-        onClick={() => onRemoveItem(item.id)}
-      >
-        &#10005;
-      </div>
+      {fullInformation ? (
+        <div
+          className="checkout-item-remove-button"
+          onClick={() => onRemoveItem(item.id)}
+        >
+          &#10005;
+        </div>
+      ) : null}
     </div>
   );
 };

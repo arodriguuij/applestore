@@ -4,6 +4,7 @@ import "./custom-button.styles.css";
 const CustomButton = (props) => {
   return (
     <button 
+      disabled={props.disabled}
       className={`customButton ${props.inverted ? "inverted" : ''} ${
         props.classes ? "active" : ''
       }  ${props.google ? "google" : ''} ${props.checkout ? "checkout" : ''}`}
