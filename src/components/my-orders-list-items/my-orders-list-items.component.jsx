@@ -9,7 +9,6 @@ const MyOrderListItems = ({ items, fullInformation }) => {
       fullInformation={fullInformation}
     />
   ));
-  return null;
 };
 
 

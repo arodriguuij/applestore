@@ -21,7 +21,7 @@ const MyOrdersPage = ({
   useEffect(() => {
     onSetBreadcrum("My orders");
     onFetchMyOrdersStart(userId);
-  }, []);
+  }, [onSetBreadcrum, onFetchMyOrdersStart, userId]);
 
   let content = (
     <div className="my-orders-container">

@@ -124,7 +124,7 @@ const CheckoutageForm = ({
   };
 
   let content;
-  if (purchased) content = <Redirect to="/" />;
+  if (purchased) content = <Redirect to="/myorders" />;
   else {
     content = (
       <Fragment>

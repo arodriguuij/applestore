@@ -7,7 +7,6 @@ const MyOrdersTotalPrice = ({totalPrice}) => {
       <span>TOTAL: {totalPrice.toFixed(2)}€</span>
     </div>
   ); 
-  return null;
 };
 
 export default MyOrdersTotalPrice;
