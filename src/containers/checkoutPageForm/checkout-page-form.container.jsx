@@ -48,9 +48,16 @@ const CheckoutageForm = ({
   useEffect(() => {
     onSetBreadcrumb("Checkout 2/2");
     return () => {
-      onPurgeCheckoutCollection();
-    }
-  }, [onSetBreadcrumb, fetchBuyReset,onPurgeCheckoutCollection]);
+      debugger;
+      if (purchased && !loading) onPurgeCheckoutCollection();
+    };
+  }, [
+    onSetBreadcrumb,
+    fetchBuyReset,
+    onPurgeCheckoutCollection,
+    loading,
+    purchased,
+  ]);
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -194,7 +201,7 @@ const CheckoutageForm = ({
     );
   }
 
-  if (error ===true) {
+  if (error === true) {
     content = (
       <ErrorPage
         text={"An error has occurred during the purchase process. Try again"}

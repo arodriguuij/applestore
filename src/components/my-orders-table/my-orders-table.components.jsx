@@ -6,7 +6,6 @@ import "./my-orders-table.styles.css";
 
 const MyOrdersTable = ({order}) => {
   const itemTableHeader = ["Products", "Description", "Quantity", "Price"];
-  debugger;
   return (
     <div className="my-orders-page">
       <CheckoutTableHeader itemTableHeader={itemTableHeader}/>

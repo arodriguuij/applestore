@@ -37,7 +37,6 @@ const buyReducer = (state = initialState, action) => {
         error: action.payload.error,
       };
     case buyActionTypes.FETCH_BUY_RESET:
-      debugger;
       return{
         ...state,
         data: action.payload.data,
