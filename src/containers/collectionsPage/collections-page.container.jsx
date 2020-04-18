@@ -2,8 +2,8 @@ import React, { useEffect, useState, lazy, Fragment } from "react";
 import "./collections-page.styles.css";
 import { connect } from "react-redux";
 import {
-  selectorCollectionAndX,
-  selectorCollectionError,
+  selectorCollectionByKeyAndNestedKey,
+  selectorCollectionByKey,
 } from "../../redux/collections/collections.selectors";
 import Card from "../../components/card/card.components";
 import { fetchCollectionStart } from "../../redux/collections/collections.actions";
@@ -85,12 +85,12 @@ const CollectionPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_Mac: selectorCollectionAndX('collection_Mac', 'items')(state),
-  collection_iPhone: selectorCollectionAndX('collection_iPhone', 'items')(state),
-  collection_iPad: selectorCollectionAndX('collection_iPad', 'items')(state),
-  collection_iWatch: selectorCollectionAndX('collection_iWatch', 'items')(state),
-  collection_Accessories: selectorCollectionAndX('collection_Accessories', 'items')(state),
-  error: selectorCollectionError(state),
+  collection_Mac: selectorCollectionByKeyAndNestedKey('collection_Mac', 'items')(state),
+  collection_iPhone: selectorCollectionByKeyAndNestedKey('collection_iPhone', 'items')(state),
+  collection_iPad: selectorCollectionByKeyAndNestedKey('collection_iPad', 'items')(state),
+  collection_iWatch: selectorCollectionByKeyAndNestedKey('collection_iWatch', 'items')(state),
+  collection_Accessories: selectorCollectionByKeyAndNestedKey('collection_Accessories', 'items')(state),
+  error: selectorCollectionByKey('error')(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

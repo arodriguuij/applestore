@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 const breadcrumbSelector = (state) => state.breadcrumb;
 
-export const textBreadcrumSelector = createSelector(
+export const breadcrumbSelectorByKey = (key) => createSelector(
   [breadcrumbSelector],
-  (breadcrumb) => breadcrumb.text
+  (breadcrumb) => breadcrumb[key]
 );

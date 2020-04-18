@@ -6,10 +6,9 @@ import CardsGrid from "../cards-grid/cards-grid.container";
 import MainImage from "../../components/main-image/main-image.component";
 import MobileImageFull from "../../components/mobile-full-image/mobile-full-image.component";
 import {
-  selectorType,
-  selectorBannerImgMoblie,
+  selectorHomePageCollectionByKey,
+  selectorPageCollectionByKeyAndNedtedKey,
   selectorIsDataEmpty,
-  selectorMainImageX
 } from "../../redux/homePageCollections/home-page-collections.selectors";
 import "./home-page.styles.css";
 
@@ -22,7 +21,7 @@ const HomePage = ({
   isDataEmpty,
   img,
   text1,
-  text2
+  text2,
 }) => {
   useEffect(() => {
     if (isDataEmpty) onFetchHomePageCollectionsStart();
@@ -43,11 +42,14 @@ const HomePage = ({
 
 const mapStateToProps = (state) => ({
   isDataEmpty: selectorIsDataEmpty(state),
-  img: selectorMainImageX("img")(state),
-  text1: selectorMainImageX("text1")(state),
-  text2: selectorMainImageX("text2")(state),
-  bannerImgMoblie: selectorBannerImgMoblie("banner")(state),
-  error: selectorType("error")(state),
+  img: selectorPageCollectionByKeyAndNedtedKey("mainImage", "img")(state),
+  text1: selectorPageCollectionByKeyAndNedtedKey("mainImage", "text1")(state),
+  text2: selectorPageCollectionByKeyAndNedtedKey("mainImage", "text2")(state),
+  bannerImgMoblie: selectorPageCollectionByKeyAndNedtedKey(
+    "banner",
+    "imgMobile"
+  )(state),
+  error: selectorHomePageCollectionByKey("error")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

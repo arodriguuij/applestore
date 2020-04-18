@@ -30,13 +30,11 @@ const initialState = {
   error: null,
 };
 
-const fetchCollectionsStart = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
+const fetchCollectionsStart = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
 const fetchCollectionsSuccess = (state, payload) => {
   let collectionToSaveData = `collection_${payload.collectionName}`;
   return {
@@ -45,13 +43,11 @@ const fetchCollectionsSuccess = (state, payload) => {
     [collectionToSaveData]: payload.collection,
   };
 };
-const fetchCollectionsFailure = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
+const fetchCollectionsFailure = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
 
 const collectionsReducer = (state = initialState, action) => {
   switch (action.type) {

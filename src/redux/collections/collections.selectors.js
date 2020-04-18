@@ -1,23 +1,17 @@
 import { createSelector } from "reselect";
 
-const selectorCollections = (state) => state.collections;
+const collectionSelectorState = (state) => state.collections;
 
-const selectorCollectionX = (collectionName) =>
+export const selectorCollectionByKey = (collectionName) =>
   createSelector(
-    [selectorCollections],
+    [collectionSelectorState],
     (collections) => collections[collectionName]
   );
-export const selectorCollectionAndX = (selectorCollectionName, selector) =>
+export const selectorCollectionByKeyAndNestedKey = (
+  selectorCollectionName,
+  selector
+) =>
   createSelector(
-    [selectorCollectionX(selectorCollectionName)],
+    [selectorCollectionByKey(selectorCollectionName)],
     (collection) => collection[selector]
   );
-
-export const selectorCollectionLoading = createSelector(
-  [selectorCollections],
-  (collections) => collections.loading
-);
-export const selectorCollectionError = createSelector(
-  [selectorCollections],
-  (collections) => collections.error
-);

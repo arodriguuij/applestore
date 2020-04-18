@@ -4,7 +4,7 @@ const initialState = {
   mainImage: {
     img: "",
     text1: "",
-    text2: ""
+    text2: "",
   },
   itemsRow: {
     title: "",
@@ -23,32 +23,24 @@ const initialState = {
   error: null,
 };
 
-const fetchHomePageCollectionsSuccess = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    itemsRow: payload.data["itemsRow"],
-    banner: payload.data["banner"],
-    bannerGrid: payload.data["bannerGrid"],
-    mainImage: payload.data["mainImage"],
-  };
-};
-
-const fetchHomePageCollectionsStart = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
-
-const fetchHomePageCollectionsFailure = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
+const fetchHomePageCollectionsSuccess = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  itemsRow: payload.data["itemsRow"],
+  banner: payload.data["banner"],
+  bannerGrid: payload.data["bannerGrid"],
+  mainImage: payload.data["mainImage"],
+});
+const fetchHomePageCollectionsStart = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchHomePageCollectionsFailure = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
 
 const homePageCollectionsReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 
-const selectCollectionNames = (state) => state.collectionNames;
+const collectionNamesSelectorState = (state) => state.collectionNames;
 
-export const selectCollectionNamesX = (type) => createSelector(
-  [selectCollectionNames],
-  (collectionNames) => collectionNames[type]
-);
+export const selectorCollectionNamesByKey = (type) =>
+  createSelector(
+    [collectionNamesSelectorState],
+    (collectionNames) => collectionNames[type]
+  );

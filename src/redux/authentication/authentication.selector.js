@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 
-const authenticationSelector = (state) => state.authentication;
+const authenticationSelectorState = (state) => state.authentication;
 
-export const authenticationSelectorX = (key) =>
-  createSelector([authenticationSelector], (authentication) => {
+export const selectorAuthenticationByKey = (key) =>
+  createSelector([authenticationSelectorState], (authentication) => {
     return authentication[key];
   });
 
-  export const authenticationSelectorXandSubtype = (key, subtype) =>
-  createSelector([authenticationSelector], (authentication) => {
-    return authentication[key][subtype];
+export const selectorAuthenticationByKeyAndNestedKey = (key, nestedKey) =>
+  createSelector([authenticationSelectorState], (authentication) => {
+    return authentication[key][nestedKey];
   });

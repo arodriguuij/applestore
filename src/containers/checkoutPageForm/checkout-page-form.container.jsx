@@ -1,12 +1,12 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { authenticationSelectorXandSubtype } from "../../redux/authentication/authentication.selector";
+import { selectorAuthenticationByKeyAndNestedKey } from "../../redux/authentication/authentication.selector";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import FormInput from "../../components/form-input/form-input.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import Breadcrum from "../../components/breadcrumb/breadcrumb.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
-import { buySelectX } from "../../redux/buy/buy.selectors";
+import { selectorBuyByKey } from "../../redux/buy/buy.selectors";
 import Spinner from "../../components/spinner/spinner.component";
 import { purgeCheckoutCollection } from "../../redux/checkout/checkout.actions";
 import ErrorPage from "../../components/error-page/error-page";
@@ -48,7 +48,6 @@ const CheckoutageForm = ({
   useEffect(() => {
     onSetBreadcrumb("Checkout 2/2");
     return () => {
-      debugger;
       if (purchased && !loading) onPurgeCheckoutCollection();
     };
   }, [
@@ -212,21 +211,21 @@ const CheckoutageForm = ({
 };
 
 const maptStateToProps = (state) => ({
-  defaultEmail: authenticationSelectorXandSubtype(
+  defaultEmail: selectorAuthenticationByKeyAndNestedKey(
     "userBasicProfile",
     "email"
   )(state),
-  defaultName: authenticationSelectorXandSubtype(
+  defaultName: selectorAuthenticationByKeyAndNestedKey(
     "userBasicProfile",
     "name"
   )(state),
-  userId: authenticationSelectorXandSubtype("userBasicProfile", "id")(state),
+  userId: selectorAuthenticationByKeyAndNestedKey("userBasicProfile", "id")(state),
   checkoutCollection: selectorCheckout(state),
   totalPrice: selectorTotalPrice(state),
-  loading: buySelectX("loading")(state),
-  error: buySelectX("error")(state),
-  purchased: buySelectX("purchased")(state),
-  data: buySelectX("data")(state),
+  loading: selectorBuyByKey("loading")(state),
+  error: selectorBuyByKey("error")(state),
+  purchased: selectorBuyByKey("purchased")(state),
+  data: selectorBuyByKey("data")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

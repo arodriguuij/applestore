@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import CustomButton from "../custom-button/custom-button.component";
 import {
-  selectorCollectionAndX,
+  selectorCollectionByKeyAndNestedKey,
 } from "../../redux/collections/collections.selectors";
 import "./category-button-styles.css";
 
@@ -32,8 +32,8 @@ const CategoryButton = (props) => {
 };
 const mapStateToProps = (state, ownProps) => {
   return {
-    types: selectorCollectionAndX(`collection_${ownProps.collection}`, 'types')(state),
-    subtypes: selectorCollectionAndX(`collection_${ownProps.collection}`, 'subtypes')(state),
+    types: selectorCollectionByKeyAndNestedKey(`collection_${ownProps.collection}`, 'types')(state),
+    subtypes: selectorCollectionByKeyAndNestedKey(`collection_${ownProps.collection}`, 'subtypes')(state),
   };
 };
 export default connect(mapStateToProps)(CategoryButton);

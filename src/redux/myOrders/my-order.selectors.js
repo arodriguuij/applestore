@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-export const myOrdersStateSelector = (state) => state.myOrders;
+export const myOrdersSelectorState = (state) => state.myOrders;
 
-export const myOrdersSelectorX = (key) => createSelector(
-  [myOrdersStateSelector],
+export const myOrdersSelectorByKey = (key) => createSelector(
+  [myOrdersSelectorState],
   (myOrders) => myOrders[key]
 );

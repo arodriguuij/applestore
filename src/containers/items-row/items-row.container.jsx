@@ -2,8 +2,7 @@ import React from "react";
 import ItemImages from "../../components/item-image/item-image.component";
 import { connect } from "react-redux";
 import {
-  selectorXtitle,
-  selectorXbody,
+  selectorPageCollectionByKeyAndNedtedKey,
 } from "../../redux/homePageCollections/home-page-collections.selectors";
 import "./items-row.styles.css";
 
@@ -21,8 +20,8 @@ const ItemsRow = ({ itemsRowBody, itemsRowTitle }) => {
 };
 
 const mapStateToProps = (state) => ({
-  itemsRowBody: selectorXbody("itemsRow")(state),
-  itemsRowTitle: selectorXtitle("itemsRow")(state),
+  itemsRowBody: selectorPageCollectionByKeyAndNedtedKey("itemsRow", 'body')(state),
+  itemsRowTitle: selectorPageCollectionByKeyAndNedtedKey("itemsRow", 'title')(state),
 });
 
 export default connect(mapStateToProps)(ItemsRow);

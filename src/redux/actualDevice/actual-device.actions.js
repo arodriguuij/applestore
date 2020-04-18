@@ -5,10 +5,7 @@ export const fetchActualDeviceAsyn = (collectionName, deviceName) => (
   dispatch
 ) => {
   dispatch(fetchActualDeviceStart());
-  fetch(
-    urlDatabase +
-      `collections/${collectionName}/items/${deviceName}.json`
-  )
+  fetch(urlDatabase + `collections/${collectionName}/items/${deviceName}.json`)
     .then((res) => res.json())
     .then((data) =>
       data
@@ -29,7 +26,6 @@ export const fetchActualDeviceStart = (collectionName, deviceName) => {
     },
   };
 };
-
 
 export const fetchActualDeviceSuccess = (data) => {
   return {

@@ -4,8 +4,8 @@ import {
   removeActualDevice,
   fetchActualDeviceStart,
 } from "../../redux/actualDevice/actual-device.actions";
-import { selectorCollectionAndX } from "../../redux/collections/collections.selectors";
-import { selectorActualDeviceX } from "../../redux/actualDevice/actual-device.selector";
+import { selectorCollectionByKeyAndNestedKey } from "../../redux/collections/collections.selectors";
+import { selectorActualDeviceByKey } from "../../redux/actualDevice/actual-device.selector";
 import { addItem } from "../../redux/checkout/checkout.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
@@ -96,25 +96,25 @@ const ItemPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_Mac: selectorCollectionAndX("collection_Mac", "items")(state),
-  collection_iPhone: selectorCollectionAndX(
+  collection_Mac: selectorCollectionByKeyAndNestedKey("collection_Mac", "items")(state),
+  collection_iPhone: selectorCollectionByKeyAndNestedKey(
     "collection_iPhone",
     "items"
   )(state),
-  collection_iPad: selectorCollectionAndX("collection_iPad", "items")(state),
-  collection_iWatch: selectorCollectionAndX(
+  collection_iPad: selectorCollectionByKeyAndNestedKey("collection_iPad", "items")(state),
+  collection_iWatch: selectorCollectionByKeyAndNestedKey(
     "collection_iWatch",
     "items"
   )(state),
-  collection_Accessories: selectorCollectionAndX(
+  collection_Accessories: selectorCollectionByKeyAndNestedKey(
     "collection_Accessories",
     "items"
   )(state),
-  collection_actualDevice: selectorActualDeviceX("collection_actualDevice")(
+  collection_actualDevice: selectorActualDeviceByKey("collection_actualDevice")(
     state
   ),
-  loading: selectorActualDeviceX("loading")(state),
-  error: selectorActualDeviceX("error")(state),
+  loading: selectorActualDeviceByKey("loading")(state),
+  error: selectorActualDeviceByKey("error")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

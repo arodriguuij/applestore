@@ -4,46 +4,52 @@ const initialState = {
   data: null,
   loading: null,
   error: null,
-  purchased: false
+  purchased: false,
 };
+
+const purchaseInit = (state, payload) => ({
+  ...state,
+  purchased: payload.purchased,
+});
+const FetchBuyStart = (state, payload) => ({
+  ...state,
+  data: payload.data,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchBuySuccess = (state, payload) => ({
+  ...state,
+  data: payload.data,
+  loading: payload.loading,
+  purchased: payload.purchased,
+  error: payload.error,
+});
+const fetchBuyFailure = (state, payload) => ({
+  ...state,
+  data: payload.data,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchBuyReset = (state, payload) => ({
+  ...state,
+  data: payload.data,
+  loading: payload.loading,
+  error: payload.error,
+  purchased: payload.purchased,
+});
 
 const buyReducer = (state = initialState, action) => {
   switch (action.type) {
     case buyActionTypes.PURCHASE_INIT:
-      return{
-        ...state,
-        purchased: action.payload.purchased
-      }
+      return purchaseInit(state, action.payload);
     case buyActionTypes.FETCH_BUY_START:
-      return {
-        ...state,
-        data: action.payload.data,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return FetchBuyStart(state, action.payload);
     case buyActionTypes.FETCH_BUY_SUCCESS:
-      return {
-        ...state,
-        data: action.payload.data,
-        loading: action.payload.loading,
-        purchased: action.payload.purchased,
-        error: action.payload.error
-      };
+      return fetchBuySuccess(state, action.payload);
     case buyActionTypes.FETCH_BUY_FAILURE:
-      return {
-        ...state,
-        data: action.payload.data,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return fetchBuyFailure(state, action.payload);
     case buyActionTypes.FETCH_BUY_RESET:
-      return{
-        ...state,
-        data: action.payload.data,
-        loading: action.payload.loading,
-        error: action.payload.error,
-        purchased: action.payload.purchased
-      }
+      return fetchBuyReset(state, action.payload);
     default:
       return state;
   }

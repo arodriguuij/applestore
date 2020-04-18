@@ -6,7 +6,7 @@ import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 import CheckoutTable from "../../components/checkout-table/checkout-table.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
-import { authenticationSelectorX } from "../../redux/authentication/authentication.selector";
+import { selectorAuthenticationByKey } from "../../redux/authentication/authentication.selector";
 import { purchaseInit } from "../../redux/buy/buy.actions";
 import "./checkout.styles.css";
 
@@ -46,7 +46,7 @@ const CheckoutPage = ({
 };
 
 const mapStateToProps = (state) => ({
-  isSignedIn: authenticationSelectorX("isSignedIn")(state),
+  isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
   numItems: selectorNumberItems(state),
 });
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { textBreadcrumSelector } from "../../redux/breadcrumb/breadcrumb.selector";
+import { breadcrumbSelectorByKey } from "../../redux/breadcrumb/breadcrumb.selector";
 import { connect } from "react-redux";
 import "./breadcrumb.styles.css";
 
@@ -12,7 +12,7 @@ const Breadcrumb = ({ breadcrumb }) => {
 };
 
 const mapStateToProps = (state) => ({
-  breadcrumb: textBreadcrumSelector(state),
+  breadcrumb: breadcrumbSelectorByKey("text")(state),
 });
 
 export default connect(mapStateToProps)(Breadcrumb);

@@ -6,36 +6,27 @@ const initialState = {
   error: null,
 };
 
-const fetchActualDeviceStart = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
-const fetchActualDeviceSuccess = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    collection_actualDevice: payload.collection,
-  };
-};
-
-const fetchActualDeviceFailure = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
-const removeActualDevice = (state, payload) => {
-  return {
-    ...state,
-    collection_actualDevice: payload.collection,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
+const fetchActualDeviceStart = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchActualDeviceSuccess = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  collection_actualDevice: payload.collection,
+});
+const fetchActualDeviceFailure = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+const removeActualDevice = (state, payload) => ({
+  ...state,
+  collection_actualDevice: payload.collection,
+  loading: payload.loading,
+  error: payload.error,
+});
 
 const actualDeviceReducer = (state = initialState, action) => {
   switch (action.type) {

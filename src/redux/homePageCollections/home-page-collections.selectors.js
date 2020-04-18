@@ -1,35 +1,30 @@
 import { createSelector } from "reselect";
 
-const selectorHomePageCollections = (state) => state.homePageCollections;
+const homePageCollectionsSelectorState = (state) => state.homePageCollections;
 
-export const selectorType = (type) =>
+export const selectorHomePageCollectionByKey = (key) =>
   createSelector(
-    [selectorHomePageCollections],
-    (homePageCollections) => homePageCollections[type]
+    [homePageCollectionsSelectorState],
+    (homePageCollections) => homePageCollections[key]
   );
 
-export const selectorXtitle = (type) =>
-  createSelector([selectorType(type)], (type) => type.title);
-export const selectorXbody = (type) =>
-  createSelector([selectorType(type)], (type) => type.body);
-
-export const selectorBannerImgMoblie = (type) =>
-  createSelector([selectorType(type)], (banner) => banner.imgMobile);
-
-export const selectorMainImageX = (type) =>
-  createSelector([selectorType("mainImage")], (mainImage) => mainImage[type]);
+export const selectorPageCollectionByKeyAndNedtedKey = (key, nestedKey) =>
+  createSelector(
+    [selectorHomePageCollectionByKey(key)],
+    (key) => key[nestedKey]
+  );
 
 export const selectorIsDataEmpty = createSelector(
-  [selectorHomePageCollections],
-  (homePageCollections) => 
-      homePageCollections.mainImage.img === "" &&
-      homePageCollections.mainImage.text1 === "" &&
-      homePageCollections.mainImage.text2 === "" &&
-      homePageCollections.itemsRow.title === "" &&
-      homePageCollections.itemsRow.body.length === 0 &&
-      homePageCollections.banner.title === "" &&
-      homePageCollections.banner.body.length === 0 &&
-      homePageCollections.banner.imgMobile === "" &&
-      homePageCollections.bannerGrid.title === "" &&
-      homePageCollections.bannerGrid.body.length === 0
+  [homePageCollectionsSelectorState],
+  (homePageCollections) =>
+    homePageCollections.mainImage.img === "" &&
+    homePageCollections.mainImage.text1 === "" &&
+    homePageCollections.mainImage.text2 === "" &&
+    homePageCollections.itemsRow.title === "" &&
+    homePageCollections.itemsRow.body.length === 0 &&
+    homePageCollections.banner.title === "" &&
+    homePageCollections.banner.body.length === 0 &&
+    homePageCollections.banner.imgMobile === "" &&
+    homePageCollections.bannerGrid.title === "" &&
+    homePageCollections.bannerGrid.body.length === 0
 );

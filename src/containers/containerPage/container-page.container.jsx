@@ -1,8 +1,8 @@
 import React, { lazy, Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
-import { authenticationSelectorX } from "../../redux/authentication/authentication.selector";
+import { selectorCollectionNamesByKey } from "../../redux/collectionNames/collection.names.selectors";
+import { selectorAuthenticationByKey } from "../../redux/authentication/authentication.selector";
 import CheckoutPageForm from "../checkoutPageForm/checkout-page-form.container";
 import MyOrdersPage from "../myOrdersPage/my-orders-page.container";
 import "./container-page.styles.css";
@@ -84,8 +84,8 @@ const ContainerPage = ({ collectionNames, isSignedIn }) => {
 };
 
 const mapStateToProps = (state) => ({
-  collectionNames: selectCollectionNamesX("collectionNames")(state),
-  isSignedIn: authenticationSelectorX("isSignedIn")(state),
+  collectionNames: selectorCollectionNamesByKey("collectionNames")(state),
+  isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
 });
 
 export default connect(mapStateToProps)(ContainerPage);

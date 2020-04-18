@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 
-const selectorActualDevice = (state) => state.actualDevice;
+const selectorActualDeviceState = (state) => state.actualDevice;
 
-export const selectorActualDeviceX = (type) => createSelector(
-  [selectorActualDevice],
-  (selectorActualDevice) => selectorActualDevice[type]
-);
+export const selectorActualDeviceByKey = (type) =>
+  createSelector(
+    [selectorActualDeviceState],
+    (actualDevice) => actualDevice[type]
+  );

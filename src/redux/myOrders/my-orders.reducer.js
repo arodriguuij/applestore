@@ -6,26 +6,30 @@ const initialState = {
   error: null,
 };
 
+const fetchMyOrdersStart = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchMyOrdersSuccess = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  myOrdersCollection: payload.myOrdersCollection,
+});
+const fetchMyOrdersFailure = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+
 const myOrdersReducer = (state = initialState, action) => {
   switch (action.type) {
     case myOrdersTypeActions.FETCH_MY_ORDERS_START:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return fetchMyOrdersStart(state, action.payload);
     case myOrdersTypeActions.FETCH_MY_ORDERS_SUCCESS:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        myOrdersCollection: action.payload.myOrdersCollection,
-      };
+      return fetchMyOrdersSuccess(state, action.payload);
     case myOrdersTypeActions.FETCH_MY_ORDERS_FAILURE:
-      return {
-        ...state,
-        loading: action.payload.loading,
-        error: action.payload.error,
-      };
+      return fetchMyOrdersFailure(state, action.payload);
     default:
       return state;
   }

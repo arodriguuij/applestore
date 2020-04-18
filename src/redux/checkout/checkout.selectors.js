@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
-const checkoutSelector = (state) => state.checkout;
+const checkoutSelectorState = (state) => state.checkout;
 
 export const selectorCheckout = createSelector(
-  [checkoutSelector],
+  [checkoutSelectorState],
   (checkout) => checkout.checkoutCollection
 );
 

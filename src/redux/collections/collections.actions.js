@@ -15,7 +15,7 @@ export const fetchCollectionStart = (collectionName) => {
     payload: {
       loading: true,
       error: null,
-      collectionName: collectionName
+      collectionName: collectionName,
     },
   };
 };

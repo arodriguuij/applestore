@@ -3,8 +3,8 @@ import BreadCrumb from "../../components/breadcrumb/breadcrumb.component";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import MyOrdersTable from "../../components/my-orders-table/my-orders-table.components";
 import { fetchMyOrdersStart } from "../../redux/myOrders/my-orders.action";
-import { authenticationSelectorXandSubtype } from "../../redux/authentication/authentication.selector";
-import { myOrdersSelectorX } from "../../redux/myOrders/my-order.selectors";
+import { selectorAuthenticationByKeyAndNestedKey } from "../../redux/authentication/authentication.selector";
+import { myOrdersSelectorByKey } from "../../redux/myOrders/my-order.selectors";
 import { connect } from "react-redux";
 import ErrorPage from "../../components/error-page/error-page";
 import Spinner from "../../components/spinner/spinner.component";
@@ -47,10 +47,10 @@ const MyOrdersPage = ({
 };
 
 const mapStateToProps = (state) => ({
-  userId: authenticationSelectorXandSubtype("userBasicProfile", "id")(state),
-  error: myOrdersSelectorX("error")(state),
-  loading: myOrdersSelectorX("loading")(state),
-  myOrdersCollection: myOrdersSelectorX("myOrdersCollection")(state),
+  userId: selectorAuthenticationByKeyAndNestedKey("userBasicProfile", "id")(state),
+  error: myOrdersSelectorByKey("error")(state),
+  loading: myOrdersSelectorByKey("loading")(state),
+  myOrdersCollection: myOrdersSelectorByKey("myOrdersCollection")(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,9 +4,8 @@ const initialState = {
   text: "",
 };
 
-const setBreadcrumb = (state, payload) => {
-  return { ...state, text: payload.text };
-};
+const setBreadcrumb = (state, payload) => ({ ...state, text: payload.text });
+
 const breadcrumbReducer = (state = initialState, action) => {
   switch (action.type) {
     case breadcrumbActionTypes.SET_BREADCRUMB:

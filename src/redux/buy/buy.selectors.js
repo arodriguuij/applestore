@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const buySelector = (state) => state.buy;
+const buySelectorState = (state) => state.buy;
 
-export const buySelectX = (key) =>
-  createSelector([buySelector], (buy) => buy[key]);
+export const selectorBuyByKey = (key) =>
+  createSelector([buySelectorState], (buy) => buy[key]);

@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ReactComponent as ReactLogoIcon } from "../../assets/apple.svg";
 import { ReactComponent as ReactLogoCheckout } from "../../assets/checkout.svg";
-import { selectCollectionNamesX } from "../../redux/collectionNames/collection.names.selectors";
+import { selectorCollectionNamesByKey } from "../../redux/collectionNames/collection.names.selectors";
 import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
 import { fetchCollectionNamesStart } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 import GoogleAuth from "../../components/google-auth/google-auth";
-import { authenticationSelectorX } from "../../redux/authentication/authentication.selector";
+import { selectorAuthenticationByKey } from "../../redux/authentication/authentication.selector";
 import "./header.styles.css";
 
 const ErrorPage = lazy(() => import("../error-page/error-page"));
@@ -89,9 +89,9 @@ const Header = ({
 
 const mapStateToProps = (state) => ({
   numItems: selectorNumberItems(state),
-  collectionNames: selectCollectionNamesX("collectionNames")(state),
-  error: selectCollectionNamesX("error")(state),
-  isSignedIn: authenticationSelectorX("isSignedIn")(state),
+  collectionNames: selectorCollectionNamesByKey("collectionNames")(state),
+  error: selectorCollectionNamesByKey("error")(state),
+  isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
 });
 
 const mapDispatchtoProps = (dispatch) => ({

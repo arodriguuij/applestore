@@ -5,27 +5,23 @@ const initialState = {
   loading: true,
   error: null,
 };
-const fetchCollectionNamesStart = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
-const fetchCollectionNamesSuccess = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    collectionNames: payload.collection,
-  };
-};
-const fetchCollectionNamesFailure = (state, payload) => {
-  return {
-    ...state,
-    loading: payload.loading,
-    error: payload.error,
-  };
-};
+
+const fetchCollectionNamesStart = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+const fetchCollectionNamesSuccess = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  collectionNames: payload.collection,
+});
+const fetchCollectionNamesFailure = (state, payload) => ({
+  ...state,
+  loading: payload.loading,
+  error: payload.error,
+});
+
 const collectionNamesReducer = (state = initialState, action) => {
   switch (action.type) {
     case collectionNamesActionTypes.FETCH_COLLECTION_NAMES_START:

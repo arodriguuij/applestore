@@ -14,7 +14,7 @@ export const fetchBuyStart = (data) => {
     type: buyActionTypes.FETCH_BUY_START,
     payload: {
       data,
-      loading: true
+      loading: true,
     },
   };
 };
@@ -26,7 +26,7 @@ export const fetchBuySuccess = () => {
       data: null,
       loading: false,
       purchased: true,
-      error: false
+      error: false,
     },
   };
 };
@@ -50,7 +50,7 @@ export const fetchBuyReset = () => {
       data: null,
       loading: null,
       error: null,
-      purchased: false
+      purchased: false,
     },
   };
 };
