@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import {  selectorPageCollectionByKeyAndNedtedKey,} from "../../redux/homePageCollections/home-page-collections.selectors";
 import "./main-image.styles.css";
 
 const MainImage = ({ img, text1, text2 }) => (
@@ -11,4 +13,10 @@ const MainImage = ({ img, text1, text2 }) => (
   </div>
 );
 
-export default MainImage;
+const mapStateToProps = (state) => ({
+  img: selectorPageCollectionByKeyAndNedtedKey("mainImage", "img")(state),
+  text1: selectorPageCollectionByKeyAndNedtedKey("mainImage", "text1")(state),
+  text2: selectorPageCollectionByKeyAndNedtedKey("mainImage", "text2")(state),
+});
+
+export default connect(mapStateToProps)(MainImage);

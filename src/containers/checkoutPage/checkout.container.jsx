@@ -19,8 +19,6 @@ const CheckoutPage = ({
     onSetBreadcrumb("Checkout 1/2");
   }, [onSetBreadcrumb]);
 
-
-
   const button =
     isSignedIn && numItems !== 0 ? (
       <CustomButton action={onPurchaseInit} google>
@@ -36,6 +34,7 @@ const CheckoutPage = ({
       </CustomButton>
     ) : null;
 
+  
   return (
     <Fragment>
       <Breadcrumb />
