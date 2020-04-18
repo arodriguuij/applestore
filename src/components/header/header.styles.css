@@ -64,7 +64,7 @@
 }
 
 .main-nav-li {
-  padding: 0 3vw;
+  padding: 0 1.75vw;
 }
 
 .main-nav_checkout {
@@ -80,6 +80,9 @@
   color: rgb(198, 198, 198);
 }
 
+.error-categories{
+  color: red
+}
 @media only screen and (max-width: 600px) {
   .main-nav-ul {
     display: block;

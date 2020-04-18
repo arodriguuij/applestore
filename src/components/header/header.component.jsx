@@ -1,41 +1,36 @@
-import React, { useState, useEffect, lazy } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import { ReactComponent as ReactLogoIcon } from "../../assets/apple.svg";
 import { ReactComponent as ReactLogoCheckout } from "../../assets/checkout.svg";
-import { selectorCollectionNamesByKey } from "../../redux/collectionNames/collection.names.selectors";
-import { selectorNumberItems } from "../../redux/checkout/checkout.selectors";
-import { fetchCollectionNamesStart } from "../../redux/collectionNames/collection-names.actions";
 import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 import GoogleAuth from "../../components/google-auth/google-auth";
-import { selectorAuthenticationByKey } from "../../redux/authentication/authentication.selector";
+import SpinnerSmall from "../spinner-small/spinner-small.component";
 import "./header.styles.css";
 
-const ErrorPage = lazy(() => import("../error-page/error-page.component"));
-
 const Header = ({
+  onClickMenuHandler,
+  toggleMenuMobile,
+  onCloseMenuHandler,
   collectionNames,
-  numItems,
-  error,
-  onFetchCollectionNamesStart,
   isSignedIn,
+  numItems,
+  loading,
+  error,
 }) => {
-  const [toggleMenuMobile, setToggleMenuMobile] = useState("menuOff");
-  useEffect(() => {
-    onFetchCollectionNamesStart();
-  }, [onFetchCollectionNamesStart]);
+  let categoriesNav;
+  if (loading) categoriesNav = <SpinnerSmall />;
+  else if (error)
+    categoriesNav = (
+      <li className="error-categories">...Error loading categories...</li>
+    );
+  else
+    categoriesNav = collectionNames.map(({ link, name }) => (
+      <Link to={`/${link}`} key={link} onClick={onCloseMenuHandler}>
+        <li className="main-nav-li">{name}</li>
+      </Link>
+    ));
 
-  const onClickMenuHandler = () => {
-    setToggleMenuMobile((prevState) => {
-      if (prevState === "menuOn") return "menuOff";
-      else return "menuOn";
-    });
-  };
-  const onCloseMenuHandler = () => {
-    setToggleMenuMobile("menuOff");
-  };
-
-  let content = (
+  return (
     <header className="main-header">
       <div className="main-nav_item_mobile" onClick={onClickMenuHandler}>
         <div className="main-nav_item_mobile_menu"></div>
@@ -51,11 +46,7 @@ const Header = ({
           </Link>
         </div>
         <ul className="main-nav-ul main-nav-li">
-          {collectionNames.map(({ link, name }) => (
-            <Link to={`/${link}`} key={link} onClick={onCloseMenuHandler}>
-              <li className="main-nav-li">{name}</li>
-            </Link>
-          ))}
+          {categoriesNav}
           {isSignedIn ? (
             <Link
               to={`/myorders`}
@@ -82,19 +73,6 @@ const Header = ({
       </nav>
     </header>
   );
-  if (error) content = <ErrorPage text="Something was wrong... Try again :|" />;
-
-  return content;
 };
 
-const mapStateToProps = (state) => ({
-  numItems: selectorNumberItems(state),
-  collectionNames: selectorCollectionNamesByKey("collectionNames")(state),
-  error: selectorCollectionNamesByKey("error")(state),
-  isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
-});
-const mapDispatchtoProps = (dispatch) => ({
-  onFetchCollectionNamesStart: () => dispatch(fetchCollectionNamesStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchtoProps)(Header);
+export default Header;

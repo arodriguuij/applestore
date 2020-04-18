@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import Header from "./components/header/header.component";
-import ContainerPage from "./containers/containerPage/container-page.container";
+import HeaderContainer from "./containers/headerContainer/headerContainer.container";
+import RoutesContainer from "./containers/routesContainer/routes-container.container";
 import Footer from "./components/footer/footer.component";
 import ErrorBoundary from "./components/error-boundary/error.boundary.component";
 import Spinner from "./components/spinner/spinner.component";
@@ -11,8 +11,8 @@ const App = () => {
     <div className="App">
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
-          <Header />
-          <ContainerPage />
+          <HeaderContainer />
+          <RoutesContainer />
           <Footer />
         </Suspense>
       </ErrorBoundary>

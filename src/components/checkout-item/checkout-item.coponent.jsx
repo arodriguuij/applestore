@@ -1,60 +1,48 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   incrementItem,
   decrementItem,
   removeItem,
 } from "../../redux/checkout/checkout.actions";
+import CheckoutItemIncrement from "../checkout-item-increment/checkout-item-increment.component";
+import CheckoutItemDecrement from "../checkout-item-decrement/checkout-item-decrement.component";
 import { connect } from "react-redux";
+import CheckoutItemRemove from "../checkout-item-remove/checkout-item-remove.component";
+import CheckoutItemImage from "../checkout-item-image/checkout-item-image.component";
 import "./checkout-item.styles.css";
 
 const CheckoutItem = ({
-  item,
+  id,
+  img,
+  collection,
+  name,
+  quantity,
+  price,
   onDecrementItem,
   onIncrementItem,
   onRemoveItem,
   fullInformation,
 }) => (
   <div className="checkout-item">
-    <div className="checkout-item-img-container">
-      <Link to={`/${item.collection}/${item.id}`}>
-        <img
-          src={item.img}
-          alt="item"
-          className={
-            fullInformation ? "checkout-item-img" : "my-orders-item-img"
-          }
-        />
-      </Link>
-    </div>
-    <span className="checkout-item-name">{item.name}</span>
+    <CheckoutItemImage
+      collection={collection}
+      id={id}
+      img={img}
+      fullInformation={fullInformation}
+    />
+    <span className="checkout-item-name">{name}</span>
     <span className="checkout-item-quantity">
       {fullInformation ? (
-        <div
-          className="checkout-item-arrow"
-          onClick={() => onDecrementItem(item.id)}
-        >
-          &#10094;
-        </div>
+        <CheckoutItemDecrement onDecrementItem={onDecrementItem} id={id} />
       ) : null}
-      <div className="checkout-item-value">{item.quantity}</div>
+      <div className="checkout-item-value">{quantity}</div>
       {fullInformation ? (
-        <div
-          className="checkout-item-arrow"
-          onClick={() => onIncrementItem(item.id)}
-        >
-          &#10095;
-        </div>
+        <CheckoutItemIncrement onIncrementItem={onIncrementItem} id={id} />
       ) : null}
     </span>
-    <span className="checkout-item-price">{item.price}€</span>
+    <span className="checkout-item-price">{price}€</span>
     {fullInformation ? (
-      <div
-        className="checkout-item-remove-button"
-        onClick={() => onRemoveItem(item.id)}
-      >
-        &#10005;
-      </div>
+      <CheckoutItemRemove onRemoveItem={onRemoveItem} id={id} />
     ) : null}
   </div>
 );

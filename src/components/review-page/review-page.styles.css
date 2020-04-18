@@ -1,0 +1,11 @@
+.review-page{
+    grid: flex;
+    width: 95%;
+    margin: auto;
+    background-color: #F8F8F8;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 1px rgba(5, 5, 5, 0.15);
+    padding: 3rem
+  }
+  

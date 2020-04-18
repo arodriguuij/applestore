@@ -1,0 +1,33 @@
+.checkout-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 1rem auto;
+  }
+  .checkout-form-title {
+    margin: 2rem 0;
+  }
+  
+  .checkout-form-button{
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+  
+  }
+  
+  @media only screen and (max-width: 600px){
+      .checkout-form-container{
+          width: 70%;
+      }
+  }
+  
+  .checkout-form-price{
+    padding: 0.5rem 2rem;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
