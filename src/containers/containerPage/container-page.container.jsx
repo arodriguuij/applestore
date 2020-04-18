@@ -7,7 +7,7 @@ import CheckoutPageForm from "../checkoutPageForm/checkout-page-form.container";
 import MyOrdersPage from "../myOrdersPage/my-orders-page.container";
 import "./container-page.styles.css";
 
-const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
+const ErrorPage = lazy(() => import("../../components/error-page/error-page.component"));
 const HomePage = lazy(() => import("../homePage/home-page.container"));
 const CheckoutPage = lazy(() => import("../checkoutPage/checkout.container"));
 const ItemPage = lazy(() => import("../reviewPage/review-page.container"));
@@ -31,13 +31,7 @@ const ContainerPage = ({ collectionNames, isSignedIn }) => {
         <Route
           exact
           path={`/myorders`}
-          render={() =>
-            isSignedIn ? (
-              <MyOrdersPage /> 
-            ) : (
-              <Redirect to="/" />
-            )
-          }
+          render={() => (isSignedIn ? <MyOrdersPage /> : <Redirect to="/" />)}
         />
         {collectionNames.map(({ link }) => (
           <Route

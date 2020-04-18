@@ -9,12 +9,12 @@ import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import { selectorBuyByKey } from "../../redux/buy/buy.selectors";
 import Spinner from "../../components/spinner/spinner.component";
 import { purgeCheckoutCollection } from "../../redux/checkout/checkout.actions";
-import ErrorPage from "../../components/error-page/error-page";
+import ErrorPage from "../../components/error-page/error-page.component";
 import {
   selectorCheckout,
   selectorTotalPrice,
 } from "../../redux/checkout/checkout.selectors";
-import { fetchBuyStart, fetchBuyReset } from "../../redux/buy/buy.actions";
+import { fetchBuyStart } from "../../redux/buy/buy.actions";
 import "./checkout-page-form.styles.css";
 
 const CheckoutageForm = ({
@@ -29,7 +29,6 @@ const CheckoutageForm = ({
   error,
   purchased,
   onPurgeCheckoutCollection,
-  data,
 }) => {
   const [email] = useState(defaultEmail ? defaultEmail : "");
   const [userName] = useState(defaultName ? defaultName : "");
@@ -52,7 +51,6 @@ const CheckoutageForm = ({
     };
   }, [
     onSetBreadcrumb,
-    fetchBuyReset,
     onPurgeCheckoutCollection,
     loading,
     purchased,
@@ -219,7 +217,10 @@ const maptStateToProps = (state) => ({
     "userBasicProfile",
     "name"
   )(state),
-  userId: selectorAuthenticationByKeyAndNestedKey("userBasicProfile", "id")(state),
+  userId: selectorAuthenticationByKeyAndNestedKey(
+    "userBasicProfile",
+    "id"
+  )(state),
   checkoutCollection: selectorCheckout(state),
   totalPrice: selectorTotalPrice(state),
   loading: selectorBuyByKey("loading")(state),

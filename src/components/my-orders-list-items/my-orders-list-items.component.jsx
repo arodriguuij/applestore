@@ -1,16 +1,9 @@
 import React from "react";
 import CheckoutItem from "../../components/checkout-item/checkout-item.coponent";
 
-const MyOrdersListItems = ({ items, fullInformation }) => {
-  return items.map((item, index) => (
-    <CheckoutItem
-      key={index}
-      item={item}
-      fullInformation={fullInformation}
-    />
+const MyOrdersListItems = ({ items }) =>
+  items.map((item, index) => (
+    <CheckoutItem key={index} item={item} fullInformation={false} />
   ));
-};
-
-
 
 export default MyOrdersListItems;

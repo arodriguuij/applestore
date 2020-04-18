@@ -11,7 +11,7 @@ import GoogleAuth from "../../components/google-auth/google-auth";
 import { selectorAuthenticationByKey } from "../../redux/authentication/authentication.selector";
 import "./header.styles.css";
 
-const ErrorPage = lazy(() => import("../error-page/error-page"));
+const ErrorPage = lazy(() => import("../error-page/error-page.component"));
 
 const Header = ({
   collectionNames,
@@ -93,7 +93,6 @@ const mapStateToProps = (state) => ({
   error: selectorCollectionNamesByKey("error")(state),
   isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
 });
-
 const mapDispatchtoProps = (dispatch) => ({
   onFetchCollectionNamesStart: () => dispatch(fetchCollectionNamesStart()),
 });

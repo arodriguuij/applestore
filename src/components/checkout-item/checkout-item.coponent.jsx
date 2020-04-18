@@ -14,46 +14,50 @@ const CheckoutItem = ({
   onIncrementItem,
   onRemoveItem,
   fullInformation,
-}) => {
-  return (
-    <div className="checkout-item">
-      <div className="checkout-item-img-container">
-        <Link to={`/${item.collection}/${item.id}`}>
-          <img src={item.img} alt="item" className={fullInformation ? 'checkout-item-img' : 'my-orders-item-img'} />
-        </Link>
-      </div>
-      <span className="checkout-item-name">{item.name}</span>
-      <span className="checkout-item-quantity">
-        {fullInformation ? (
-          <div
-            className="checkout-item-arrow"
-            onClick={() => onDecrementItem(item.id)}
-          >
-            &#10094;
-          </div>
-        ) : null}
-        <div className="checkout-item-value">{item.quantity}</div>
-        {fullInformation ? (
-          <div
-            className="checkout-item-arrow"
-            onClick={() => onIncrementItem(item.id)}
-          >
-            &#10095;
-          </div>
-        ) : null}
-      </span>
-      <span className="checkout-item-price">{item.price}€</span>
+}) => (
+  <div className="checkout-item">
+    <div className="checkout-item-img-container">
+      <Link to={`/${item.collection}/${item.id}`}>
+        <img
+          src={item.img}
+          alt="item"
+          className={
+            fullInformation ? "checkout-item-img" : "my-orders-item-img"
+          }
+        />
+      </Link>
+    </div>
+    <span className="checkout-item-name">{item.name}</span>
+    <span className="checkout-item-quantity">
       {fullInformation ? (
         <div
-          className="checkout-item-remove-button"
-          onClick={() => onRemoveItem(item.id)}
+          className="checkout-item-arrow"
+          onClick={() => onDecrementItem(item.id)}
         >
-          &#10005;
+          &#10094;
         </div>
       ) : null}
-    </div>
-  );
-};
+      <div className="checkout-item-value">{item.quantity}</div>
+      {fullInformation ? (
+        <div
+          className="checkout-item-arrow"
+          onClick={() => onIncrementItem(item.id)}
+        >
+          &#10095;
+        </div>
+      ) : null}
+    </span>
+    <span className="checkout-item-price">{item.price}€</span>
+    {fullInformation ? (
+      <div
+        className="checkout-item-remove-button"
+        onClick={() => onRemoveItem(item.id)}
+      >
+        &#10005;
+      </div>
+    ) : null}
+  </div>
+);
 
 const mapDispatchToProps = (dispatch) => ({
   onIncrementItem: (id) => dispatch(incrementItem(id)),

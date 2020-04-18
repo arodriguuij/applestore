@@ -10,9 +10,8 @@ import {
   selectorPageCollectionByKeyAndNedtedKey,
   selectorIsDataEmpty,
 } from "../../redux/homePageCollections/home-page-collections.selectors";
-import "./home-page.styles.css";
 
-const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
+const ErrorPage = lazy(() => import("../../components/error-page/error-page.component"));
 
 const HomePage = ({
   error,

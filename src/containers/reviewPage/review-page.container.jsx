@@ -9,9 +9,9 @@ import { selectorActualDeviceByKey } from "../../redux/actualDevice/actual-devic
 import { addItem } from "../../redux/checkout/checkout.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
-import Review from "../../components/review-box/review-box.components"
+import Review from "../../components/review-box/review-box.components";
 import "./review-page.styles.css";
-const ErrorPage = lazy(() => import("../../components/error-page/error-page"));
+const ErrorPage = lazy(() => import("../../components/error-page/error-page.component"));
 
 const ItemPage = (props) => {
   const {
@@ -38,7 +38,7 @@ const ItemPage = (props) => {
 
   useEffect(() => {
     if (isCollectionItemEmpty || !existItemInCollection)
-    onFetchActualDeviceStart(collection, deviceName);
+      onFetchActualDeviceStart(collection, deviceName);
     return () => {
       onRemoveActualDevice();
     };
@@ -68,7 +68,8 @@ const ItemPage = (props) => {
         id={deviceName}
         collection={collection}
         img={existItemInCollection.img}
-        device={existItemInCollection}
+        name={existItemInCollection.name}
+        price={existItemInCollection.price}
         addItem={addItemHandler}
       />
     );
@@ -79,7 +80,8 @@ const ItemPage = (props) => {
           id={deviceName}
           collection={collection}
           img={collection_actualDevice.img}
-          device={collection_actualDevice}
+          name={collection_actualDevice.name}
+          price={collection_actualDevice.price}
           addItem={addItemHandler}
         />
       );
@@ -96,12 +98,18 @@ const ItemPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  collection_Mac: selectorCollectionByKeyAndNestedKey("collection_Mac", "items")(state),
+  collection_Mac: selectorCollectionByKeyAndNestedKey(
+    "collection_Mac",
+    "items"
+  )(state),
   collection_iPhone: selectorCollectionByKeyAndNestedKey(
     "collection_iPhone",
     "items"
   )(state),
-  collection_iPad: selectorCollectionByKeyAndNestedKey("collection_iPad", "items")(state),
+  collection_iPad: selectorCollectionByKeyAndNestedKey(
+    "collection_iPad",
+    "items"
+  )(state),
   collection_iWatch: selectorCollectionByKeyAndNestedKey(
     "collection_iWatch",
     "items"
@@ -116,7 +124,6 @@ const mapStateToProps = (state) => ({
   loading: selectorActualDeviceByKey("loading")(state),
   error: selectorActualDeviceByKey("error")(state),
 });
-
 const mapDispatchToProps = (dispatch) => ({
   onSetBreadcrumb: (text) => dispatch(setBreadcrumb(text)),
   onFetchActualDeviceStart: (collection, deviceName) =>
@@ -124,4 +131,5 @@ const mapDispatchToProps = (dispatch) => ({
   onRemoveActualDevice: (id) => dispatch(removeActualDevice(id)),
   onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);

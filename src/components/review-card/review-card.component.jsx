@@ -4,26 +4,18 @@ import CustomButton from "../custom-button/custom-button.component";
 import { Link } from "react-router-dom";
 import "./review-card.styles.css";
 
-const ReviewCard = ({ device, addItem, img, id }) => {
-  const { name, price } = device;
-  return (
-    <div className="review-card-container">
-      <ReviewCardDescription
-        name={name}
-        price={price}
-        img={img}
-        id={id}
-      />
-      <div className="review-card-container-button">
-        <CustomButton action={addItem} google>
-          Add Item
-        </CustomButton>
-        <Link to="/checkout">
-          <CustomButton checkout>Checkout</CustomButton>
-        </Link>
-      </div>
+const ReviewCard = ({ name, price, addItem, img, id }) => (
+  <div className="review-card-container">
+    <ReviewCardDescription name={name} price={price} img={img} id={id} />
+    <div className="review-card-container-button">
+      <CustomButton action={addItem} google>
+        Add Item
+      </CustomButton>
+      <Link to="/checkout">
+        <CustomButton checkout>Checkout</CustomButton>
+      </Link>
     </div>
-  );
-};
+  </div>
+);
 
 export default ReviewCard;

@@ -23,6 +23,18 @@ const GoogleAuth = ({
   error,
 }) => {
   useEffect(() => {
+    const onAuthChange = (isSignedIn) => {
+      const auth = window.gapi.auth2.getAuthInstance();
+      const userData = auth.currentUser.get();
+      isSignedIn
+        ? onSignIn({
+            email: userData.getBasicProfile().getEmail(),
+            name: userData.getBasicProfile().getName(),
+            id: auth.currentUser.get().getId(),
+          })
+        : onSignOut();
+    };
+
     window.gapi.load("client:auth2", () => {
       onGoogleAuthenticationStart();
       window.gapi.client
@@ -43,19 +55,13 @@ const GoogleAuth = ({
           }
         );
     });
-  }, [onGoogleAuthenticationSuccess, onGoogleAuthenticationStart]);
-
-  const onAuthChange = (isSignedIn) => {
-    const auth = window.gapi.auth2.getAuthInstance();
-    const userData = auth.currentUser.get();
-    isSignedIn
-      ? onSignIn({
-          email: userData.getBasicProfile().getEmail(),
-          name: userData.getBasicProfile().getName(),
-          id: auth.currentUser.get().getId(),
-        })
-      : onSignOut();
-  };
+  }, [
+    onGoogleAuthenticationSuccess,
+    onGoogleAuthenticationStart,
+    onGoogleAuthenticationFailure,
+    onSignIn,
+    onSignOut,
+  ]);
 
   const onSignInClick = () => {
     auth.signIn();
@@ -81,7 +87,6 @@ const GoogleAuth = ({
       }
     }
   };
-
   return renderAuthButton();
 };
 

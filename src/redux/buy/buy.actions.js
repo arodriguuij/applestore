@@ -38,7 +38,6 @@ export const fetchBuyFailure = () => {
       data: null,
       loading: false,
       error: true,
-      data: null,
     },
   };
 };
