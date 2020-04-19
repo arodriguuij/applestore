@@ -3,11 +3,12 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./category-button-styles.css";
 
 const CategoryButton = (props) => {
+  debugger;
   const { actual, action, typeButton } = props;
   return (
     <div className="category-buttons-types">
       <CustomButton
-        classes={actual === "all" && true}
+        classes={actual === "all" ? true : null}
         inverted
         action={() => action("all")}
       >
@@ -16,7 +17,7 @@ const CategoryButton = (props) => {
       {props[typeButton].map((type, id) => (
         <CustomButton
           key={id}
-          classes={actual === type && true}
+          classes={actual === type ? true : null}
           inverted
           action={() => action(type)}
         >

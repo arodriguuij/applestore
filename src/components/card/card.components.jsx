@@ -15,24 +15,35 @@ const Card = ({
   subtype,
   special,
 }) => {
-  let classes = [];
-  collection === "Accessories"
-    ? classes.push("card-dark")
-    : classes.push("card-light");
-  special && classes.push(" card-special-top-right");
+
+  let classes;
+  if(collection === "Accessories"){
+    if(special)
+    classes="card-dark card-special-top-right"
+    else
+    classes="card-dark"
+  }
+  else{
+    if(special)
+    classes="card-light card-special-top-right"
+    else
+    classes="card-light"
+  }
 
   return (
-    <div className={classes}>
+    <div data-test="card" className={classes}>
       <div className="card-content">
         <CardHeader
+          data-test="card-header"
           name={name}
           collection={collection}
           id={id}
           extra={extra}
           text="buy"
         />
-        <CardImage img={img} />
+        <CardImage data-test="card-image" img={img} />
         <CardDescription
+          data-test="card-description"
           description={description}
           price={price}
           subtype={subtype}

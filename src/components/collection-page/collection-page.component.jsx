@@ -1,9 +1,9 @@
-import React, { Fragment, useState, lazy } from "react";
+import React, { Fragment, lazy } from "react";
 import Card from "../card/card.components";
-import CategoryButtons from "../category-buttons/category-buttons.component";
 import BreadcrumbContainer from "../../containers/breadcrumb/breadcrumb.container";
 import Spinner from "../../components/spinner/spinner.component";
 import "./collection-page.styles.css";
+import CategoryButtonContainer from "../../containers/category-button/category-button.container";
 
 const ErrorPage = lazy(() =>
   import("../../components/error-page/error-page.component")
@@ -14,17 +14,11 @@ const CollectionPage = ({
   collectionStateName,
   loading,
   error,
+  type,
+  subtype,
+  clickTypeHandler,
+  clickSubtypeHandler,
 }) => {
-  const [type, setType] = useState("all");
-  const [subtype, setSubtype] = useState("all");
-
-  const clickTypeHandler = (type) => {
-    setType(type);
-  };
-  const clickSubtypeHandler = (subtype) => {
-    setSubtype(subtype);
-  };
-
   const getContent = () => {
     if (error) return <ErrorPage text="Something was wrong... Try again :|" />;
     else if (loading) return <Spinner />;
@@ -33,18 +27,22 @@ const CollectionPage = ({
         <Fragment>
           <BreadcrumbContainer />
           <div className="item-collection-page">
-            <CategoryButtons
-              actualType={type}
-              actualSubtype={subtype}
-              actionTypes={(type) => clickTypeHandler(type)}
-              actionSubtypes={(subtype) => clickSubtypeHandler(subtype)}
+            <CategoryButtonContainer
               collection={collection}
+              action={(type) => clickTypeHandler(type)}
+              actual={type}
+              typeButton={"types"}
+            />
+            <CategoryButtonContainer
+              collection={collection}
+              action={(subtype) => clickSubtypeHandler(subtype)}
+              actual={subtype}
+              typeButton={"subtypes"}
             />
             <div className="collection-page-items">
               {Object.entries(collectionStateName)
                 .filter(
-                  ([id, device]) =>
-                    device.type === type || type === "all"
+                  ([id, device]) => device.type === type || type === "all"
                 )
                 .filter(
                   ([id, device]) =>

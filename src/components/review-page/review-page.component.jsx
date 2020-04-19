@@ -18,7 +18,6 @@ const ReviewPage = ({
   loading,
   error,
 }) => {
-  debugger;
   const getContent = () => {
     if (loading) return <Spinner />;
     else if (error) return <ErrorPage text={error} />;

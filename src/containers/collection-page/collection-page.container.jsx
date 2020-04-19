@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import CollectionPage from "../../components/collection-page/collection-page.component";
 import {
@@ -18,6 +18,21 @@ const CollectionPageContainer = (props) => {
   } = props;
   const collectionStateName = props[`collection_${collection}`];
 
+  const [type, setType] = useState("all");
+  const [subtype, setSubtype] = useState("all");
+
+  const clickTypeHandler = (type) => {
+    setType(type);
+  };
+  const clickSubtypeHandler = (subtype) => {
+    setSubtype(subtype);
+  };
+
+  useEffect(() => {
+    setType("all");
+    setSubtype("all");
+  }, [collection]);
+
   useEffect(() => {
     if (
       Object.keys(collectionStateName).length === 0 &&
@@ -36,6 +51,10 @@ const CollectionPageContainer = (props) => {
       collectionStateName={collectionStateName}
       error={error}
       loading={loading}
+      type={type}
+      subtype={subtype}
+      clickTypeHandler={clickTypeHandler}
+      clickSubtypeHandler={clickSubtypeHandler}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { selectorAuthenticationByKeyAndNestedKey } from "../../redux/authentication/authentication.selector";
 import { connect } from "react-redux";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
@@ -24,6 +24,16 @@ const CheckoutageFormContainer = ({
   onFetchBuyStart,
   error,
 }) => {
+  const [email] = useState(defaultEmail ? defaultEmail : "");
+  const [userName] = useState(defaultName ? defaultName : "");
+  const [country, setCountry] = useState("");
+  const [street, setStreet] = useState("");
+  const [zipcode, setZipcode] = useState("");
+
+  const [countryErrors, setCountryErrors] = useState("");
+  const [streetErrors, setStreetErrors] = useState("");
+  const [zipcodeErrors, setZipcodeErrors] = useState("");
+
   useEffect(() => {
     onSetBreadcrumb("Checkout 2/2");
     return () => {
@@ -31,14 +41,88 @@ const CheckoutageFormContainer = ({
     };
   }, [onSetBreadcrumb, onPurgeCheckoutCollection, loading, purchased]);
 
+  const regexZipCode = /^\d{5}(?:[-\s]\d{4})?$/;
+  const regexStreet = /^[a-zA-Z0-9 ]+$/;
+  const regexCountry = /[a-zA-Z ]{4,}/;
+
+  const onChangeHandler = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    switch (name) {
+      case "country":
+        setCountryErrors(
+          regexCountry.test(value)
+            ? ""
+            : "Country must contains at least 4 characters and only letters"
+        );
+        setCountry(value);
+        break;
+      case "street":
+        setStreetErrors(
+          value.length < 4 || !regexStreet.test(value) || value.length > 30
+            ? "Country must contains more than 4 and less than 30 characters and only letters and numbers"
+            : ""
+        );
+        setStreet(value);
+        break;
+      case "zipcode":
+        setZipcodeErrors(
+          regexZipCode.test(value) ? "" : "Zipcode must contains 5 digits"
+        );
+        setZipcode(value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      const data = {
+        items: checkoutCollection,
+        orderData: {
+          defaultEmail,
+          defaultName,
+          country,
+          street,
+          zipcode,
+        },
+        totalPrice,
+        userId,
+      };
+      onFetchBuyStart(data);
+      resetInputs();
+    }
+  };
+  const validateForm = () => {
+    return (
+      country.trim().length !== 0 &&
+      street.trim().length !== 0 &&
+      zipcode.trim().length !== 0 &&
+      countryErrors.length === 0 &&
+      streetErrors.length === 0 &&
+      zipcodeErrors.length === 0
+    );
+  };
+  const resetInputs = () => {
+    setCountry("");
+    setStreet("");
+    setZipcode("");
+  };
   return (
     <CheckoutPageForm
-      defaultEmail={defaultEmail}
-      defaultName={defaultName}
-      userId={userId}
-      checkoutCollection={checkoutCollection}
+      email={email}
+      userName={userName}
+      country={country}
+      street={street}
+      zipcode={zipcode}
+      countryErrors={countryErrors}
+      streetErrors={streetErrors}
+      zipcodeErrors={zipcodeErrors}
+      onSubmitHandler={onSubmitHandler}
+      onChangeHandler={onChangeHandler}
       totalPrice={totalPrice}
-      onFetchBuyStart={onFetchBuyStart}
       loading={loading}
       error={error}
       purchased={purchased}
