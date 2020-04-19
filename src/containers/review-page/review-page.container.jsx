@@ -10,7 +10,7 @@ import { addItem } from "../../redux/checkout/checkout.actions";
 import { setBreadcrumb } from "../../redux/breadcrumb/breadcrumb.actions";
 import ReviewPage from "../../components/review-page/review-page.component";
 
-const ItemPage = (props) => {
+const ReviewPageContainer = (props) => {
   const {
     collection,
     id,
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch) => ({
   onAddItem: (item, collection, id) => dispatch(addItem(item, collection, id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewPageContainer);

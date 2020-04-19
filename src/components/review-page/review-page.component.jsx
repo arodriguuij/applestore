@@ -7,7 +7,7 @@ const ErrorPage = lazy(() =>
   import("../../components/error-page/error-page.component")
 );
 
-const ItemPage = ({
+const ReviewPage = ({
   isCollectionItemEmpty,
   existItemInCollection,
   id,
@@ -18,6 +18,7 @@ const ItemPage = ({
   loading,
   error,
 }) => {
+  debugger;
   const getContent = () => {
     if (loading) return <Spinner />;
     else if (error) return <ErrorPage text={error} />;
@@ -54,11 +55,11 @@ const ItemPage = ({
             </div>
           </Fragment>
         );
-      }
+      }else return null
     }
   };
 
   return getContent();
 };
 
-export default ItemPage;
+export default ReviewPage;
