@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { selectorPageCollectionByKeyAndNedtedKey } from "../../redux/homePageCollections/home-page-collections.selectors";
 import Card from "../card/card.components";
 import "./cards-grid.styles.css";
 
@@ -15,15 +13,4 @@ const CardsGrid = ({ bannerGridTitle, bannerGridBody }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  bannerGridTitle: selectorPageCollectionByKeyAndNedtedKey(
-    "bannerGrid",
-    "title"
-  )(state),
-  bannerGridBody: selectorPageCollectionByKeyAndNedtedKey(
-    "bannerGrid",
-    "body"
-  )(state),
-});
-
-export default connect(mapStateToProps)(CardsGrid);
+export default CardsGrid;

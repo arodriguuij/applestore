@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import CategoryButton from "../category-button/category-button-component";
+import CategoryButtonContainer from "../../containers/category-button/category-button.container";
 
 const CategoryButtons = ({
   actionTypes,
@@ -9,13 +9,13 @@ const CategoryButtons = ({
   collection,
 }) => (
   <Fragment>
-    <CategoryButton
+    <CategoryButtonContainer
       collection={collection}
       action={actionTypes}
       actual={actualType}
       typeButton={"types"}
     />
-    <CategoryButton
+    <CategoryButtonContainer
       collection={collection}
       action={actionSubtypes}
       actual={actualSubtype}

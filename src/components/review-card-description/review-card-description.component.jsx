@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import CardDescriptionNumItems from "../card-description-numItems/card-description-numItems.component";
+import CardDescriptionNumItemsContainer from "../../containers/card-description-num-items/card-description-num-items.container";
 import "./review-card-description.styles.css";
 
 const ReviewCardDescription = ({ name, price, id, img }) => (
@@ -15,7 +15,7 @@ const ReviewCardDescription = ({ name, price, id, img }) => (
         From <strong>{price}€</strong>
       </div>
       <div>
-        <CardDescriptionNumItems id={id} />
+        <CardDescriptionNumItemsContainer id={id} />
       </div>
     </div>
   </Fragment>

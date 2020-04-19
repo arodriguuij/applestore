@@ -1,0 +1,12 @@
+.main-nav_main_icon {
+  padding: 0 2vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-nav_main_icon {
+    padding: 1rem;
+  }
+  .main-nav_main_icon:active {
+    background-color: #0a84ff;
+  }
+}

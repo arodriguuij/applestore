@@ -1,0 +1,37 @@
+.main-nav-ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.main-nav-ul > a:hover {
+  color: white;
+}
+.main-nav-ul > a {
+  text-decoration: none;
+  color: rgb(198, 198, 198);
+  font-size: 0.8rem;
+}
+.main-nav-li {
+  padding: 0 1.75vw;
+}
+@media only screen and (max-width: 600px) {
+  .main-nav-ul {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  .main-nav-li {
+    display: block;
+    padding: 1rem;
+  }
+  .main-nav-li:active {
+    background-color: #0a84ff;
+  }
+
+  .main-nav-li:first-child {
+    border-top: 1px solid #eaeaeb;
+    border-bottom: 1px solid #eaeaeb;
+  }
+}

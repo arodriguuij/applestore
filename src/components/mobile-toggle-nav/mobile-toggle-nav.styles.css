@@ -1,0 +1,21 @@
+
+.main-nav_item_mobile_menu {
+  width: 1.2rem;
+  height: 0.17rem;
+  background-color: #ffffff;
+  margin: 0.2rem 0;
+  border-radius: 2px;
+}
+
+.main-nav_item_mobile {
+  display: none;
+  padding: 0 2vw;
+  cursor: pointer;
+  text-align: -webkit-right;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-nav_item_mobile {
+    display: block;
+  }
+}

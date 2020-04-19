@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
+import BreadcrumbContainer from "../../containers/breadcrumb/breadcrumb.container";
 import CheckoutTable from "../../components/checkout-table/checkout-table.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 
@@ -22,7 +22,7 @@ const CheckoutPage = ({ isSignedIn, onPurchaseInit, numItems }) => {
 
   return (
     <Fragment>
-      <Breadcrumb />
+      <BreadcrumbContainer />
       <CheckoutTable />
       <Link to="/checkoutForm">{button}</Link>
     </Fragment>

@@ -1,7 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
 import CustomButton from "../custom-button/custom-button.component";
-import { selectorCollectionByKeyAndNestedKey } from "../../redux/collections/collections.selectors";
 import "./category-button-styles.css";
 
 const CategoryButton = (props) => {
@@ -29,15 +27,4 @@ const CategoryButton = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  types: selectorCollectionByKeyAndNestedKey(
-    `collection_${ownProps.collection}`,
-    "types"
-  )(state),
-  subtypes: selectorCollectionByKeyAndNestedKey(
-    `collection_${ownProps.collection}`,
-    "subtypes"
-  )(state),
-});
-
-export default connect(mapStateToProps)(CategoryButton);
+export default CategoryButton;

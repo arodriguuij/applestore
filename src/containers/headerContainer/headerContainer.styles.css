@@ -1,8 +1,0 @@
-.main-header {
-    grid-area: header;
-    position: fixed;
-    background: rgb(29, 29, 31);
-    width: 100%;
-    opacity: 0.9;
-    padding: 0.3rem 0;
-  }
