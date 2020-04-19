@@ -3,7 +3,6 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./category-button-styles.css";
 
 const CategoryButton = (props) => {
-  debugger;
   const { actual, action, typeButton } = props;
   return (
     <div className="category-buttons-types">
