@@ -4,9 +4,9 @@ Apple website developed with react and redux. Adaptive Design for mobile.
 What would happen if react belonged to apple... See it!
 
 Desktop
-![homepage](https://user-images.githubusercontent.com/22448366/79048064-6a20a000-7c12-11ea-9950-500a2d146b66.JPG)
+![homepage](https://user-images.githubusercontent.com/22448366/79730743-2e0fce00-82e9-11ea-9b53-30a6d588ca11.JPG)
 Mobile
-![mobile](https://user-images.githubusercontent.com/22448366/79048080-799fe900-7c12-11ea-8da2-84572d32c21a.png)
+![mobile2](https://user-images.githubusercontent.com/22448366/79732546-c444f380-82eb-11ea-9e58-e430bb764306.jpg)
 
 
 ## Getting Started
