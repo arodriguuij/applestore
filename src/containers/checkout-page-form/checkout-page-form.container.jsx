@@ -60,7 +60,7 @@ const CheckoutageFormContainer = ({
       case "street":
         setStreetErrors(
           value.length < 4 || !regexStreet.test(value) || value.length > 30
-            ? "Country must contains more than 4 and less than 30 characters and only letters and numbers"
+            ? "Street must contains more than 4 and less than 30 characters and only letters and numbers"
             : ""
         );
         setStreet(value);
