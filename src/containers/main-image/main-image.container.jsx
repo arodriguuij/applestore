@@ -8,5 +8,4 @@ const mapStateToProps = (state) => ({
   text2: selectorPageCollectionByKeyAndNedtedKey("mainImage", "text2")(state),
 });
 
-const MainImageContainer = connect(mapStateToProps)(MainImage);
-export default MainImageContainer;
+export default connect(mapStateToProps)(MainImage);

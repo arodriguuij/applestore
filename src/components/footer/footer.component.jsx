@@ -1,42 +1,41 @@
 import React from "react";
-import CheckoutIcon from "../checkout-icon/checkout-icon.component";
 import { ReactComponent as ReactLogoLinkedin } from "../../assets/linkedin.svg";
 import { ReactComponent as ReactLogoGithub } from "../../assets/github.svg";
 import { ReactComponent as ReactLogoPortfolio } from "../../assets/portfolio.svg";
+import LogoLink from "../logo-link/log-link.component";
 import "./footer.styles.css";
 
 const Footer = () => (
   <div className="footer-main">
-    <a
-      className="footer-main-link"
-      role="button"
-      aria-label="Linkedin"
-      href="https://www.linkedin.com/in/alejandro-rodriguez-escudero-260362144/"
-    >
-      <CheckoutIcon>
+    <div className="logo-link">
+      <LogoLink
+        role="button"
+        label={"Linkedin"}
+        url={
+          "https://www.linkedin.com/in/alejandro-rodriguez-escudero-260362144/"
+        }
+      >
         <ReactLogoLinkedin />
-      </CheckoutIcon>
-    </a>
-    <a
-      className="footer-main-link"
-      role="button"
-      aria-label="Github"
-      href="https://github.com/arodriguuij"
-    >
-      <CheckoutIcon>
+      </LogoLink>
+    </div>
+    <div className="logo-link">
+      <LogoLink
+        role="button"
+        label={"Github"}
+        url={"https://github.com/arodriguuij"}
+      >
         <ReactLogoGithub />
-      </CheckoutIcon>
-    </a>
-    <a
-      className="footer-main-link"
-      role="button"
-      aria-label="Portfolio"
-      href="https://peaceful-ardinghelli-d6add1.netlify.com/"
-    >
-      <CheckoutIcon>
+      </LogoLink>
+    </div>
+    <div className="logo-link">
+      <LogoLink
+        role="button"
+        label={"Portfolio"}
+        url={"https://peaceful-ardinghelli-d6add1.netlify.com/"}
+      >
         <ReactLogoPortfolio />
-      </CheckoutIcon>
-    </a>
+      </LogoLink>
+    </div>
   </div>
 );
 

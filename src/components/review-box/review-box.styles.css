@@ -1,12 +1,9 @@
-.review-box-header-h1{
-  color:#636366;
-}
 .review-box-content {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
- .review-box-content-description {
+.review-box-content-description {
   min-width: 320px;
   max-width: 425px;
   display: flex;
@@ -14,14 +11,10 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 3px 1px rgba(5, 5, 5, 0.15);
-} 
-.review-box-header{
-  color:#333333;
-  padding-bottom: 2rem;
 }
 
-@media only screen and (max-width: 600px){
-  .review-box-content{
+@media only screen and (max-width: 600px) {
+  .review-box-content {
     flex-direction: column;
   }
 }

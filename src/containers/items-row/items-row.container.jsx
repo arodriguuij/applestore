@@ -13,5 +13,4 @@ const mapStateToProps = (state) => ({
   )(state),
 });
 
-const ItemsRowContainer = connect(mapStateToProps)(ItemsRow);
-export default ItemsRowContainer;
+export default connect(mapStateToProps)(ItemsRow);

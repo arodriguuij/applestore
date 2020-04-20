@@ -6,5 +6,4 @@ const mapStateToProps = (state) => ({
   isSignedIn: selectorAuthenticationByKey("isSignedIn")(state),
 });
 
-const RoutesContainer = connect(mapStateToProps)(Routes);
-export default RoutesContainer;
+export default connect(mapStateToProps)(Routes);

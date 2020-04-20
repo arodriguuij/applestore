@@ -21,28 +21,21 @@ const ReviewPage = ({
   const getContent = () => {
     if (loading) return <Spinner />;
     else if (error) return <ErrorPage text={error} />;
-    else if (!isCollectionItemEmpty && existItemInCollection) {
+    else
       return (
         <Fragment>
           <BreadcrumbContainer />
           <div className={"review-page"}>
-            <Review
-              id={id}
-              collection={collection}
-              img={existItemInCollection.img}
-              name={existItemInCollection.name}
-              price={existItemInCollection.price}
-              addItem={addItemHandler}
-            />
-          </div>
-        </Fragment>
-      );
-    } else {
-      if (isCollectionActualDeviceFull) {
-        return (
-          <Fragment>
-            <BreadcrumbContainer />
-            <div className={"review-page"}>
+            {!isCollectionItemEmpty && existItemInCollection ? (
+              <Review
+                id={id}
+                collection={collection}
+                img={existItemInCollection.img}
+                name={existItemInCollection.name}
+                price={existItemInCollection.price}
+                addItem={addItemHandler}
+              />
+            ) : isCollectionActualDeviceFull ? (
               <Review
                 id={id}
                 collection={collection}
@@ -51,11 +44,10 @@ const ReviewPage = ({
                 price={collection_actualDevice.price}
                 addItem={addItemHandler}
               />
-            </div>
-          </Fragment>
-        );
-      }else return null
-    }
+            ) : null}
+          </div>
+        </Fragment>
+      );
   };
 
   return getContent();
