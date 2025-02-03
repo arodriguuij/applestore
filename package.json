@@ -51,6 +51,7 @@
     "enzyme-adapter-react-16": "^1.15.2"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "npm": "latest"
   }
 }
